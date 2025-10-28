@@ -1,9 +1,4 @@
 # [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](spatiotemporalmodels-workshop-abft.netlify.app/)
-
-### Spatiotemporal Models Workshop
-
-by Sosthene AKIA [<img src="https://github.com/SostheneA/ST_Workshop/main/images/logo1.jpg" align="right" width="150"/>]
-
 ------------------------------------------------------------------------
 
 :spiral_calendar:  September 17, 2023\
