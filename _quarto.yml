@@ -9,7 +9,7 @@ project:
 
 website:
   page-navigation: true
-  title: "Spatiotemporal Workshop"
+  title: "Home"
   description: "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT"
   site-url: "https://spatiotemporalmodels-workshop-abft.netlify.app/"
   
@@ -40,8 +40,6 @@ website:
         href: https://github.com/SostheneA/ST_Workshop
         text: GitHub
     left:
-      - text: Home
-        href: index.qmd
       - text: Prework
         href: prework.qmd
       - text: Schedule & Slides
