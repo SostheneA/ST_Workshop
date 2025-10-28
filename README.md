@@ -1,4 +1,4 @@
-# [Designing Data Visualizations to Successfully Tell a Story](https://posit-conf-2023.github.io/dataviz-storytelling/)
+# [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](spatiotemporalmodels-workshop-abft.netlify.app/)
 
 ### posit::conf 2023
 
