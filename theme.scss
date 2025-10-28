@@ -4,13 +4,13 @@
   
 $font-family-sans-serif: 'Asap', 'Asap Condensed', 'Spline Sans', 'Tahoma', 'Arial', sans-serif;
 $font-family-serif: 'Literata', 'Bodoni MT', 'Georgia', 'Times New Roman', Times, serif;
-$presentation-heading-color: #F7941D;
+$presentation-heading-color: #1877F2;
 $presentation-heading-font-weight: 800;
-$link-color: #F7941D;
-$link-color-dark: #FFB94A;
-$link-color-visited: #F7941D;
-$link-color-hover: #F7941D;
-$presentation-selection-background-color: #FFE2BD;
+$link-color: #1877F2;
+$link-color-dark: #51B9F7 ;
+$link-color-visited: #1877F2;
+$link-color-hover: #1877F2;
+$presentation-selection-background-color: #E9F1FA ;
 $presentation-title-slide-text-align: "left";
 $presentation-block-margin: .0375rem;
 
@@ -40,11 +40,11 @@ code, .code {
 }
 
 .question {
-  border-left: 3px solid #F7941D;
+  border-left: 3px solid #1877F2;
   padding: 0.5rem 0.5rem 0.2rem 1rem;
   margin-top: 0.5rem;
   margin-bottom: 0.3rem;
-  background: #FFF4E6;
+  background: #F2F8FC;
 }
 
 .recap {

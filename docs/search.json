@@ -2,22 +2,36 @@
   {
     "objectID": "schedule.html",
     "href": "schedule.html",
-    "title": "Schedule",
+    "title": "Schedule & Slides",
     "section": "",
     "text": "Sunday, September 17, 2023\n\n\n\n\n\n\n\n\nTime\n\n\nModule\n\n\n\n\n\n\n\n\n\n09:00-10:30\n\n\nFoundations of Data Visualization\n\n\n\n\n\n\n\n10:30-11:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n11:00-12:30\n\n\nChoose an Appropriate Display\n\n\n\n\n\n\n\n12:30-13:30\n\n\nLunch Break\n\n\n\n\n\n\n\n13:30-15:00\n\n\nThink Like a Designer\n\n\n\n\n\n\n\n15:00-15:30\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:30-17:00\n\n\nGuide the View(er)\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "prework.html",
+    "href": "prework.html",
+    "title": "Prework",
     "section": "",
-    "text": "About this site"
+    "text": "The course will cover principles and tips on how to create compelling graphics that communicate the data in a clear and effective way with a focus on your main findings by engaging and guiding your viewers. No prior preparation is necessary for workshop participants, as the course content is designed to be of a general nature and does not require any prior knowledge or background learning.\nPlease take a moment before the course to think about chart types that you are using on a regular basis and the most common struggles when designing data visualizations. Note them down and bring a few examples if possible (either the original graphics, no matter if polished or not, or simple drafts in case you are not allowed or don’t want to share them). Feel free to share the information in the Discord channel (see below) as well.\nAs this workshop is set up as a non-coding course, you do not have to bring your laptop but a few blank sheets of paper and a few pens of different colors for the group exercises. If you prefer to code rough data visualizations rather then drafting them by hand, feel free to set up your laptop accordingly, depending on the programming language and graphics library of your choice."
   },
   {
-    "objectID": "license.html",
-    "href": "license.html",
-    "title": "License",
+    "objectID": "prework.html#course-communication",
+    "href": "prework.html#course-communication",
+    "title": "Prework",
+    "section": "Course Communication",
+    "text": "Course Communication\nWe will be using Discord as our main communication method during the workshop. To make the process go smoothly:\n\nPlease sign up for an account at discord.com if you don’t already have one.\nMake sure your display name is the one you used to register for the conference.\nIn your “About Me”, put the name of your workshop(s).\n\nCloser to the start of the conference, you will be invited to join the posit::conf Discord server. Once you’ve accepted the invite, we will add you to the channel for the workshop."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT",
     "section": "",
-    "text": "This work is licensed under a Creative Commons Attribution 4.0 International License."
+    "text": "A posit::conf(2023) Workshop by Cédric Scherer\n📆  September 17, 2023\n⏰  09:00–17:00 CDT\n🏨  Grand Hall K"
+  },
+  {
+    "objectID": "index.html#is-this-course-for-me",
+    "href": "index.html#is-this-course-for-me",
+    "title": "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT",
+    "section": "Is this course for me?",
+    "text": "Is this course for me?\nThis course will be appropriate for you if you:\n\nwant to understand and learn the art of communicating data with impactful visualizations,\naim to improve your data visualization design to create effective and informative graphics, and\nare willing to spend a bit more time choosing the right chart, proper color palettes, and suitable fonts along with additional elements to guide the viewer."
   }
 ]
