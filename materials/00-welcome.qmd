@@ -1,5 +1,5 @@
 ---
-title: "Designing Data Visualizations<br>to Successfully Tell a Story"
+title: "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT"
 subtitle: "<span style='font-size:2em;'>Welcome!</span>"
 author: "<a href='https://www.cedricscherer.com' style='color:#28a87d;font-weight:600;'>Cédric Scherer</a>&ensp;//&ensp;posit::conf&ensp;//&ensp;September 2023"
 format:

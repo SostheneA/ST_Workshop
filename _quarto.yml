@@ -9,7 +9,7 @@ project:
 
 website:
   page-navigation: true
-  title: "Spatiotemporal Models with VAST and sdmTMB"
+  title: "Spatiotemporal Workshop"
   description: "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT"
   site-url: "https://spatiotemporalmodels-workshop-abft.netlify.app/"
   
