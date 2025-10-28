@@ -1,6 +1,9 @@
 # [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](spatiotemporalmodels-workshop-abft.netlify.app/)
 ------------------------------------------------------------------------
+[<img src="https://github.com/SostheneA/ST_Workshop/tree/main/images/logo1.jpg" align="right" width="150">](https://spatiotemporalmodels-workshop-abft.netlify.app/)
 
+
+------------------------------------------------------------------------
 :spiral_calendar:  February 01, 2026\
 :alarm_clock:  09:00 - 17:00\
 :hotel:  Moncton Gulf Center
