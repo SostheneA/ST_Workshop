@@ -2,7 +2,7 @@
 
 ### Spatiotemporal Models Workshop
 
-by Sosthene AKIA [<img src="https://github.com/SostheneA/ST_Workshop/main/images/logo1.jpg" align="right" width="150"/>]([https://spatiotemporalmodels-workshop-abft.netlify.app/]
+by Sosthene AKIA [<img src="https://github.com/SostheneA/ST_Workshop/main/images/logo1.jpg" align="right" width="150"/>]
 
 ------------------------------------------------------------------------
 
