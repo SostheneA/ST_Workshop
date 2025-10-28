@@ -1,8 +1,8 @@
 # [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](spatiotemporalmodels-workshop-abft.netlify.app/)
 
-### posit::conf 2023
+### Spatiotemporal Models Workshop
 
-by Cédric Scherer[<img src="https://raw.githubusercontent.com/posit-conf-2023/dataviz-storytelling/main/images/logo.png" align="right" width="150"/>](https://posit-conf-2023.github.io/dataviz-storytelling/)
+by Sosthene AKIA [<img src="https://github.com/SostheneA/ST_Workshop/main/images/logo1.png" align="right" width="150"/>]([https://spatiotemporalmodels-workshop-abft.netlify.app/]
 
 ------------------------------------------------------------------------
 
