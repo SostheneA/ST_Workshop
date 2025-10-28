@@ -26,10 +26,10 @@ website:
   page-footer:
     left: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
     right: "&copy; Copyright 2025"
-    background: "#F7941D"
+    background: "#219EBC"
 
   navbar:
-    background: "#F7941D"
+    background: "#219EBC"
     logo: "images/logo.png"
     pinned: true
     align: center

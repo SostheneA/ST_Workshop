@@ -2,18 +2,54 @@
 title: "Prework"
 ---
 
-The course will cover principles and tips on how to create compelling graphics that communicate the data in a clear and effective way with a focus on your main findings by engaging and guiding your viewers. No prior preparation is necessary for workshop participants, as the course content is designed to be of a general nature and does not require any prior knowledge or background learning.
+This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results---no prior advanced modeling experience required.
 
-Please take a moment before the course to think about chart types that you are using on a regular basis and the most common struggles when designing data visualizations. Note them down and bring a few examples if possible (either the original graphics, no matter if polished or not, or simple drafts in case you are not allowed or don't want to share them). Feel free to share the information in the Discord channel (see below) as well.
+## Essential Software Setup
 
-As this workshop is set up as a non-coding course, you do not have to bring your laptop but a few blank sheets of paper and a few pens of different colors for the group exercises. If you prefer to code rough data visualizations rather then drafting them by hand, feel free to set up your laptop accordingly, depending on the programming language and graphics library of your choice.
+Before the course, please:
+
+-   Install the latest version of **R** from [cloud.r-project.org](https://cloud.r-project.org/).
+
+-   Install the **VAST** and **sdmTMB** R packages by entering the following in your R console:
+
+    ```         
+    install.packages("devtools")
+    devtools::install_github("James-Thorson-NOAA/VAST")
+    install.packages("sdmTMB")
+    ```
+
+-   Verify that your system can run R from the command line (`R --version` in your terminal).
+
+-   Optionally, install **RStudio** for a streamlined coding experience.
+
+## Data Preparation
+
+Please make sure you have:
+
+-   Example abundance or CPUE datasets available (either your own data or sample data provided in the course materials).
+-   Familiarize yourself with basic data cleaning steps, such as:
+    -   Removing duplicates and invalid entries
+    -   Ensuring complete columns for key variables (e.g., species, year, location)
+    -   Checking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections
+
+If possible, bring your own messy dataset to practice hands-on cleaning and formatting.
 
 ## Course Communication
 
-We will be using Discord as our main communication method during the workshop. To make the process go smoothly:
+All participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event.
 
--   Please sign up for an account at <a href='https://discord.com' target="_blank">discord.com</a> if you don't already have one.
--   Make sure your <a href='https://support.discord.com/hc/en-us/articles/12620128861463-New-Usernames-Display-Names#h_01GXPQABMYGEHGPRJJXJMPHF5C' target="_blank">display name</a> is the one you used to register for the conference.
--   In your "About Me", put the name of your workshop(s).
+## Suggested Preparation Checklist
 
-Closer to the start of the conference, you will be invited to join the posit::conf Discord server. Once you've accepted the invite, we will add you to the channel for the workshop.
+-   R and RStudio installed ✔️
+-   VAST and sdmTMB packages successfully loaded ✔️
+-   At least one fisheries or abundance dataset on hand ✔️
+-   Ready to participate in coding and model-fitting---either on your laptop or using example data provided
+
+No extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!
+
+------------------------------------------------------------------------
+
+For troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. \`\`\`
+
+-   Adjust package installation commands for your local IT setup if needed.
+-   Add or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials.

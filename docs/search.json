@@ -4,34 +4,55 @@
     "href": "schedule.html",
     "title": "Schedule & Slides",
     "section": "",
-    "text": "Sunday, September 17, 2023\n\n\n\n\n\n\n\n\nTime\n\n\nModule\n\n\n\n\n\n\n\n\n\n09:00-10:30\n\n\nFoundations of Data Visualization\n\n\n\n\n\n\n\n10:30-11:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n11:00-12:30\n\n\nChoose an Appropriate Display\n\n\n\n\n\n\n\n12:30-13:30\n\n\nLunch Break\n\n\n\n\n\n\n\n13:30-15:00\n\n\nThink Like a Designer\n\n\n\n\n\n\n\n15:00-15:30\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:30-17:00\n\n\nGuide the View(er)\n\n\n\n\n\n\nNo matching items"
+    "text": "Monday, February 01, 2026\n\n\n\n\n\n\n\n\nTime\n\n\nModule\n\n\n\n\n\n\n\n\n\n09:00-10:30\n\n\nFoundations of Data Visualization\n\n\n\n\n\n\n\n10:30-11:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n11:00-12:30\n\n\nChoose an Appropriate Display\n\n\n\n\n\n\n\n12:30-13:30\n\n\nLunch Break\n\n\n\n\n\n\n\n13:30-15:00\n\n\nThink Like a Designer\n\n\n\n\n\n\n\n15:00-15:30\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:30-17:00\n\n\nGuide the View(er)\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "prework.html",
     "href": "prework.html",
     "title": "Prework",
     "section": "",
-    "text": "The course will cover principles and tips on how to create compelling graphics that communicate the data in a clear and effective way with a focus on your main findings by engaging and guiding your viewers. No prior preparation is necessary for workshop participants, as the course content is designed to be of a general nature and does not require any prior knowledge or background learning.\nPlease take a moment before the course to think about chart types that you are using on a regular basis and the most common struggles when designing data visualizations. Note them down and bring a few examples if possible (either the original graphics, no matter if polished or not, or simple drafts in case you are not allowed or don’t want to share them). Feel free to share the information in the Discord channel (see below) as well.\nAs this workshop is set up as a non-coding course, you do not have to bring your laptop but a few blank sheets of paper and a few pens of different colors for the group exercises. If you prefer to code rough data visualizations rather then drafting them by hand, feel free to set up your laptop accordingly, depending on the programming language and graphics library of your choice."
+    "text": "This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results—no prior advanced modeling experience required."
   },
   {
     "objectID": "prework.html#course-communication",
     "href": "prework.html#course-communication",
     "title": "Prework",
     "section": "Course Communication",
-    "text": "Course Communication\nWe will be using Discord as our main communication method during the workshop. To make the process go smoothly:\n\nPlease sign up for an account at discord.com if you don’t already have one.\nMake sure your display name is the one you used to register for the conference.\nIn your “About Me”, put the name of your workshop(s).\n\nCloser to the start of the conference, you will be invited to join the posit::conf Discord server. Once you’ve accepted the invite, we will add you to the channel for the workshop."
+    "text": "Course Communication\nAll participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT",
+    "title": "Spatiotemporal Modeling for Index Standardization with VAST [tinyVAST] and sdmTMB",
     "section": "",
-    "text": "A posit::conf(2023) Workshop by Cédric Scherer\n📆  September 17, 2023\n⏰  09:00–17:00 CDT\n🏨  Grand Hall K"
+    "text": "A Workshop by Sosthene AKIA\n📆  Febryary 01, 2026\n⏰  09:00–17:00 CDT\n🏨  Moncton Gulf Center"
   },
   {
     "objectID": "index.html#is-this-course-for-me",
     "href": "index.html#is-this-course-for-me",
-    "title": "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT",
+    "title": "Spatiotemporal Modeling for Index Standardization with VAST [tinyVAST] and sdmTMB",
     "section": "Is this course for me?",
-    "text": "Is this course for me?\nThis course will be appropriate for you if you:\n\nwant to understand and learn the art of communicating data with impactful visualizations,\naim to improve your data visualization design to create effective and informative graphics, and\nare willing to spend a bit more time choosing the right chart, proper color palettes, and suitable fonts along with additional elements to guide the viewer."
+    "text": "Is this course for me?\nThis course will be appropriate for you if you:\n\nWant effective strategies for robust index standardization and abundance estimation in survey data,\nAim to understand and model autocorrelation and spatiotemporal structure in fisheries datasets,\nWish to compare, diagnose, and visualize results across VAST and sdmTMB frameworks."
+  },
+  {
+    "objectID": "prework.html#essential-software-setup",
+    "href": "prework.html#essential-software-setup",
+    "title": "Prework",
+    "section": "Essential Software Setup",
+    "text": "Essential Software Setup\nBefore the course, please:\n\nInstall the latest version of R from cloud.r-project.org.\nInstall the VAST and sdmTMB R packages by entering the following in your R console:\ninstall.packages(\"devtools\")\ndevtools::install_github(\"James-Thorson-NOAA/VAST\")\ninstall.packages(\"sdmTMB\")\nVerify that your system can run R from the command line (R --version in your terminal).\nOptionally, install RStudio for a streamlined coding experience."
+  },
+  {
+    "objectID": "prework.html#data-preparation",
+    "href": "prework.html#data-preparation",
+    "title": "Prework",
+    "section": "Data Preparation",
+    "text": "Data Preparation\nPlease make sure you have:\n\nExample abundance or CPUE datasets available (either your own data or sample data provided in the course materials).\nFamiliarize yourself with basic data cleaning steps, such as:\n\nRemoving duplicates and invalid entries\nEnsuring complete columns for key variables (e.g., species, year, location)\nChecking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections\n\n\nIf possible, bring your own messy dataset to practice hands-on cleaning and formatting."
+  },
+  {
+    "objectID": "prework.html#suggested-preparation-checklist",
+    "href": "prework.html#suggested-preparation-checklist",
+    "title": "Prework",
+    "section": "Suggested Preparation Checklist",
+    "text": "Suggested Preparation Checklist\n\nR and RStudio installed ✔️\nVAST and sdmTMB packages successfully loaded ✔️\nAt least one fisheries or abundance dataset on hand ✔️\nReady to participate in coding and model-fitting—either on your laptop or using example data provided\n\nNo extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!\n\nFor troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. ```\n\nAdjust package installation commands for your local IT setup if needed.\nAdd or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials."
   }
 ]

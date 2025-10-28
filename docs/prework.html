@@ -132,7 +132,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course-communication" id="toc-course-communication" class="nav-link active" data-scroll-target="#course-communication">Course Communication</a></li>
+  <li><a href="#essential-software-setup" id="toc-essential-software-setup" class="nav-link active" data-scroll-target="#essential-software-setup">Essential Software Setup</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#course-communication" id="toc-course-communication" class="nav-link" data-scroll-target="#course-communication">Course Communication</a></li>
+  <li><a href="#suggested-preparation-checklist" id="toc-suggested-preparation-checklist" class="nav-link" data-scroll-target="#suggested-preparation-checklist">Suggested Preparation Checklist</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/edit/main/prework.qmd" class="toc-action">Edit this page</a></p><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -156,18 +159,53 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The course will cover principles and tips on how to create compelling graphics that communicate the data in a clear and effective way with a focus on your main findings by engaging and guiding your viewers. No prior preparation is necessary for workshop participants, as the course content is designed to be of a general nature and does not require any prior knowledge or background learning.</p>
-<p>Please take a moment before the course to think about chart types that you are using on a regular basis and the most common struggles when designing data visualizations. Note them down and bring a few examples if possible (either the original graphics, no matter if polished or not, or simple drafts in case you are not allowed or don’t want to share them). Feel free to share the information in the Discord channel (see below) as well.</p>
-<p>As this workshop is set up as a non-coding course, you do not have to bring your laptop but a few blank sheets of paper and a few pens of different colors for the group exercises. If you prefer to code rough data visualizations rather then drafting them by hand, feel free to set up your laptop accordingly, depending on the programming language and graphics library of your choice.</p>
+<p>This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results—no prior advanced modeling experience required.</p>
+<section id="essential-software-setup" class="level2">
+<h2 class="anchored" data-anchor-id="essential-software-setup">Essential Software Setup</h2>
+<p>Before the course, please:</p>
+<ul>
+<li><p>Install the latest version of <strong>R</strong> from <a href="https://cloud.r-project.org/">cloud.r-project.org</a>.</p></li>
+<li><p>Install the <strong>VAST</strong> and <strong>sdmTMB</strong> R packages by entering the following in your R console:</p>
+<pre><code>install.packages("devtools")
+devtools::install_github("James-Thorson-NOAA/VAST")
+install.packages("sdmTMB")</code></pre></li>
+<li><p>Verify that your system can run R from the command line (<code>R --version</code> in your terminal).</p></li>
+<li><p>Optionally, install <strong>RStudio</strong> for a streamlined coding experience.</p></li>
+</ul>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<p>Please make sure you have:</p>
+<ul>
+<li>Example abundance or CPUE datasets available (either your own data or sample data provided in the course materials).</li>
+<li>Familiarize yourself with basic data cleaning steps, such as:
+<ul>
+<li>Removing duplicates and invalid entries</li>
+<li>Ensuring complete columns for key variables (e.g., species, year, location)</li>
+<li>Checking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections</li>
+</ul></li>
+</ul>
+<p>If possible, bring your own messy dataset to practice hands-on cleaning and formatting.</p>
+</section>
 <section id="course-communication" class="level2">
 <h2 class="anchored" data-anchor-id="course-communication">Course Communication</h2>
-<p>We will be using Discord as our main communication method during the workshop. To make the process go smoothly:</p>
+<p>All participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event.</p>
+</section>
+<section id="suggested-preparation-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-preparation-checklist">Suggested Preparation Checklist</h2>
 <ul>
-<li>Please sign up for an account at <a href="https://discord.com" target="_blank">discord.com</a> if you don’t already have one.</li>
-<li>Make sure your <a href="https://support.discord.com/hc/en-us/articles/12620128861463-New-Usernames-Display-Names#h_01GXPQABMYGEHGPRJJXJMPHF5C" target="_blank">display name</a> is the one you used to register for the conference.</li>
-<li>In your “About Me”, put the name of your workshop(s).</li>
+<li>R and RStudio installed ✔️</li>
+<li>VAST and sdmTMB packages successfully loaded ✔️</li>
+<li>At least one fisheries or abundance dataset on hand ✔️</li>
+<li>Ready to participate in coding and model-fitting—either on your laptop or using example data provided</li>
 </ul>
-<p>Closer to the start of the conference, you will be invited to join the posit::conf Discord server. Once you’ve accepted the invite, we will add you to the channel for the workshop.</p>
+<p>No extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!</p>
+<hr>
+<p>For troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. ```</p>
+<ul>
+<li>Adjust package installation commands for your local IT setup if needed.</li>
+<li>Add or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials.</li>
+</ul>
 
 
 </section>

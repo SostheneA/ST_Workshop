@@ -18,7 +18,7 @@ tbl-colwidths: [5,20,50,25]
 editor: source
 ---
 
-Sunday, September 17, 2023
+Monday, February 01, 2026
 
 ::: {#schedule}
 :::
