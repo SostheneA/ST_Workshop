@@ -1,9 +1,9 @@
 # [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](spatiotemporalmodels-workshop-abft.netlify.app/)
 ------------------------------------------------------------------------
 
-:spiral_calendar:  September 17, 2023\
+:spiral_calendar:  February 01, 2026\
 :alarm_clock:  09:00 - 17:00\
-:hotel:  Grand Hall K
+:hotel:  Moncton Gulf Center
 
 ------------------------------------------------------------------------
 
