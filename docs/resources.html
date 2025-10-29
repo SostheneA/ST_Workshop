@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href=".//images/favicon.png" rel="icon" type="image/png">
+<link href=".//images/logo1.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,8 +61,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Home - Resources">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="Home">
 <meta name="twitter:title" content="Home - Resources">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://spatiotemporalmodels-workshop-abft.netlify.app//images/twitter-card.png">
 <meta name="twitter:creator" content="@SostheneAkia">
 <meta name="twitter:image-height" content="681">
@@ -78,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo.png" alt="" class="navbar-logo">
+    <img src="./images/logo1.jpg" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Home</span>
@@ -126,7 +128,17 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#resources" id="toc-resources" class="nav-link active" data-scroll-target="#resources">Resources</a>
+  <ul class="collapse">
+  <li><a href="#key-packages-and-documentation" id="toc-key-packages-and-documentation" class="nav-link" data-scroll-target="#key-packages-and-documentation">Key Packages and Documentation</a></li>
+  <li><a href="#additional-recommended-tools" id="toc-additional-recommended-tools" class="nav-link" data-scroll-target="#additional-recommended-tools">Additional Recommended Tools</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/edit/main/resources.qmd" class="toc-action">Edit this page</a></p><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -148,8 +160,40 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<p>The following resources provide essential documentation, tutorials, and code for mastering spatiotemporal models and index standardization in R:</p>
+<hr>
+<section id="key-packages-and-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="key-packages-and-documentation">Key Packages and Documentation</h2>
+<ul>
+<li><p><a href="https://vast-lib.github.io/tinyVAST/"><strong>tinyVAST – Multivariate Spatio-Temporal Models using Structural Equations</strong></a><br>
+Advanced R package for fitting multivariate spatio-temporal models with dynamic structural equations and Gaussian Markov random fields.<br>
+Includes installation instructions, theory, and worked examples.</p></li>
+<li><p><a href="https://pbs-assess.github.io/sdmTMB/"><strong>sdmTMB – Spatial and Spatiotemporal SPDE-Based GLMMs with TMB</strong></a><br>
+Modern and user-friendly package for flexible GLMM and spatial/spatiotemporal modeling in R.<br>
+Features detailed vignettes and hands-on guides for spatial fisheries applications.</p></li>
+<li><p><a href="https://github.com/James-Thorson-NOAA/VAST"><strong>VAST – Spatio-temporal analysis of univariate or multivariate data</strong></a><br>
+Official GitHub repo for the VAST package, supporting robust spatio-temporal index standardization and advanced analysis for fisheries science.</p></li>
+</ul>
+<hr>
+</section>
+<section id="additional-recommended-tools" class="level2">
+<h2 class="anchored" data-anchor-id="additional-recommended-tools">Additional Recommended Tools</h2>
+<ul>
+<li><a href="https://glmm.tmb-project.org/">glmmTMB</a><br>
+Generalized linear mixed models with zero-inflation and spatial structures.</li>
+<li><a href="https://www.r-inla.org/">INLA and inlabru</a><br>
+Bayesian inference for latent Gaussian models, applicable for advanced spatial/spatiotemporal modeling.</li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/mgcv/html/mgcv-package.html">mgcv</a><br>
+Comprehensive modeling package (including spatially explicit GAMs and SPDEs).</li>
+</ul>
+<hr>
+<p>For more code samples, see each package’s documentation, vignettes, or associated preprints.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -388,10 +432,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>, inspired by the work of <a href="https://posit-conf-2023.github.io/dataviz-storytelling/">Dr Cédric Scherer</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/edit/main/resources.qmd" class="toc-action">Edit this page</a></p><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">© Copyright 2025</div>
   </div>
 </footer>

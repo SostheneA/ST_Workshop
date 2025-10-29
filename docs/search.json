@@ -14,27 +14,6 @@
     "text": "This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results—no prior advanced modeling experience required."
   },
   {
-    "objectID": "prework.html#course-communication",
-    "href": "prework.html#course-communication",
-    "title": "Prework",
-    "section": "Course Communication",
-    "text": "Course Communication\nAll participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Spatiotemporal Modeling for Index Standardization with VAST [tinyVAST] and sdmTMB",
-    "section": "",
-    "text": "A Workshop by Sosthene AKIA\n📆  Febryary 01, 2026\n⏰  09:00–17:00 CDT\n🏨  Moncton Gulf Center"
-  },
-  {
-    "objectID": "index.html#is-this-course-for-me",
-    "href": "index.html#is-this-course-for-me",
-    "title": "Spatiotemporal Modeling for Index Standardization with VAST [tinyVAST] and sdmTMB",
-    "section": "Is this course for me?",
-    "text": "Is this course for me?\nThis course will be appropriate for you if you:\n\nWant effective strategies for robust index standardization and abundance estimation in survey data,\nAim to understand and model autocorrelation and spatiotemporal structure in fisheries datasets,\nWish to compare, diagnose, and visualize results across VAST and sdmTMB frameworks."
-  },
-  {
     "objectID": "prework.html#essential-software-setup",
     "href": "prework.html#essential-software-setup",
     "title": "Prework",
@@ -49,10 +28,45 @@
     "text": "Data Preparation\nPlease make sure you have:\n\nExample abundance or CPUE datasets available (either your own data or sample data provided in the course materials).\nFamiliarize yourself with basic data cleaning steps, such as:\n\nRemoving duplicates and invalid entries\nEnsuring complete columns for key variables (e.g., species, year, location)\nChecking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections\n\n\nIf possible, bring your own messy dataset to practice hands-on cleaning and formatting."
   },
   {
+    "objectID": "prework.html#course-communication",
+    "href": "prework.html#course-communication",
+    "title": "Prework",
+    "section": "Course Communication",
+    "text": "Course Communication\nAll participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event."
+  },
+  {
     "objectID": "prework.html#suggested-preparation-checklist",
     "href": "prework.html#suggested-preparation-checklist",
     "title": "Prework",
     "section": "Suggested Preparation Checklist",
     "text": "Suggested Preparation Checklist\n\nR and RStudio installed ✔️\nVAST and sdmTMB packages successfully loaded ✔️\nAt least one fisheries or abundance dataset on hand ✔️\nReady to participate in coding and model-fitting—either on your laptop or using example data provided\n\nNo extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!\n\nFor troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. ```\n\nAdjust package installation commands for your local IT setup if needed.\nAdd or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "The following resources provide essential documentation, tutorials, and code for mastering spatiotemporal models and index standardization in R:\n\n\n\n\ntinyVAST – Multivariate Spatio-Temporal Models using Structural Equations\nAdvanced R package for fitting multivariate spatio-temporal models with dynamic structural equations and Gaussian Markov random fields.\nIncludes installation instructions, theory, and worked examples.\nsdmTMB – Spatial and Spatiotemporal SPDE-Based GLMMs with TMB\nModern and user-friendly package for flexible GLMM and spatial/spatiotemporal modeling in R.\nFeatures detailed vignettes and hands-on guides for spatial fisheries applications.\nVAST – Spatio-temporal analysis of univariate or multivariate data\nOfficial GitHub repo for the VAST package, supporting robust spatio-temporal index standardization and advanced analysis for fisheries science.\n\n\n\n\n\n\nglmmTMB\nGeneralized linear mixed models with zero-inflation and spatial structures.\nINLA and inlabru\nBayesian inference for latent Gaussian models, applicable for advanced spatial/spatiotemporal modeling.\nmgcv\nComprehensive modeling package (including spatially explicit GAMs and SPDEs).\n\n\nFor more code samples, see each package’s documentation, vignettes, or associated preprints."
+  },
+  {
+    "objectID": "resources.html#key-packages-and-documentation",
+    "href": "resources.html#key-packages-and-documentation",
+    "title": "Resources",
+    "section": "",
+    "text": "tinyVAST – Multivariate Spatio-Temporal Models using Structural Equations\nAdvanced R package for fitting multivariate spatio-temporal models with dynamic structural equations and Gaussian Markov random fields.\nIncludes installation instructions, theory, and worked examples.\nsdmTMB – Spatial and Spatiotemporal SPDE-Based GLMMs with TMB\nModern and user-friendly package for flexible GLMM and spatial/spatiotemporal modeling in R.\nFeatures detailed vignettes and hands-on guides for spatial fisheries applications.\nVAST – Spatio-temporal analysis of univariate or multivariate data\nOfficial GitHub repo for the VAST package, supporting robust spatio-temporal index standardization and advanced analysis for fisheries science."
+  },
+  {
+    "objectID": "resources.html#additional-recommended-tools",
+    "href": "resources.html#additional-recommended-tools",
+    "title": "Resources",
+    "section": "",
+    "text": "glmmTMB\nGeneralized linear mixed models with zero-inflation and spatial structures.\nINLA and inlabru\nBayesian inference for latent Gaussian models, applicable for advanced spatial/spatiotemporal modeling.\nmgcv\nComprehensive modeling package (including spatially explicit GAMs and SPDEs).\n\n\nFor more code samples, see each package’s documentation, vignettes, or associated preprints."
   }
 ]

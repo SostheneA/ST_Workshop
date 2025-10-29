@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Home - Prework</title>
+<title>Home - Teaching Team</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,11 +60,12 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Home - Prework">
-<meta property="og:description" content="">
+<meta property="og:title" content="Home - Teaching Team">
+<meta property="og:image" content="https://spatiotemporalmodels-workshop-abft.netlify.app/images/team-page.png">
 <meta property="og:site-name" content="Home">
-<meta name="twitter:title" content="Home - Prework">
-<meta name="twitter:description" content="">
+<meta property="og:image:height" content="3532">
+<meta property="og:image:width" content="5748">
+<meta name="twitter:title" content="Home - Teaching Team">
 <meta name="twitter:image" content="https://spatiotemporalmodels-workshop-abft.netlify.app//images/twitter-card.png">
 <meta name="twitter:creator" content="@SostheneAkia">
 <meta name="twitter:image-height" content="681">
@@ -93,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./prework.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./prework.html" rel="" target="">
  <span class="menu-text">Prework</span></a>
   </li>  
   <li class="nav-item">
@@ -128,23 +129,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#essential-software-setup" id="toc-essential-software-setup" class="nav-link active" data-scroll-target="#essential-software-setup">Essential Software Setup</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
-  <li><a href="#course-communication" id="toc-course-communication" class="nav-link" data-scroll-target="#course-communication">Course Communication</a></li>
-  <li><a href="#suggested-preparation-checklist" id="toc-suggested-preparation-checklist" class="nav-link" data-scroll-target="#suggested-preparation-checklist">Suggested Preparation Checklist</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/edit/main/prework.qmd" class="toc-action">Edit this page</a></p><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Prework</h1>
+<h1 class="title">Teaching Team</h1>
 </div>
 
 
@@ -159,56 +151,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results—no prior advanced modeling experience required.</p>
-<section id="essential-software-setup" class="level2">
-<h2 class="anchored" data-anchor-id="essential-software-setup">Essential Software Setup</h2>
-<p>Before the course, please:</p>
-<ul>
-<li><p>Install the latest version of <strong>R</strong> from <a href="https://cloud.r-project.org/">cloud.r-project.org</a>.</p></li>
-<li><p>Install the <strong>VAST</strong> and <strong>sdmTMB</strong> R packages by entering the following in your R console:</p>
-<pre><code>install.packages("devtools")
-devtools::install_github("James-Thorson-NOAA/VAST")
-install.packages("sdmTMB")</code></pre></li>
-<li><p>Verify that your system can run R from the command line (<code>R --version</code> in your terminal).</p></li>
-<li><p>Optionally, install <strong>RStudio</strong> for a streamlined coding experience.</p></li>
-</ul>
-</section>
-<section id="data-preparation" class="level2">
-<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
-<p>Please make sure you have:</p>
-<ul>
-<li>Example abundance or CPUE datasets available (either your own data or sample data provided in the course materials).</li>
-<li>Familiarize yourself with basic data cleaning steps, such as:
-<ul>
-<li>Removing duplicates and invalid entries</li>
-<li>Ensuring complete columns for key variables (e.g., species, year, location)</li>
-<li>Checking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections</li>
-</ul></li>
-</ul>
-<p>If possible, bring your own messy dataset to practice hands-on cleaning and formatting.</p>
-</section>
-<section id="course-communication" class="level2">
-<h2 class="anchored" data-anchor-id="course-communication">Course Communication</h2>
-<p>All participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event.</p>
-</section>
-<section id="suggested-preparation-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-preparation-checklist">Suggested Preparation Checklist</h2>
-<ul>
-<li>R and RStudio installed ✔️</li>
-<li>VAST and sdmTMB packages successfully loaded ✔️</li>
-<li>At least one fisheries or abundance dataset on hand ✔️</li>
-<li>Ready to participate in coding and model-fitting—either on your laptop or using example data provided</li>
-</ul>
-<p>No extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!</p>
-<hr>
-<p>For troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. ```</p>
-<ul>
-<li>Adjust package installation commands for your local IT setup if needed.</li>
-<li>Add or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials.</li>
-</ul>
+<p><img src="images/team-page.png" class="img-fluid" data-max-width="&quot;150%"></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -450,7 +395,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>, inspired by the work of <a href="https://posit-conf-2023.github.io/dataviz-storytelling/">Dr Cédric Scherer</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/edit/main/team.qmd" class="toc-action">Edit this page</a></p><p><a href="https://spatiotemporalmodels-workshop-abft.netlify.app/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">© Copyright 2025</div>
   </div>
 </footer>

@@ -1,3 +1,35 @@
 ---
 title: "Resources"
 ---
+
+The following resources provide essential documentation, tutorials, and code for mastering spatiotemporal models and index standardization in R:
+
+------------------------------------------------------------------------
+
+## Key Packages and Documentation
+
+-   [**tinyVAST -- Multivariate Spatio-Temporal Models using Structural Equations**](https://vast-lib.github.io/tinyVAST/)\
+    Advanced R package for fitting multivariate spatio-temporal models with dynamic structural equations and Gaussian Markov random fields.\
+    Includes installation instructions, theory, and worked examples.
+
+-   [**sdmTMB -- Spatial and Spatiotemporal SPDE-Based GLMMs with TMB**](https://pbs-assess.github.io/sdmTMB/)\
+    Modern and user-friendly package for flexible GLMM and spatial/spatiotemporal modeling in R.\
+    Features detailed vignettes and hands-on guides for spatial fisheries applications.
+
+-   [**VAST -- Spatio-temporal analysis of univariate or multivariate data**](https://github.com/James-Thorson-NOAA/VAST)\
+    Official GitHub repo for the VAST package, supporting robust spatio-temporal index standardization and advanced analysis for fisheries science.
+
+------------------------------------------------------------------------
+
+## Additional Recommended Tools
+
+-   [glmmTMB](https://glmm.tmb-project.org/)\
+    Generalized linear mixed models with zero-inflation and spatial structures.
+-   [INLA and inlabru](https://www.r-inla.org/)\
+    Bayesian inference for latent Gaussian models, applicable for advanced spatial/spatiotemporal modeling.
+-   [mgcv](https://stat.ethz.ch/R-manual/R-devel/library/mgcv/html/mgcv-package.html)\
+    Comprehensive modeling package (including spatially explicit GAMs and SPDEs).
+
+------------------------------------------------------------------------
+
+For more code samples, see each package's documentation, vignettes, or associated preprints.

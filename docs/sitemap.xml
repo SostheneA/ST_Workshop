@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/team.html</loc>
+    <lastmod>2025-10-28T18:04:06.162Z</lastmod>
+  </url>
+  <url>
     <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/schedule.html</loc>
-    <lastmod>2025-10-28T17:10:10.430Z</lastmod>
+    <lastmod>2025-10-28T18:04:16.157Z</lastmod>
   </url>
   <url>
     <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/resources.html</loc>
-    <lastmod>2025-10-28T17:10:05.078Z</lastmod>
+    <lastmod>2025-10-28T18:10:46.623Z</lastmod>
   </url>
   <url>
     <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/prework.html</loc>
-    <lastmod>2025-10-28T17:09:43.044Z</lastmod>
+    <lastmod>2025-10-28T18:04:54.483Z</lastmod>
   </url>
   <url>
-    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/index.html</loc>
-    <lastmod>2025-10-28T17:45:37.723Z</lastmod>
+    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/about.html</loc>
+    <lastmod>2025-10-28T18:05:12.008Z</lastmod>
   </url>
 </urlset>
