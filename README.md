@@ -1,4 +1,4 @@
-# [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](https:/github.com/SostheneA/ST_Workshop/)
+# [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](https://sosthenea.github.io/ST_Workshop/)
 ------------------------------------------------------------------------
 
 <img src="https://github.com/SostheneA/ST_Workshop/tree/main/images/logo1.jpg" align="right" width="150">
