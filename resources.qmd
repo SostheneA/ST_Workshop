@@ -23,7 +23,7 @@ The following resources provide essential documentation, tutorials, and code for
 
 ## Additional Recommended Tools
 
--   [glmmTMB](https://glmm.tmb-project.org/)\
+-   [glmmTMB](https://glmmtmb.github.io/glmmTMB/)\
     Generalized linear mixed models with zero-inflation and spatial structures.
 -   [INLA and inlabru](https://www.r-inla.org/)\
     Bayesian inference for latent Gaussian models, applicable for advanced spatial/spatiotemporal modeling.
