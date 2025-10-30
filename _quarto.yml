@@ -11,9 +11,9 @@ website:
   page-navigation: true
   title: "Home"
   description: "Spatiotemporal Models with VAST and sdmTMB for Index Standardization of Western ABFT"
-  site-url: "https://spatiotemporalmodels-workshop-abft.netlify.app/"
+  site-url: "https://sosthenea.github.io/ST_Workshop//"
   
-  repo-url: https://spatiotemporalmodels-workshop-abft.netlify.app
+  repo-url: https://sosthenea.github.io/ST_Workshop/
   repo-actions: [edit, issue]
 
   open-graph: true
