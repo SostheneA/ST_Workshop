@@ -1,19 +1,5 @@
 ---
 title: "Schedule & Slides: Under Construction"
-listing:
-  - id: schedule
-    type: table
-    fields: [image, subtitle, title]
-    field-display-names:
-      subtitle: "Time"
-      title: "Module"
-    table-hover: true
-    date-format: "MMMM DD, YYYY"
-    sort: [filename]
-    sort-ui: false
-    filter-ui: false
-tbl-colwidths: [5,20,50,25]
-editor: source
 ---
 
 Monday, March 16, 2026
