@@ -1,5 +1,5 @@
 ---
-title: "Guide the View(er)"
+title: "Guide"
 subtitle: "<span class='code'>15:30-17:00</span>"
 date: "2023-09-18"
 image: "images/04-guide.png"

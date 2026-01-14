@@ -1,5 +1,5 @@
 ---
-title: "Foundations of Data Visualization"
+title: "Foundations of Data Visuaion"
 subtitle: "<span class='code'>09:00-10:30</span>"
 date: "2023-09-18"
 image: "images/01-foundations.png"

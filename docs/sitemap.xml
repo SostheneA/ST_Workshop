@@ -1,23 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/team.html</loc>
-    <lastmod>2025-10-28T18:04:06.162Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//about.html</loc>
+    <lastmod>2026-01-14T18:32:52.666Z</lastmod>
   </url>
   <url>
-    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/schedule.html</loc>
-    <lastmod>2025-10-28T18:04:16.157Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//index.html</loc>
+    <lastmod>2026-01-14T18:32:55.281Z</lastmod>
   </url>
   <url>
-    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/resources.html</loc>
-    <lastmod>2025-10-28T18:10:46.623Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//license.html</loc>
+    <lastmod>2026-01-14T18:32:58.232Z</lastmod>
   </url>
   <url>
-    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/prework.html</loc>
-    <lastmod>2025-10-28T18:04:54.483Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//materials/00-welcome.html</loc>
+    <lastmod>2026-01-14T18:33:11.308Z</lastmod>
   </url>
   <url>
-    <loc>https://spatiotemporalmodels-workshop-abft.netlify.app/about.html</loc>
-    <lastmod>2025-10-28T18:05:12.008Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//materials/01-foundations.html</loc>
+    <lastmod>2026-01-14T18:33:30.323Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//materials/02-display.html</loc>
+    <lastmod>2026-01-14T18:34:36.523Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//materials/03-design.html</loc>
+    <lastmod>2026-01-14T18:35:12.591Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//materials/04-guide.html</loc>
+    <lastmod>2026-01-14T18:35:47.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s01-foundations.html</loc>
+    <lastmod>2026-01-14T18:35:53.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s02-break.html</loc>
+    <lastmod>2026-01-14T18:35:56.188Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s03-display.html</loc>
+    <lastmod>2026-01-14T18:35:59.323Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s04-lunch.html</loc>
+    <lastmod>2026-01-14T18:36:02.179Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s05-design.html</loc>
+    <lastmod>2026-01-14T18:36:05.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s06-break.html</loc>
+    <lastmod>2026-01-14T18:36:08.086Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/s07-guide.html</loc>
+    <lastmod>2026-01-14T18:36:11.012Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//prework.html</loc>
+    <lastmod>2026-01-14T18:36:14.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//resources.html</loc>
+    <lastmod>2026-01-14T18:36:17.311Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//schedule.html</loc>
+    <lastmod>2026-01-14T18:36:21.853Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sosthenea.github.io/ST_Workshop//team.html</loc>
+    <lastmod>2026-01-14T18:36:24.712Z</lastmod>
   </url>
 </urlset>

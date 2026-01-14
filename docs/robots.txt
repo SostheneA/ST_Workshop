@@ -1,1 +1,1 @@
-Sitemap: https://spatiotemporalmodels-workshop-abft.netlify.app/sitemap.xml
+Sitemap: https://sosthenea.github.io/ST_Workshop//sitemap.xml
