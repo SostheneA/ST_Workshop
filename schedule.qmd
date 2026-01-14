@@ -1,9 +1,7 @@
 ---
-title: "Schedule & Slides"
+title: "Schedule & Slides: Under Construction"
 listing:
   - id: schedule
-    contents:
-      - modules/s*.qmd
     type: table
     fields: [image, subtitle, title]
     field-display-names:
@@ -22,4 +20,3 @@ Monday, March 16, 2026 ...
 
 ::: {#schedule}
 :::
-
