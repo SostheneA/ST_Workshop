@@ -1,55 +1,78 @@
 ---
-title: "Prework"
+title: "System Setup 🤖"
 ---
 
-This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results---no prior advanced modeling experience required.
+Welcome! To make the most of the **Spatiotemporal Modelling Workshop**, you must have your computing environment configured *before* we begin on Monday morning. These models (VAST, sdmTMB) are computationally intensive and rely on a specific stack of C++ compilers and spatial libraries.
 
-## Essential Software Setup
+## Computing Requirements
 
-Before the course, please:
+You will need:
+  
+  * **A laptop with administrative privileges:** Necessary to install C++ compilers and Rtools.
+* **Secondary monitor:** Highly recommended so you can follow the live-coding demonstrations while keeping your own RStudio session open.
+* **R and RStudio:** Ensure you have the latest versions installed.
+* **C++ Toolchain:** Necessary for **TMB** (Template Model Builder) to compile the spatiotemporal models.
+* **Git & GitHub:** For collaborative code sharing and version control.
 
--   Install the latest version of **R** from [cloud.r-project.org](https://cloud.r-project.org/).
 
--   Install the **VAST** and **sdmTMB** R packages by entering the following in your R console:
+---
 
-    ```         
-    install.packages("devtools")
-    devtools::install_github("James-Thorson-NOAA/VAST")
-    install.packages("sdmTMB")
-    ```
+## 1. Install R and RStudio (if necessary)
 
--   Verify that your system can run R from the command line (`R --version` in your terminal).
+We rely on recent features for spatial data handling (`sf`, `terra`).
+* **R:** Version **>= 4.4.0** (4.5 recommended) - Download from [cloud.r-project.org](https://cloud.r-project.org/).
+* **RStudio:** Desktop version **>= 2025.09** - Download from [posit.co](https://posit.co/download/rstudio-desktop/).
 
--   Optionally, install **RStudio** for a streamlined coding experience.
+---
 
-## Data Preparation
 
-Please make sure you have:
+## 2. Install Core R Packages
+Open RStudio and run this script to install the engine and the diagnostic tools.
 
--   Example abundance or CPUE datasets available (either your own data or sample data provided in the course materials).
--   Familiarize yourself with basic data cleaning steps, such as:
-    -   Removing duplicates and invalid entries
-    -   Ensuring complete columns for key variables (e.g., species, year, location)
-    -   Checking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections
+```r
+# 1. Install CRAN dependencies
+install.packages(c("devtools", "sdmTMB", "DHARMa", "sf", "terra", "ggplot2", 
+                   "units", "remotes", "fmesher", "TMB", "Rcpp"))
 
-If possible, bring your own messy dataset to practice hands-on cleaning and formatting.
+# 2. Install VAST (and its dependency FishStatsUtils)
+# VAST requires the latest development versions often found on GitHub
+remotes::install_github("james-thorson/FishStatsUtils", upgrade = "always")
+remotes::install_github("james-thorson/VAST", upgrade = "always")
 
-## Course Communication
+# 3. Install tinyVAST
+# The bridge between sdmTMB flexibility and VAST multivariate power
+remotes::install_github("james-thorson/tinyVAST", upgrade = "always")
+```
 
-All participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event.
+### Verification
+Run this command in your console. If it returns `TRUE`, your C++ compiler is working:
+```r
+devtools::has_devel()
+```
 
-## Suggested Preparation Checklist
+---
 
--   R and RStudio installed ✔️
--   VAST and sdmTMB packages successfully loaded ✔️
--   At least one fisheries or abundance dataset on hand ✔️
--   Ready to participate in coding and model-fitting---either on your laptop or using example data provided
+## 3. Data Preparation Checklist
+To participate in the **"Bring Your Own Data"** sessions, please have a clean dataset ready with the following columns:
 
-No extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!
+- [ ] **Year** (Numeric integer)
+- [ ] **Latitude / Longitude** (Decimal degrees)
+- [ ] **Response Variable** (Biomass, Counts, or CPUE)
+- [ ] **Effort** (Area swept, tow duration, or number of hooks)
+- [ ] **Vessel/Gear ID** (Factor, for standardization)
 
-------------------------------------------------------------------------
+::: {.callout-tip}
+## Spatial Unit Warning
+VAST and sdmTMB perform best when spatial coordinates are **Projected** (e.g., UTM in kilometers). If you only have Lat/Lon, we will cover how to project them on Day 1, but having an idea of your area's UTM zone is a plus!
+:::
 
-For troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. \`\`\`
+---
 
--   Adjust package installation commands for your local IT setup if needed.
--   Add or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials.
+## Troubleshooting
+If you encounter errors during the installation of `VAST` or `TMB`:
+1. Restart RStudio.
+2. Ensure no other R sessions are running.
+3. If a prompt asks *"Do you want to install from sources?"*, type **Yes**.
+
+For urgent support, contact **Sosthene AKIA** via the workshop Discord channel or email.
+```

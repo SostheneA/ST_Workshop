@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Home - Prework</title>
+<title>Home - System Setup 🤖</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,7 +63,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href=".//images/logo1.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,10 +93,10 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Home - Prework">
+<meta property="og:title" content="Home - System Setup 🤖">
 <meta property="og:description" content="">
 <meta property="og:site-name" content="Home">
-<meta name="twitter:title" content="Home - Prework">
+<meta name="twitter:title" content="Home - System Setup 🤖">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://sosthenea.github.io/ST_Workshop///images/twitter-card.png">
 <meta name="twitter:creator" content="@SostheneAkia">
@@ -72,16 +105,13 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo1.jpg" alt="" class="navbar-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Home</span>
     </a>
@@ -98,7 +128,11 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./schedule.html" rel="" target="">
- <span class="menu-text">Schedule &amp; Slides</span></a>
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Slide.html" rel="" target="">
+ <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./resources.html" rel="" target="">
@@ -122,20 +156,88 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">System Setup 🤖</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Workshop Schedule</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Outlook</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: S-T Fusion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 3: VAST</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 4: sdmTMB</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 5: tinyVAST</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#essential-software-setup" id="toc-essential-software-setup" class="nav-link active" data-scroll-target="#essential-software-setup">Essential Software Setup</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
-  <li><a href="#course-communication" id="toc-course-communication" class="nav-link" data-scroll-target="#course-communication">Course Communication</a></li>
-  <li><a href="#suggested-preparation-checklist" id="toc-suggested-preparation-checklist" class="nav-link" data-scroll-target="#suggested-preparation-checklist">Suggested Preparation Checklist</a></li>
+  <li><a href="#computing-requirements" id="toc-computing-requirements" class="nav-link active" data-scroll-target="#computing-requirements">Computing Requirements</a></li>
+  <li><a href="#install-r-and-rstudio-if-necessary" id="toc-install-r-and-rstudio-if-necessary" class="nav-link" data-scroll-target="#install-r-and-rstudio-if-necessary">1. Install R and RStudio (if necessary)</a></li>
+  <li><a href="#install-core-r-packages" id="toc-install-core-r-packages" class="nav-link" data-scroll-target="#install-core-r-packages">2. Install Core R Packages</a>
+  <ul class="collapse">
+  <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification">Verification</a></li>
+  </ul></li>
+  <li><a href="#data-preparation-checklist" id="toc-data-preparation-checklist" class="nav-link" data-scroll-target="#data-preparation-checklist">3. Data Preparation Checklist</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://sosthenea.github.io/ST_Workshop/edit/main/prework.qmd" class="toc-action">Edit this page</a></p><p><a href="https://sosthenea.github.io/ST_Workshop/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -144,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Prework</h1>
+<h1 class="title">System Setup 🤖</h1>
 </div>
 
 
@@ -159,53 +261,75 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This workshop will guide you through applied spatiotemporal modeling and robust index standardization using VAST and sdmTMB. You will learn essential R skills for fitting and diagnosing GLMMs, preparing data, and visualizing survey results—no prior advanced modeling experience required.</p>
-<section id="essential-software-setup" class="level2">
-<h2 class="anchored" data-anchor-id="essential-software-setup">Essential Software Setup</h2>
-<p>Before the course, please:</p>
+<p>Welcome! To make the most of the <strong>Spatiotemporal Modelling Workshop</strong>, you must have your computing environment configured <em>before</em> we begin on Monday morning. These models (VAST, sdmTMB) are computationally intensive and rely on a specific stack of C++ compilers and spatial libraries.</p>
+<section id="computing-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="computing-requirements">Computing Requirements</h2>
+<p>You will need:</p>
 <ul>
-<li><p>Install the latest version of <strong>R</strong> from <a href="https://cloud.r-project.org/">cloud.r-project.org</a>.</p></li>
-<li><p>Install the <strong>VAST</strong> and <strong>sdmTMB</strong> R packages by entering the following in your R console:</p>
-<pre><code>install.packages("devtools")
-devtools::install_github("James-Thorson-NOAA/VAST")
-install.packages("sdmTMB")</code></pre></li>
-<li><p>Verify that your system can run R from the command line (<code>R --version</code> in your terminal).</p></li>
-<li><p>Optionally, install <strong>RStudio</strong> for a streamlined coding experience.</p></li>
+<li><strong>A laptop with administrative privileges:</strong> Necessary to install C++ compilers and Rtools.</li>
+<li><strong>Secondary monitor:</strong> Highly recommended so you can follow the live-coding demonstrations while keeping your own RStudio session open.</li>
+<li><strong>R and RStudio:</strong> Ensure you have the latest versions installed.</li>
+<li><strong>C++ Toolchain:</strong> Necessary for <strong>TMB</strong> (Template Model Builder) to compile the spatiotemporal models.</li>
+<li><strong>Git &amp; GitHub:</strong> For collaborative code sharing and version control.</li>
 </ul>
-</section>
-<section id="data-preparation" class="level2">
-<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
-<p>Please make sure you have:</p>
-<ul>
-<li>Example abundance or CPUE datasets available (either your own data or sample data provided in the course materials).</li>
-<li>Familiarize yourself with basic data cleaning steps, such as:
-<ul>
-<li>Removing duplicates and invalid entries</li>
-<li>Ensuring complete columns for key variables (e.g., species, year, location)</li>
-<li>Checking that all spatial coordinates (latitude, longitude) are expressed in consistent units and projections</li>
-</ul></li>
-</ul>
-<p>If possible, bring your own messy dataset to practice hands-on cleaning and formatting.</p>
-</section>
-<section id="course-communication" class="level2">
-<h2 class="anchored" data-anchor-id="course-communication">Course Communication</h2>
-<p>All participants are invited to join the dedicated workshop github website. Instructions for joining and sharing questions or resources will be sent prior to the event.</p>
-</section>
-<section id="suggested-preparation-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-preparation-checklist">Suggested Preparation Checklist</h2>
-<ul>
-<li>R and RStudio installed ✔️</li>
-<li>VAST and sdmTMB packages successfully loaded ✔️</li>
-<li>At least one fisheries or abundance dataset on hand ✔️</li>
-<li>Ready to participate in coding and model-fitting—either on your laptop or using example data provided</li>
-</ul>
-<p>No extensive pre-learning is needed. Just ensure your environment is ready, and bring your curiosity!</p>
 <hr>
-<p>For troubleshooting software installation or dataset preparation, please contact the instructor ahead of time by email or via the Discord channel for support. ```</p>
-<ul>
-<li>Adjust package installation commands for your local IT setup if needed.</li>
-<li>Add or modify data-specific instructions (e.g., ABFT) based on your actual teaching materials.</li>
+</section>
+<section id="install-r-and-rstudio-if-necessary" class="level2">
+<h2 class="anchored" data-anchor-id="install-r-and-rstudio-if-necessary">1. Install R and RStudio (if necessary)</h2>
+<p>We rely on recent features for spatial data handling (<code>sf</code>, <code>terra</code>). * <strong>R:</strong> Version <strong>&gt;= 4.4.0</strong> (4.5 recommended) - Download from <a href="https://cloud.r-project.org/">cloud.r-project.org</a>. * <strong>RStudio:</strong> Desktop version <strong>&gt;= 2025.09</strong> - Download from <a href="https://posit.co/download/rstudio-desktop/">posit.co</a>.</p>
+<hr>
+</section>
+<section id="install-core-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-core-r-packages">2. Install Core R Packages</h2>
+<p>Open RStudio and run this script to install the engine and the diagnostic tools.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Install CRAN dependencies</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"devtools"</span>, <span class="st">"sdmTMB"</span>, <span class="st">"DHARMa"</span>, <span class="st">"sf"</span>, <span class="st">"terra"</span>, <span class="st">"ggplot2"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"units"</span>, <span class="st">"remotes"</span>, <span class="st">"fmesher"</span>, <span class="st">"TMB"</span>, <span class="st">"Rcpp"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Install VAST (and its dependency FishStatsUtils)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># VAST requires the latest development versions often found on GitHub</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"james-thorson/FishStatsUtils"</span>, <span class="at">upgrade =</span> <span class="st">"always"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"james-thorson/VAST"</span>, <span class="at">upgrade =</span> <span class="st">"always"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Install tinyVAST</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The bridge between sdmTMB flexibility and VAST multivariate power</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"james-thorson/tinyVAST"</span>, <span class="at">upgrade =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="verification" class="level3">
+<h3 class="anchored" data-anchor-id="verification">Verification</h3>
+<p>Run this command in your console. If it returns <code>TRUE</code>, your C++ compiler is working:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">has_devel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="data-preparation-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation-checklist">3. Data Preparation Checklist</h2>
+<p>To participate in the <strong>“Bring Your Own Data”</strong> sessions, please have a clean dataset ready with the following columns:</p>
+<ul class="task-list">
+<li><input type="checkbox"><strong>Year</strong> (Numeric integer)</li>
+<li><input type="checkbox"><strong>Latitude / Longitude</strong> (Decimal degrees)</li>
+<li><input type="checkbox"><strong>Response Variable</strong> (Biomass, Counts, or CPUE)</li>
+<li><input type="checkbox"><strong>Effort</strong> (Area swept, tow duration, or number of hooks)</li>
+<li><input type="checkbox"><strong>Vessel/Gear ID</strong> (Factor, for standardization)</li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spatial Unit Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VAST and sdmTMB perform best when spatial coordinates are <strong>Projected</strong> (e.g., UTM in kilometers). If you only have Lat/Lon, we will cover how to project them on Day 1, but having an idea of your area’s UTM zone is a plus!</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<p>If you encounter errors during the installation of <code>VAST</code> or <code>TMB</code>: 1. Restart RStudio. 2. Ensure no other R sessions are running. 3. If a prompt asks <em>“Do you want to install from sources?”</em>, type <strong>Yes</strong>.</p>
+<p>For urgent support, contact <strong>Sosthene AKIA</strong> via the workshop Discord channel or email. ```</p>
 
 
 </section>
@@ -447,11 +571,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>, inspired by the work of <a href="https://posit-conf-2023.github.io/dataviz-storytelling/">Dr Cédric Scherer</a>.</div>   
+    <div class="nav-footer-left">This page is built by Sosthene AKIA with <a href="https://quarto.org/">Quarto</a>, inspired by the work of <a href="https://posit-conf-2023.github.io/dataviz-storytelling/">Dr Cédric Scherer</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">© Copyright 2025</div>
+    <div class="nav-footer-right">© Copyright 2026</div>
   </div>
 </footer>
 

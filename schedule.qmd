@@ -1,8 +1,36 @@
 ---
-title: "Schedule & Slides: Under Construction"
+title: "Workshop Schedule"
+subtitle: "Spatiotemporal Modelling with VAST, TinyVAST, and sdmTMB"
+format: 
+  html:
+    toc: true
+    theme: cosmo
 ---
 
-Monday, March 16, 2026
+# General Daily Routine
+* **Morning Session 1:** 08:30 – 10:00
+* **Morning Break:** 10:00 – 10:15
+* **Morning Session 2:** 10:15 – 12:00
+* **Lunch Break:** 12:00 – 13:15
+* **Afternoon Session 1:** 13:15 – 14:45
+* **Afternoon Break:** 14:45 – 15:00
+* **Afternoon Session 2:** 15:00 – 16:00
 
-::: {#schedule}
-:::
+---
+
+# Outlook for the Week
+
+| Day | Theme | Key Focus |
+|:---|:---|:---|
+| [**Monday (May 4)**](day1.qmd) | **Foundations and Spatial Autocorrelation** | Foundations of Abundance Indices and Spatial Autocorrelation. |
+| **Tuesday (May 5)** | **Spatio-Temporal Fusion** | Theory of temporal evolution and running your first spatio-temporal model. |
+| **Wednesday (May 6)** | **The VAST Framework** | Deep dive into `fit_model`, FieldConfig, Anisotropy, and Catchability. |
+| **Thursday (May 7)** | **The sdmTMB Framework** | Advanced cross-validation, spatially varying coefficients, and diagnostics. |
+| **Friday (May 8)** | **The tinyVAST Reconciliation** | Combining `sdmTMB` flexibility with `VAST` multivariate power. |
+
+---
+
+## Technical Notes
+* **Software:** Ensure R, RStudio, `sdmTMB`, `VAST`, and `tinyVAST` are installed before Monday 08:30.
+* **Projections:** Ensure you have the `sf` package to handle coordinate transformations (WGS84 to UTM).
+* **Data:** Participants working on their own data should have their `CSV` or `RData` files ready for Lab 1.

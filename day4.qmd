@@ -1,0 +1,27 @@
+---
+title: "Day 4: sdmTMB"
+subtitle: "Thursday, May 7"
+sidebar: schedule-sidebar
+---
+
+# Theme: Advanced sdmTMB & Model Diagnostics
+
+### 08:30 - 10:00 | Session 13: Spatially Varying Coefficients (SVC)
+* **Module 7: Local vs. Global effects.**
+    * Modelling scenarios where the relationship between the environment and fish density changes across space.
+* **Concept:** Moving beyond a single slope for environmental drivers.
+
+### 10:15 - 12:00 | Session 14: Hands-on Lab 7 – SVC and Cross-Validation
+* **Implementation:** Fitting SVC models in `sdmTMB`.
+* **Model Selection:** Using K-fold cross-validation to assess predictive performance and select the parsimonious model.
+
+---
+
+### 13:15 - 14:45 | Session 15: Validation & Uncertainty
+* **Quantifying Trust:** Calculating Confidence Intervals (CI) and the Coefficient of Variation (CV) for abundance indices.
+* **Advanced Diagnostics:** Using **DHARMa** for 4D spatio-temporal models to detect overdispersion, zero-inflation, and spatial outliers.
+
+
+### 15:00 - 16:00 | Session 16: Hands-on Lab 8 – Model Comparison
+* **The "Grand Duel":** Comparing VAST and sdmTMB outputs for the same Western ABFT dataset. 
+* Discussing convergence issues and result interpretation.

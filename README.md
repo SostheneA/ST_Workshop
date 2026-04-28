@@ -1,70 +1,71 @@
-# [Spatiotemporal Models with VAST and sdmTMB for Index Standardization](https://sosthenea.github.io/ST_Workshop/)
-------------------------------------------------------------------------
+# Spatiotemporal Modelling for Index Standardization with VAST and sdmTMB 🐟
 
-<img src="https://github.com/SostheneA/ST_Workshop/tree/main/images/logo1.jpg" align="right" width="150">
+<p align="center">
+  <img src="images/sdmTMB.png" width="120" alt="sdmTMB Logo" />
+  <img src="images/tinyvast.png" width="140" alt="tinyVAST Logo" />
+</p>
 
-:spiral_calendar: February 01, 2026  
-:alarm_clock: 09:00 - 17:00  
-:hotel: Moncton Gulf Center
-
----
-
-## Overview
-
-### Description
-
-This workshop is designed to empower fisheries scientists, ecologists, and analysts to apply cutting-edge spatiotemporal modeling and index standardization in R using VAST and sdmTMB. Participants will learn how to fit and interpret spatiotemporal Generalized Linear Mixed Effects Models, standardize survey indices, and understand the principles of robust abundance estimation and spatial statistics.
-
-The course covers:  
-- Theory and applied workflows for spatiotemporal GLMMs  
-- Implementation in R with VAST and sdmTMB  
-- Data visualization best practices  
-- Hands-on coding and interpretation for fisheries research
-
-### Audience
-
-This course is ideal if you want to:  
-- Learn modern approaches to index standardization for abundance estimation  
-- Master spatiotemporal modeling techniques for survey, bycatch, or environmental data  
-- Improve skills in R for reproducible research, diagnostics, and visualization
-
-## Schedule (TBA)
-
-| Time  | Activity                             |
-|-------|--------------------------------------|
-| 09:00 | Fundamentals of Spatiotemporal Modeling |
-| 10:30 | *Coffee break*                       |
-| 11:00 | Implementation in VAST and sdmTMB    |
-| 12:30 | *Lunch break*                        |
-| 13:30 | Diagnostics & Visualization          |
-| 15:00 | *Coffee break*                       |
-| 15:30 | Applied Analysis & Q&A               |
-
-## Prework
-
-- Install R (latest version) and RStudio  
-- Install `VAST` and `sdmTMB`:
-  ```
-  install.packages("devtools")
-  devtools::install_github("James-Thorson-NOAA/VAST")
-  install.packages("sdmTMB")
-  ```  
-- Bring your own dataset (or use provided examples)  
-- Review the basics of data cleaning: removing duplicates, validating spatial coordinates, etc.  
-
-For support, join the Discord channel (link to be provided).
-
-## Instructor
-
-**Dr Sosthene AKIA**, Research Scientist, Department of Fisheries and Oceans Canada (DFO)
-
-With expertise in hierarchical and spatiotemporal modeling for fisheries assessment, Sosthene specializes in VAST, sdmTMB, and advanced statistical workflows for unbiased index standardization. His work spans large-scale monitoring programs, Atlantic Bluefin Tuna research, and practical training in reproducible R coding for modern fisheries science.
+This repository contains the pedagogical materials, scripts, and resources for the intensive workshop on spatiotemporal modelling applied to the standardization of fisheries abundance indices.
 
 ---
 
-## License
+## 🗓️ General Information
+
+* **Dates:** May 4 – 8, 2026
+* **Hours:** 08:30 – 16:00 (ADT/CDT)
+* **Venue:** Harry Hachey Conference Center, Saint Andrews Biological Station (SABS)
+* **Instructor:** [Dr. Sosthene AKIA](https://stat4research.com) (Research Scientist, DFO)
+
+---
+
+## 🎯 Workshop Overview
+
+This interactive workshop is designed to empower fisheries scientists and analysts to master the R packages `VAST`, `sdmTMB`, and `tinyVAST`. The curriculum is highly practical, featuring real-world applications on **Western Atlantic Bluefin Tuna (ABFT)** and providing dedicated sessions for participants to work on their own datasets.
+
+### Key Themes:
+* **Index Standardization:** Isolating biological signals from "noise" (vessel effects, gear variability, and environmental drivers).
+* **Spatial Statistics:** Mastering Gaussian Random Fields and the SPDE approach (meshing/triangulation).
+* **Spatiotemporal Modelling:** Integrating spatial and temporal dimensions for robust abundance predictions.
+* **Technical Reconciliation:** Leveraging `tinyVAST` as a bridge between the flexibility of `sdmTMB` and the multivariate power of `VAST`.
+
+---
+
+## 📅 Course Schedule
+
+| Day | Theme | Primary Objective |
+|:---|:---|:---|
+| **Monday** | **Foundations & Spatial autocorrelation ** | GLMM/GAMM review and introduction to spatial autocorrelation. |
+| **Tuesday** | **Spatiotemporal Fusion and modelling** | Creating dynamic maps and modelling temporal evolution. |
+| **Wednesday**| **VAST Deep Dive and demo** | Advanced configuration: `fit_model`, FieldConfig, and Anisotropy. |
+| **Thursday** | **sdmTMB Deep Dive  and demo** | Advanced diagnostics, cross-validation, and spatially varying coefficients. |
+| **Friday** | **tinyVAST & BYOP -  demo** | Framework reconciliation and individual coaching on your data (BYOP). |
+
+---
+
+## 💻 System Setup (Prework)
+
+Before the workshop begins, please ensure your computing environment is ready:
+1. **R (>= 4.4.0)** and **RStudio** installed.
+2. A functional **C++ toolchain** (Rtools for Windows or Xcode for macOS).
+3. Installation of core packages:
+    ```r
+    install.packages(c("devtools", "sdmTMB", "DHARMa", "sf", "terra", "fmesher"))
+    devtools::install_github("James-Thorson-NOAA/VAST")
+    devtools::install_github("James-Thorson-NOAA/tinyVAST")
+    ```
+
+👉 *For detailed, step-by-step instructions, visit the: [System Setup Page](https://sosthenea.github.io/ST_Workshop/system_setup.html).*
+
+---
+
+## 🧑‍🏫 About the Instructor
+
+**Dr. Sosthene AKIA** is a Research Scientist at Fisheries and Oceans Canada (DFO). Specializing in hierarchical and spatiotemporal modelling, his work focuses on developing unbiased index standardization methods for large-scale monitoring programs and stock assessments. He is also the founder of **Stat4research**.
+
+---
+
+## 📄 License
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
 ------------------------------------------------------------------------
-

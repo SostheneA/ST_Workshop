@@ -1,0 +1,5 @@
+---
+title: "Introduction to VAST Architecture <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab](lab9.html)"
+subtitle: "08:30 - 10:00"
+image: images/vast.png
+---

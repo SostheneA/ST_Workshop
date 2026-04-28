@@ -1,0 +1,25 @@
+---
+title: "Day 5: tinyVAST"
+subtitle: "Friday, May 8"
+sidebar: schedule-sidebar
+---
+
+# Theme: The tinyVAST Reconciliation & BYOP
+
+### 08:30 - 10:00 | Session 17: tinyVAST – The Best of Both Worlds
+* **Module 8: Bridging frameworks.**
+    * Why use `tinyVAST`? Combining the user-friendly interface of `sdmTMB` with the multivariate power of `VAST`.
+* **Joint-Species Distributions:** Simplified workflows for multi-species modeling.
+
+### 10:15 - 12:00 | Session 18: Hands-on Lab 9 – The Reconciliation
+* **Practical:** Running a joint-species index standardization or a multivariate survey analysis using `tinyVAST`.
+
+---
+
+### 13:15 - 15:30 | Session 19: BYOP – Bring Your Own Data & Coaching
+* **Individual Coaching:** One-on-one support for participants' personal research datasets.
+* **Final Polishing:** Troubleshooting convergence, exporting standardized indices, and preparing figures for publication/assessment reports.
+
+### 15:30 - 16:00 | Workshop Wrap-up
+* Final Q&A session.
+* Closing remarks and Distribution of Certificates.

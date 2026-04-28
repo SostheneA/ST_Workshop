@@ -1,0 +1,5 @@
+---
+title: "Your First S-T Model <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab](lab6.html)"
+subtitle: "10:15 - 12:00"
+image: images/model1.png
+---

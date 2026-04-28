@@ -1,0 +1,5 @@
+---
+title: "Validation & Cross-Validation <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab 11](lab11.html)"
+subtitle: "10:15 - 12:00"
+image: images/validation.png
+---

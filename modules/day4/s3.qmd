@@ -1,0 +1,5 @@
+---
+title: "Advanced Diagnostics with DHARMa <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab 12](lab12.html)"
+subtitle: "13:15 - 16:00"
+image: images/dharma.png
+---

@@ -21,16 +21,16 @@ website:
     creator: "@SostheneAkia"
     image: "/images/twitter-card.png"
 
-  favicon: "/images/logo1.jpg"
+  #favicon: "/images/logo1.jpg"
 
   page-footer:
-    left: "This page is built with [Quarto](https://quarto.org/), inspired by the work of [Dr Cédric Scherer](https://posit-conf-2023.github.io/dataviz-storytelling/)."
-    right: "&copy; Copyright 2025"
+    left: "This page is built by Sosthene AKIA with [Quarto](https://quarto.org/), inspired by the work of [Dr Cédric Scherer](https://posit-conf-2023.github.io/dataviz-storytelling/)."
+    right: "&copy; Copyright 2026"
     background: "#219EBC"
 
   navbar:
     background: "#219EBC"
-    logo: "images/logo1.jpg"
+    #logo: "images/logo1.jpg"
     pinned: true
     align: center
     right:
@@ -42,10 +42,31 @@ website:
     left:
       - text: Prework
         href: prework.qmd
-      - text: Schedule & Slides
+      - text: Schedule
         href: schedule.qmd
+      - text: Slides
+        href: Slide.qmd
       - text: Resources
         href: resources.qmd
+        
+        
+  sidebar:
+    - id: schedule-sidebar
+      contents:
+        - section: "Workshop Schedule"
+          contents:
+            - text: "Weekly Outlook"
+              href: schedule.qmd
+            - text: "Day 1: Foundations"
+              href: day1.qmd
+            - text: "Day 2: S-T Fusion"
+              href: day2.qmd
+            - text: "Day 3: VAST"
+              href: day3.qmd
+            - text: "Day 4: sdmTMB"
+              href: day4.qmd
+            - text: "Day 5: tinyVAST"
+              href: day5.qmd
 
 format:
   html:

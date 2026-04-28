@@ -1,0 +1,26 @@
+---
+title: "Day 3: VAST"
+subtitle: "Wednesday, May 6"
+sidebar: schedule-sidebar
+---
+
+# Theme: The VAST Framework – Deep Dive into Multivariate Ecosystems
+
+### 08:30 - 10:00 | Session 9: Introduction to the VAST Architecture
+* **Module 6: Deciphering the `fit_model()` function.**
+    * Understanding `FieldConfig` and `ObsModel` settings.
+* **The Delta-Model Approach:** * Linking linear predictors for encounter probability (Presence/Absence) and positive catch rates (Biomass/Abundance).
+
+### 10:15 - 12:00 | Session 10: Hands-on Lab 5 – Navigating VAST
+* **Initial Setup:** Configuring the Mesh, specifying the model structure, and formatting input data for the `FishStatsUtils` ecosystem.
+* *Goal:* Successfully fitting a baseline VAST model.
+
+---
+
+### 13:15 - 14:45 | Session 11: Covariates & Catchability
+* **Density Covariates:** Incorporating environmental drivers (SST, Depth, Salinity) into the latent field.
+* **Catchability Covariates:** Standardizing for vessel power, gear types, or duration.
+* **Random Intercepts:** Implementing "Vessel-Year" effects to isolate biological signals.
+
+### 15:00 - 16:00 | Session 12: Hands-on Lab 6 – Adding Complexity
+* **Workshop Exercise:** Integrating environmental environmental layers into your VAST model and interpreting the estimated effects.

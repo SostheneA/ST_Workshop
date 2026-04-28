@@ -1,0 +1,5 @@
+---
+title: "Dynamics in Space and Time <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab](lab5.html)"
+subtitle: "08:30 - 10:00"
+image: images/time.png
+---

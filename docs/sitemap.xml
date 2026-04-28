@@ -1,79 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//about.html</loc>
-    <lastmod>2026-01-14T19:03:56.537Z</lastmod>
-  </url>
-  <url>
     <loc>https://sosthenea.github.io/ST_Workshop//index.html</loc>
-    <lastmod>2026-01-14T19:03:58.518Z</lastmod>
+    <lastmod>2026-04-27T22:03:02.228Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//license.html</loc>
-    <lastmod>2026-01-14T19:04:00.450Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//Slide.html</loc>
+    <lastmod>2026-04-27T22:02:15.848Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//materials/00-welcome.html</loc>
-    <lastmod>2026-01-14T19:04:05.096Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day1/s1.html</loc>
+    <lastmod>2026-04-27T21:58:01.699Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//materials/01-foundations.html</loc>
-    <lastmod>2026-01-14T19:04:10.511Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day1/s2.html</loc>
+    <lastmod>2026-04-27T21:58:05.896Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//materials/02-display.html</loc>
-    <lastmod>2026-01-14T19:04:17.663Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day2/s1.html</loc>
+    <lastmod>2026-04-27T21:58:10.174Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//materials/03-design.html</loc>
-    <lastmod>2026-01-14T19:04:22.244Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day2/s2.html</loc>
+    <lastmod>2026-04-27T21:58:15.511Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//materials/04-guide.html</loc>
-    <lastmod>2026-01-14T19:04:26.097Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day3/s1.html</loc>
+    <lastmod>2026-04-27T22:04:47.442Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s01-foundations.html</loc>
-    <lastmod>2026-01-14T19:04:28.966Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day3/s2.html</loc>
+    <lastmod>2026-04-27T21:58:29.535Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s02-break.html</loc>
-    <lastmod>2026-01-14T19:04:31.408Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day4/s1.html</loc>
+    <lastmod>2026-04-27T21:58:35.779Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s03-display.html</loc>
-    <lastmod>2026-01-14T19:04:33.787Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day4/s2.html</loc>
+    <lastmod>2026-04-27T21:58:41.405Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s04-lunch.html</loc>
-    <lastmod>2026-01-14T19:04:36.189Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day4/s3.html</loc>
+    <lastmod>2026-04-27T21:58:46.980Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s05-design.html</loc>
-    <lastmod>2026-01-14T19:04:38.728Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day5/s1.html</loc>
+    <lastmod>2026-04-27T21:58:52.942Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s06-break.html</loc>
-    <lastmod>2026-01-14T19:04:41.161Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day5/s2.html</loc>
+    <lastmod>2026-04-27T21:58:59.867Z</lastmod>
   </url>
   <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//modules/s07-guide.html</loc>
-    <lastmod>2026-01-14T19:04:43.642Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//prework.html</loc>
-    <lastmod>2026-01-14T19:04:46.256Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//resources.html</loc>
-    <lastmod>2026-01-14T19:04:48.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//schedule.html</loc>
-    <lastmod>2026-01-14T19:04:51.003Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sosthenea.github.io/ST_Workshop//team.html</loc>
-    <lastmod>2026-01-14T19:04:53.426Z</lastmod>
+    <loc>https://sosthenea.github.io/ST_Workshop//modules/day5/s3.html</loc>
+    <lastmod>2026-04-27T21:59:06.304Z</lastmod>
   </url>
 </urlset>

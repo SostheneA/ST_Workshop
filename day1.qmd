@@ -1,0 +1,36 @@
+---
+title: "Day 1: Foundations"
+subtitle: "Monday, May 4"
+---
+
+# Day 1: Monday, May 4
+**Theme:** Foundations of Abundance Indices and Spatial Autocorrelation
+
+### 08:30 - 10:00 | Session 1: Foundations of Abundance Indices
+* **08:30 - 08:50 | Welcome & Introductions (20 min)**
+    * Ice-breaker, participant background review, and workshop logistics.
+* **08:50 - 09:15 | Module 1: From Raw Observations to Biological Signals (25 min)**
+    * Why standardize? Isolating true abundance from noise (vessel effects, gear changes, environment).
+* **09:15 - 10:00 | Module 2: The Evolution of Standardization Models (45 min)**
+    * The journey from GLM to GAM: handling non-linearities, random effects, and Delta-models.
+
+### 10:00 - 10:15 | Morning Break ☕
+
+### 10:15 - 12:00 | Session 2: Hands-on Lab 1 – Classic Frameworks
+* **Building a robust time series** from fisheries data.
+* Practice with `mgcv` and `lme4` using survey and fisheries-dependent datasets.
+* *Key task:* Diagnosing fit with **DHARMa** and extracting standardized indices.
+
+### 12:00 - 13:15 | Lunch Break 🍴
+
+### 13:15 - 14:45 | Session 3: Mapping the Latent Ocean – The Spatial Engine
+* **The Core Issue:** Independence vs. Autocorrelation. Why Tobler’s Law matters for fisheries.
+* **The Gaussian Random Field (GRF):** Modeling the "invisible sheet" of spatial density.
+* **The SPDE Approach:** Solving complex spatial math using a triangulated Mesh to create continuous surfaces.
+
+### 14:45 - 15:00 | Afternoon Break ☕
+
+### 15:00 - 16:00 | Session 4: Hands-on Lab 2 – Spatial Scaffolding
+* **Building the Scaffolding:** Creating and testing your first Mesh in `sdmTMB`.
+* **Playing with Space:** Modeling spatial autocorrelation and visualizing mesh residuals.
+* *Demo:* Identifying spatial bias and "ghost" patterns in the residuals.

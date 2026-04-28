@@ -29,7 +29,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href=".//images/logo1.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,16 +72,13 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo1.jpg" alt="" class="navbar-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Home</span>
     </a>
@@ -98,8 +94,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Prework</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html" rel="" target="">
- <span class="menu-text">Schedule &amp; Slides</span></a>
+    <a class="nav-link active" href="./schedule.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Slide.html" rel="" target="">
+ <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./resources.html" rel="" target="">
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./license.html" rel="" target="" aria-current="page"><i class="bi bi-file-certificate" role="img">
+    <a class="nav-link" href="./license.html" rel="" target=""><i class="bi bi-file-certificate" role="img">
 </i> 
  <span class="menu-text">License</span></a>
   </li>  
@@ -123,10 +123,74 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">License</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Workshop Schedule</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Outlook</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: S-T Fusion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 3: VAST</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 4: sdmTMB</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./day5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 5: tinyVAST</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
@@ -394,11 +458,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>, inspired by the work of <a href="https://posit-conf-2023.github.io/dataviz-storytelling/">Dr Cédric Scherer</a>.</div>   
+    <div class="nav-footer-left">This page is built by Sosthene AKIA with <a href="https://quarto.org/">Quarto</a>, inspired by the work of <a href="https://posit-conf-2023.github.io/dataviz-storytelling/">Dr Cédric Scherer</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
     <div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://sosthenea.github.io/ST_Workshop/edit/main/license.qmd" class="toc-action">Edit this page</a></p><p><a href="https://sosthenea.github.io/ST_Workshop/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
-    <div class="nav-footer-right">© Copyright 2025</div>
+    <div class="nav-footer-right">© Copyright 2026</div>
   </div>
 </footer>
 
