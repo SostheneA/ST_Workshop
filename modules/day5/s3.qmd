@@ -1,5 +1,5 @@
 ---
-title: "BYOP: Final Coaching & Troubleshooting <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Project](project.html)"
+title: "tinyVAST <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
 subtitle: "13:15 - 16:00"
-image: images/coaching.png
+image: "/images/tinyvast.png"
 ---

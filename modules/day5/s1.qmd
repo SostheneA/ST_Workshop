@@ -1,5 +1,5 @@
 ---
-title: "tinyVAST: The Best of Both Worlds <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab 13](lab13.html)"
+title: "tinyVAST <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
 subtitle: "08:30 - 10:00"
-image: images/tinyvast_icon.png
+image: "/images/tinyvast.png"
 ---

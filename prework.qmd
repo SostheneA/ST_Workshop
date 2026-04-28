@@ -1,5 +1,5 @@
 ---
-title: "System Setup 🤖"
+title: "R Packages Setup"
 ---
 
 Welcome! To make the most of the **Spatiotemporal Modelling Workshop**, you must have your computing environment configured *before* we begin on Monday morning. These models (VAST, sdmTMB) are computationally intensive and rely on a specific stack of C++ compilers and spatial libraries.
@@ -35,19 +35,45 @@ install.packages(c("devtools", "sdmTMB", "DHARMa", "sf", "terra", "ggplot2",
                    "units", "remotes", "fmesher", "TMB", "Rcpp"))
 
 # 2. Install VAST (and its dependency FishStatsUtils)
-# VAST requires the latest development versions often found on GitHub
-remotes::install_github("james-thorson/FishStatsUtils", upgrade = "always")
-remotes::install_github("james-thorson/VAST", upgrade = "always")
+# Install and load devtools package
+#install.packages("devtools")
+library("devtools")
 
-# 3. Install tinyVAST
+# Install package
+install_github("james-thorson/VAST@main", INSTALL_opts="--no-staged-install")
+# Load package
+library(VAST)
+
+#If you are having problems with installation, please consider installing dependencies individually, e.g. using:
+
+# Install TMB from CRAN
+install.packages("TMB")
+
+# Install INLA using currently recommended method
+install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dep=TRUE)
+
+# Install FishStatsUtils from CRAN
+install_github("james-thorson/FishStatsUtils@main", INSTALL_opts="--no-staged-install")
+
+
+# 3. Install sdmTMB
+#sdmTMB can be installed from CRAN:
+install.packages("sdmTMB", dependencies = TRUE)
+
+#Assuming you have a C++ compiler installed, the development version is recommended and can be installed:
+# install.packages("pak")
+pak::pak("sdmTMB/sdmTMB", dependencies = TRUE)
+
+
+# 4. Install tinyVAST
 # The bridge between sdmTMB flexibility and VAST multivariate power
-remotes::install_github("james-thorson/tinyVAST", upgrade = "always")
-```
 
-### Verification
-Run this command in your console. If it returns `TRUE`, your C++ compiler is working:
-```r
-devtools::has_devel()
+#tinyVAST can be installed from CRAN:
+install.packages("tinyVAST")
+
+#or the dev branch (subject to ongoing changes) can be installed from GitHub:
+library(devtools)
+install_github("vast-lib/tinyVAST", dependencies = TRUE)
 ```
 
 ---
@@ -74,5 +100,5 @@ If you encounter errors during the installation of `VAST` or `TMB`:
 2. Ensure no other R sessions are running.
 3. If a prompt asks *"Do you want to install from sources?"*, type **Yes**.
 
-For urgent support, contact **Sosthene AKIA** via the workshop Discord channel or email.
+For urgent support, contact **Sosthene AKIA** via email.
 ```

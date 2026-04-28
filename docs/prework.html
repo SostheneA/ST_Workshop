@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Home - System Setup 🤖</title>
+<title>Home - R Packages Setup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,10 +93,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Home - System Setup 🤖">
+<meta property="og:title" content="Home - R Packages Setup">
 <meta property="og:description" content="">
 <meta property="og:site-name" content="Home">
-<meta name="twitter:title" content="Home - System Setup 🤖">
+<meta name="twitter:title" content="Home - R Packages Setup">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://sosthenea.github.io/ST_Workshop///images/twitter-card.png">
 <meta name="twitter:creator" content="@SostheneAkia">
@@ -168,10 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#computing-requirements" id="toc-computing-requirements" class="nav-link active" data-scroll-target="#computing-requirements">Computing Requirements</a></li>
   <li><a href="#install-r-and-rstudio-if-necessary" id="toc-install-r-and-rstudio-if-necessary" class="nav-link" data-scroll-target="#install-r-and-rstudio-if-necessary">1. Install R and RStudio (if necessary)</a></li>
-  <li><a href="#install-core-r-packages" id="toc-install-core-r-packages" class="nav-link" data-scroll-target="#install-core-r-packages">2. Install Core R Packages</a>
-  <ul class="collapse">
-  <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification">Verification</a></li>
-  </ul></li>
+  <li><a href="#install-core-r-packages" id="toc-install-core-r-packages" class="nav-link" data-scroll-target="#install-core-r-packages">2. Install Core R Packages</a></li>
   <li><a href="#data-preparation-checklist" id="toc-data-preparation-checklist" class="nav-link" data-scroll-target="#data-preparation-checklist">3. Data Preparation Checklist</a></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
   </ul>
@@ -182,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">System Setup 🤖</h1>
+<h1 class="title">R Packages Setup</h1>
 </div>
 
 
@@ -223,19 +220,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"units"</span>, <span class="st">"remotes"</span>, <span class="st">"fmesher"</span>, <span class="st">"TMB"</span>, <span class="st">"Rcpp"</span>))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Install VAST (and its dependency FishStatsUtils)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># VAST requires the latest development versions often found on GitHub</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"james-thorson/FishStatsUtils"</span>, <span class="at">upgrade =</span> <span class="st">"always"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"james-thorson/VAST"</span>, <span class="at">upgrade =</span> <span class="st">"always"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load devtools package</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("devtools")</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"devtools"</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Install tinyVAST</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The bridge between sdmTMB flexibility and VAST multivariate power</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"james-thorson/tinyVAST"</span>, <span class="at">upgrade =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="verification" class="level3">
-<h3 class="anchored" data-anchor-id="verification">Verification</h3>
-<p>Run this command in your console. If it returns <code>TRUE</code>, your C++ compiler is working:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">has_devel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Install package</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"james-thorson/VAST@main"</span>, <span class="at">INSTALL_opts=</span><span class="st">"--no-staged-install"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VAST)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#If you are having problems with installation, please consider installing dependencies individually, e.g. using:</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Install TMB from CRAN</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"TMB"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Install INLA using currently recommended method</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"INLA"</span>, <span class="at">repos=</span><span class="fu">c</span>(<span class="fu">getOption</span>(<span class="st">"repos"</span>), <span class="at">INLA=</span><span class="st">"https://inla.r-inla-download.org/R/stable"</span>), <span class="at">dep=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Install FishStatsUtils from CRAN</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"james-thorson/FishStatsUtils@main"</span>, <span class="at">INSTALL_opts=</span><span class="st">"--no-staged-install"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Install sdmTMB</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#sdmTMB can be installed from CRAN:</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sdmTMB"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Assuming you have a C++ compiler installed, the development version is recommended and can be installed:</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"sdmTMB/sdmTMB"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Install tinyVAST</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># The bridge between sdmTMB flexibility and VAST multivariate power</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#tinyVAST can be installed from CRAN:</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tinyVAST"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">#or the dev branch (subject to ongoing changes) can be installed from GitHub:</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"vast-lib/tinyVAST"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
-</section>
 </section>
 <section id="data-preparation-checklist" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation-checklist">3. Data Preparation Checklist</h2>
@@ -265,7 +289,7 @@ Spatial Unit Warning
 <section id="troubleshooting" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
 <p>If you encounter errors during the installation of <code>VAST</code> or <code>TMB</code>: 1. Restart RStudio. 2. Ensure no other R sessions are running. 3. If a prompt asks <em>“Do you want to install from sources?”</em>, type <strong>Yes</strong>.</p>
-<p>For urgent support, contact <strong>Sosthene AKIA</strong> via the workshop Discord channel or email. ```</p>
+<p>For urgent support, contact <strong>Sosthene AKIA</strong> via email. ```</p>
 
 
 </section>

@@ -1,5 +1,5 @@
 ---
-title: "Spatially Varying Coefficients (SVC) <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab 10](lab10.html)"
+title: "The sdmTMB Framework <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
 subtitle: "08:30 - 10:00"
-image: images/svc_icon.png
+image: "/images/tinyvast.png"
 ---
