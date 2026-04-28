@@ -1,5 +1,6 @@
 ---
-title: "Foundations of Abundance Indices <br> [📽️ Slides](https://gamma.app/docs/The-Magic-Map-eyfw7qqonr4nslx) | [💻 Lab](lab1.html)"
+title: "Foundations of Abundance Indices <br> [📽️ Slides]() | [💻 Lab](lab1.html)"
 subtitle: "08:30 - 10:00"
-image: images/foundations.png
+image: images/tinyvast.png
 ---
+

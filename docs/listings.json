@@ -1,19 +1,30 @@
 [
   {
-    "listing": "/Slide.html",
+    "listing": "/Materials.html",
     "items": [
-      "/modules/day1/s2.html",
       "/modules/day1/s1.html",
+      "/modules/generics/01_coffee_am.html",
+      "/modules/day1/s2.html",
+      "/modules/generics/02_lunch.html",
+      "/modules/day1/s3.html",
+      "/modules/generics/03_coffee_pm.html",
+      "/modules/day1/s4.html",
       "/modules/day2/s1.html",
       "/modules/day2/s2.html",
+      "/modules/day2/s3.html",
+      "/modules/day2/s4.html",
       "/modules/day3/s1.html",
       "/modules/day3/s2.html",
-      "/modules/day4/s3.html",
+      "/modules/day3/s3.html",
+      "/modules/day3/s4.html",
       "/modules/day4/s1.html",
       "/modules/day4/s2.html",
-      "/modules/day5/s3.html",
+      "/modules/day4/s3.html",
+      "/modules/day4/s4.html",
+      "/modules/day5/s1.html",
       "/modules/day5/s2.html",
-      "/modules/day5/s1.html"
+      "/modules/day5/s3.html",
+      "/modules/day5/s4.html"
     ]
   }
 ]

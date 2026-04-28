@@ -1,5 +1,82 @@
 [
   {
+    "objectID": "Materials.html",
+    "href": "Materials.html",
+    "title": "Course Materials",
+    "section": "",
+    "text": "Explore the modules below to access presentation slides and hands-on R exercises.\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDynamics in Space and Time  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nYour First S-T Model  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 13:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nSpatially Varying Coefficients (SVC)  📽️ Slides | 💻 Lab 10\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nValidation & Cross-Validation  📽️ Slides | 💻 Lab 11\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nAdvanced Diagnostics with DHARMa  📽️ Slides | 💻 Lab 12\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\ntinyVAST: The Best of Both Worlds  📽️ Slides | 💻 Lab 13\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nMultivariate Index Standardization  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nBYOP: Final Coaching & Troubleshooting  📽️ Slides | 💻 Project\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Materials.html#monday-standardization-fundamentals-spatial-foundations",
+    "href": "Materials.html#monday-standardization-fundamentals-spatial-foundations",
+    "title": "Course Materials",
+    "section": "",
+    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Materials.html#tuesday-spatio-temporal-fusion-dynamics",
+    "href": "Materials.html#tuesday-spatio-temporal-fusion-dynamics",
+    "title": "Course Materials",
+    "section": "",
+    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDynamics in Space and Time  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nYour First S-T Model  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Materials.html#wednesday-the-vast-framework-deep-dive",
+    "href": "Materials.html#wednesday-the-vast-framework-deep-dive",
+    "title": "Course Materials",
+    "section": "",
+    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 13:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Materials.html#thursday-advanced-sdmtmb-diagnostics",
+    "href": "Materials.html#thursday-advanced-sdmtmb-diagnostics",
+    "title": "Course Materials",
+    "section": "",
+    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nSpatially Varying Coefficients (SVC)  📽️ Slides | 💻 Lab 10\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nValidation & Cross-Validation  📽️ Slides | 💻 Lab 11\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nAdvanced Diagnostics with DHARMa  📽️ Slides | 💻 Lab 12\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Materials.html#friday-model-reconciliation-applied-case-studies",
+    "href": "Materials.html#friday-model-reconciliation-applied-case-studies",
+    "title": "Course Materials",
+    "section": "",
+    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\ntinyVAST: The Best of Both Worlds  📽️ Slides | 💻 Lab 13\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nMultivariate Index Standardization  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nBYOP: Final Coaching & Troubleshooting  📽️ Slides | 💻 Project\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "day1.html",
+    "href": "day1.html",
+    "title": "Day 1: Foundations",
+    "section": "",
+    "text": "Day 1: Monday, May 4\nTheme: Foundations of Abundance Indices and Spatial Autocorrelation\n\n08:30 - 10:00 | Session 1: Foundations of Abundance Indices\n\n08:30 - 08:50 | Welcome & Introductions (20 min)\n\nIce-breaker, participant background review, and workshop logistics.\n\n08:50 - 09:15 | Module 1: From Raw Observations to Biological Signals (25 min)\n\nWhy standardize? Isolating true abundance from noise (vessel effects, gear changes, environment).\n\n09:15 - 10:00 | Module 2: The Evolution of Standardization Models (45 min)\n\nThe journey from GLM to GAM: handling non-linearities, random effects, and Delta-models.\n\n\n\n\n10:00 - 10:15 | Morning Break ☕\n\n\n10:15 - 12:00 | Session 2: Hands-on Lab 1 – Classic Frameworks\n\nBuilding a robust time series from fisheries data.\nPractice with mgcv and lme4 using survey and fisheries-dependent datasets.\nKey task: Diagnosing fit with DHARMa and extracting standardized indices.\n\n\n\n12:00 - 13:15 | Lunch Break 🍴\n\n\n13:15 - 14:45 | Session 3: Mapping the Latent Ocean – The Spatial Engine\n\nThe Core Issue: Independence vs. Autocorrelation. Why Tobler’s Law matters for fisheries.\nThe Gaussian Random Field (GRF): Modeling the “invisible sheet” of spatial density.\nThe SPDE Approach: Solving complex spatial math using a triangulated Mesh to create continuous surfaces.\n\n\n\n14:45 - 15:00 | Afternoon Break ☕\n\n\n15:00 - 16:00 | Session 4: Hands-on Lab 2 – Spatial Scaffolding\n\nBuilding the Scaffolding: Creating and testing your first Mesh in sdmTMB.\nPlaying with Space: Modeling spatial autocorrelation and visualizing mesh residuals.\nDemo: Identifying spatial bias and “ghost” patterns in the residuals."
+  },
+  {
+    "objectID": "day2.html",
+    "href": "day2.html",
+    "title": "Day 2: S-T Fusion",
+    "section": "",
+    "text": "Theme: Spatio-Temporal Fusion – Adding the Fourth Dimension\n\n08:30 - 10:00 | Session 5: Dynamics in Space and Time\n\nModule 5: Beyond static maps—how abundance surfaces evolve.\n\nUnderstanding the temporal component of fish density.\n\nCore Concepts:\n\nAutoregressive structures (AR1): Modelling dependencies between years.\nRandom Walks: Handling non-stationary trends in time.\nSpatio-temporal correlations: How space and time interact.\n\n\n\n\n10:15 - 12:00 | Session 6: Hands-on Lab 3 – Your First S-T Model\n\nFitting spatio-temporal GLMMs using sdmTMB.\nVisualizing “The Movie”: Generating and comparing annual abundance surfaces to see shifts in distribution.\n\n\n\n\n13:15 - 14:45 | Session 7: Advanced Spatial Structures\n\nAnisotropy: Modelling scenarios where correlation varies by direction (e.g., along currents or bathymetric lines).\nBarriers: Handling landmasses, islands, and non-navigable areas using barrier meshes.\n\n\n\n15:00 - 16:00 | Session 8: Hands-on Lab 4 – Refining the Scaffolding\n\nTechnical Implementation: Building barrier meshes and configuring anisotropy parameters in sdmTMB.\nExercise: Comparing a standard mesh vs. a barrier mesh for a coastal dataset."
+  },
+  {
+    "objectID": "day3.html",
+    "href": "day3.html",
+    "title": "Day 3: VAST",
+    "section": "",
+    "text": "Theme: The VAST Framework – Deep Dive into Multivariate Ecosystems\n\n08:30 - 10:00 | Session 9: Introduction to the VAST Architecture\n\nModule 6: Deciphering the fit_model() function.\n\nUnderstanding FieldConfig and ObsModel settings.\n\nThe Delta-Model Approach: * Linking linear predictors for encounter probability (Presence/Absence) and positive catch rates (Biomass/Abundance).\n\n\n\n10:15 - 12:00 | Session 10: Hands-on Lab 5 – Navigating VAST\n\nInitial Setup: Configuring the Mesh, specifying the model structure, and formatting input data for the FishStatsUtils ecosystem.\nGoal: Successfully fitting a baseline VAST model.\n\n\n\n\n13:15 - 14:45 | Session 11: Covariates & Catchability\n\nDensity Covariates: Incorporating environmental drivers (SST, Depth, Salinity) into the latent field.\nCatchability Covariates: Standardizing for vessel power, gear types, or duration.\nRandom Intercepts: Implementing “Vessel-Year” effects to isolate biological signals.\n\n\n\n15:00 - 16:00 | Session 12: Hands-on Lab 6 – Adding Complexity\n\nWorkshop Exercise: Integrating environmental environmental layers into your VAST model and interpreting the estimated effects."
+  },
+  {
+    "objectID": "day4.html",
+    "href": "day4.html",
+    "title": "Day 4: sdmTMB",
+    "section": "",
+    "text": "Theme: Advanced sdmTMB & Model Diagnostics\n\n08:30 - 10:00 | Session 13: Spatially Varying Coefficients (SVC)\n\nModule 7: Local vs. Global effects.\n\nModelling scenarios where the relationship between the environment and fish density changes across space.\n\nConcept: Moving beyond a single slope for environmental drivers.\n\n\n\n10:15 - 12:00 | Session 14: Hands-on Lab 7 – SVC and Cross-Validation\n\nImplementation: Fitting SVC models in sdmTMB.\nModel Selection: Using K-fold cross-validation to assess predictive performance and select the parsimonious model.\n\n\n\n\n13:15 - 14:45 | Session 15: Validation & Uncertainty\n\nQuantifying Trust: Calculating Confidence Intervals (CI) and the Coefficient of Variation (CV) for abundance indices.\nAdvanced Diagnostics: Using DHARMa for 4D spatio-temporal models to detect overdispersion, zero-inflation, and spatial outliers.\n\n\n\n15:00 - 16:00 | Session 16: Hands-on Lab 8 – Model Comparison\n\nThe “Grand Duel”: Comparing VAST and sdmTMB outputs for the same Western ABFT dataset.\nDiscussing convergence issues and result interpretation."
+  },
+  {
+    "objectID": "day5.html",
+    "href": "day5.html",
+    "title": "Day 5: tinyVAST",
+    "section": "",
+    "text": "Theme: The tinyVAST Reconciliation & BYOP\n\n08:30 - 10:00 | Session 17: tinyVAST – The Best of Both Worlds\n\nModule 8: Bridging frameworks.\n\nWhy use tinyVAST? Combining the user-friendly interface of sdmTMB with the multivariate power of VAST.\n\nJoint-Species Distributions: Simplified workflows for multi-species modeling.\n\n\n\n10:15 - 12:00 | Session 18: Hands-on Lab 9 – The Reconciliation\n\nPractical: Running a joint-species index standardization or a multivariate survey analysis using tinyVAST.\n\n\n\n\n13:15 - 15:30 | Session 19: BYOP – Bring Your Own Data & Coaching\n\nIndividual Coaching: One-on-one support for participants’ personal research datasets.\nFinal Polishing: Troubleshooting convergence, exporting standardized indices, and preparing figures for publication/assessment reports.\n\n\n\n15:30 - 16:00 | Workshop Wrap-up\n\nFinal Q&A session.\nClosing remarks and Distribution of Certificates."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Spatiotemporal Modelling for Index Standardization",
@@ -14,52 +91,108 @@
     "text": "Learning Objectives\nThrough guided modules, you will learn to:\n\nPrepare complex fisheries data for spatiotemporal analysis.\nConfigure models in both sdmTMB and VAST frameworks.\nInterpret spatial and spatiotemporal random effects.\nDiagnose model fit quality using DHARMa and other modern tools.\nHands-on Application: Apply the mastered workflows directly to your own research datasets."
   },
   {
-    "objectID": "Slide.html",
-    "href": "Slide.html",
-    "title": "Supports de l’Atelier",
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "License",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Session & Matériel\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nHoraire\n\n\nSession & Matériel\n\n\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDynamics in Space and Time  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nYour First S-T Model  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:15 - 13:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nAdvanced Diagnostics with DHARMa  📽️ Slides | 💻 Lab 12\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nSpatially Varying Coefficients (SVC)  📽️ Slides | 💻 Lab 10\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nValidation & Cross-Validation  📽️ Slides | 💻 Lab 11\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nBYOP: Final Coaching & Troubleshooting  📽️ Slides | 💻 Project\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nMultivariate Index Standardization  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\ntinyVAST: The Best of Both Worlds  📽️ Slides | 💻 Lab 13\n\n\n\n\n\n\nNo matching items"
+    "text": "This work is licensed under a Creative Commons Attribution 4.0 International License."
   },
   {
-    "objectID": "Slide.html#technical-notes",
-    "href": "Slide.html#technical-notes",
+    "objectID": "modules/generics/01_coffee_am.html",
+    "href": "modules/generics/01_coffee_am.html",
+    "title": "Coffee Break",
+    "section": "",
+    "text": "Warning\n\n\n\nPlease avoid questions during the coffee break to give us a chance to recover and reflect."
+  },
+  {
+    "objectID": "modules/generics/02_lunch.html",
+    "href": "modules/generics/02_lunch.html",
+    "title": "Lunch Break",
+    "section": "",
+    "text": "Warning\n\n\n\nPlease avoid questions during the lunch break to give us a chance to recover and reflect."
+  },
+  {
+    "objectID": "modules/generics/03_coffee_pm.html",
+    "href": "modules/generics/03_coffee_pm.html",
+    "title": "Coffee Break",
+    "section": "",
+    "text": "Warning\n\n\n\nPlease avoid questions during the coffee break to give us a chance to recover and reflect."
+  },
+  {
+    "objectID": "prework.html",
+    "href": "prework.html",
+    "title": "System Setup 🤖",
+    "section": "",
+    "text": "Welcome! To make the most of the Spatiotemporal Modelling Workshop, you must have your computing environment configured before we begin on Monday morning. These models (VAST, sdmTMB) are computationally intensive and rely on a specific stack of C++ compilers and spatial libraries."
+  },
+  {
+    "objectID": "prework.html#computing-requirements",
+    "href": "prework.html#computing-requirements",
+    "title": "System Setup 🤖",
+    "section": "Computing Requirements",
+    "text": "Computing Requirements\nYou will need:\n\nA laptop with administrative privileges: Necessary to install C++ compilers and Rtools.\nSecondary monitor: Highly recommended so you can follow the live-coding demonstrations while keeping your own RStudio session open.\nR and RStudio: Ensure you have the latest versions installed.\nC++ Toolchain: Necessary for TMB (Template Model Builder) to compile the spatiotemporal models.\nGit & GitHub: For collaborative code sharing and version control."
+  },
+  {
+    "objectID": "prework.html#install-r-and-rstudio-if-necessary",
+    "href": "prework.html#install-r-and-rstudio-if-necessary",
+    "title": "System Setup 🤖",
+    "section": "1. Install R and RStudio (if necessary)",
+    "text": "1. Install R and RStudio (if necessary)\nWe rely on recent features for spatial data handling (sf, terra). * R: Version &gt;= 4.4.0 (4.5 recommended) - Download from cloud.r-project.org. * RStudio: Desktop version &gt;= 2025.09 - Download from posit.co."
+  },
+  {
+    "objectID": "prework.html#install-core-r-packages",
+    "href": "prework.html#install-core-r-packages",
+    "title": "System Setup 🤖",
+    "section": "2. Install Core R Packages",
+    "text": "2. Install Core R Packages\nOpen RStudio and run this script to install the engine and the diagnostic tools.\n# 1. Install CRAN dependencies\ninstall.packages(c(\"devtools\", \"sdmTMB\", \"DHARMa\", \"sf\", \"terra\", \"ggplot2\", \n                   \"units\", \"remotes\", \"fmesher\", \"TMB\", \"Rcpp\"))\n\n# 2. Install VAST (and its dependency FishStatsUtils)\n# VAST requires the latest development versions often found on GitHub\nremotes::install_github(\"james-thorson/FishStatsUtils\", upgrade = \"always\")\nremotes::install_github(\"james-thorson/VAST\", upgrade = \"always\")\n\n# 3. Install tinyVAST\n# The bridge between sdmTMB flexibility and VAST multivariate power\nremotes::install_github(\"james-thorson/tinyVAST\", upgrade = \"always\")\n\nVerification\nRun this command in your console. If it returns TRUE, your C++ compiler is working:\ndevtools::has_devel()"
+  },
+  {
+    "objectID": "prework.html#data-preparation-checklist",
+    "href": "prework.html#data-preparation-checklist",
+    "title": "System Setup 🤖",
+    "section": "3. Data Preparation Checklist",
+    "text": "3. Data Preparation Checklist\nTo participate in the “Bring Your Own Data” sessions, please have a clean dataset ready with the following columns:\n\nYear (Numeric integer)\nLatitude / Longitude (Decimal degrees)\nResponse Variable (Biomass, Counts, or CPUE)\nEffort (Area swept, tow duration, or number of hooks)\nVessel/Gear ID (Factor, for standardization)\n\n\n\n\n\n\n\nSpatial Unit Warning\n\n\n\nVAST and sdmTMB perform best when spatial coordinates are Projected (e.g., UTM in kilometers). If you only have Lat/Lon, we will cover how to project them on Day 1, but having an idea of your area’s UTM zone is a plus!"
+  },
+  {
+    "objectID": "prework.html#troubleshooting",
+    "href": "prework.html#troubleshooting",
+    "title": "System Setup 🤖",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\nIf you encounter errors during the installation of VAST or TMB: 1. Restart RStudio. 2. Ensure no other R sessions are running. 3. If a prompt asks “Do you want to install from sources?”, type Yes.\nFor urgent support, contact Sosthene AKIA via the workshop Discord channel or email. ```"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "The following resources provide essential documentation, tutorials, and code for mastering spatiotemporal models and index standardization in R:"
+  },
+  {
+    "objectID": "resources.html#key-packages-and-documentation",
+    "href": "resources.html#key-packages-and-documentation",
+    "title": "Resources",
+    "section": "Key Packages and Documentation",
+    "text": "Key Packages and Documentation\n\ntinyVAST – Multivariate Spatio-Temporal Models using Structural Equations\nAdvanced R package for fitting multivariate spatio-temporal models with dynamic structural equations and Gaussian Markov random fields.\nIncludes installation instructions, theory, and worked examples.\nsdmTMB – Spatial and Spatiotemporal SPDE-Based GLMMs with TMB\nModern and user-friendly package for flexible GLMM and spatial/spatiotemporal modeling in R.\nFeatures detailed vignettes and hands-on guides for spatial fisheries applications.\nVAST – Spatio-temporal analysis of univariate or multivariate data\nOfficial GitHub repo for the VAST package, supporting robust spatio-temporal index standardization and advanced analysis for fisheries science."
+  },
+  {
+    "objectID": "resources.html#additional-recommended-tools",
+    "href": "resources.html#additional-recommended-tools",
+    "title": "Resources",
+    "section": "Additional Recommended Tools",
+    "text": "Additional Recommended Tools\n\nglmmTMB\nGeneralized linear mixed models with zero-inflation and spatial structures.\nINLA and inlabru\nBayesian inference for latent Gaussian models, applicable for advanced spatial/spatiotemporal modeling.\nmgcv\nComprehensive modeling package (including spatially explicit GAMs and SPDEs).\n\n\nFor more code samples, see each package’s documentation, vignettes, or associated preprints."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Workshop Schedule",
+    "section": "",
+    "text": "Morning Session 1: 08:30 – 10:00\nMorning Break: 10:00 – 10:15\nMorning Session 2: 10:15 – 12:00\nLunch Break: 12:00 – 13:15\nAfternoon Session 1: 13:15 – 14:45\nAfternoon Break: 14:45 – 15:00\nAfternoon Session 2: 15:00 – 16:00"
+  },
+  {
+    "objectID": "schedule.html#technical-notes",
+    "href": "schedule.html#technical-notes",
     "title": "Workshop Schedule",
     "section": "Technical Notes",
     "text": "Technical Notes\n\nSoftware: Ensure R, RStudio, sdmTMB, VAST, and tinyVAST are installed before Monday 08:30.\nProjections: Ensure you have the sf package to handle coordinate transformations (WGS84 to UTM).\nData: Participants working on their own data should have their CSV or RData files ready for Lab 1."
-  },
-  {
-    "objectID": "Slide.html#lundi-fondations-et-espace",
-    "href": "Slide.html#lundi-fondations-et-espace",
-    "title": "Supports de l’Atelier",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Session & Matériel\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nHoraire\n\n\nSession & Matériel\n\n\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nClassic Frameworks (GLM/GAM)  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Slide.html#mardi-fusion-spatio-temporelle",
-    "href": "Slide.html#mardi-fusion-spatio-temporelle",
-    "title": "Supports de l’Atelier",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDynamics in Space and Time  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nYour First S-T Model  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Slide.html#mercredi-immersion-vast",
-    "href": "Slide.html#mercredi-immersion-vast",
-    "title": "Supports de l’Atelier",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:15 - 13:00\n\n\nIntroduction to VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Slide.html#jeudi-diagnostics-sdmtmb",
-    "href": "Slide.html#jeudi-diagnostics-sdmtmb",
-    "title": "Supports de l’Atelier",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nAdvanced Diagnostics with DHARMa  📽️ Slides | 💻 Lab 12\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nSpatially Varying Coefficients (SVC)  📽️ Slides | 💻 Lab 10\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nValidation & Cross-Validation  📽️ Slides | 💻 Lab 11\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Slide.html#vendredi-tinyvast-coaching",
-    "href": "Slide.html#vendredi-tinyvast-coaching",
-    "title": "Supports de l’Atelier",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSubtitle\n\n\nTitle\n\n\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nBYOP: Final Coaching & Troubleshooting  📽️ Slides | 💻 Project\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nMultivariate Index Standardization  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\ntinyVAST: The Best of Both Worlds  📽️ Slides | 💻 Lab 13\n\n\n\n\n\n\nNo matching items"
   }
 ]

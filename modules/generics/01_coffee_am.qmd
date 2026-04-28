@@ -1,0 +1,9 @@
+---
+title: "*Coffee Break*"
+subtitle: "10:00 - 10:15"
+image: "/images/coffee-break.png"
+---
+
+::: callout-warning
+Please avoid questions during the coffee break to give us a chance to recover and reflect.
+:::

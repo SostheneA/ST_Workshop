@@ -1,0 +1,9 @@
+---
+title: "**Lunch Break**"
+subtitle: "12:00 - 13:15"
+image: "/images/lunch-break.png"
+---
+
+::: callout-warning
+Please avoid questions during the lunch break to give us a chance to recover and reflect.
+:::

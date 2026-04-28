@@ -44,29 +44,30 @@ website:
         href: prework.qmd
       - text: Schedule
         href: schedule.qmd
-      - text: Slides
-        href: Slide.qmd
+      - text: Materials
+        href: Materials.qmd
       - text: Resources
         href: resources.qmd
         
         
-  sidebar:
-    - id: schedule-sidebar
+sidebar:
+    - id: schedule-sidebar       
+      title: "Workshop Schedule"
+      style: docked
+      background: light
       contents:
-        - section: "Workshop Schedule"
-          contents:
-            - text: "Weekly Outlook"
-              href: schedule.qmd
-            - text: "Day 1: Foundations"
-              href: day1.qmd
-            - text: "Day 2: S-T Fusion"
-              href: day2.qmd
-            - text: "Day 3: VAST"
-              href: day3.qmd
-            - text: "Day 4: sdmTMB"
-              href: day4.qmd
-            - text: "Day 5: tinyVAST"
-              href: day5.qmd
+        - text: "Weekly Outlook"
+          href: schedule.qmd
+        - text: "Day 1: Foundations"
+          href: day1.qmd
+        - text: "Day 2: Spatiotemporal modelling"
+          href: day2.qmd
+        - text: "Day 3: VAST - complete hands on"
+          href: day3.qmd
+        - text: "Day 4: sdmTMB - complete hands on"
+          href: day4.qmd
+        - text: "Day 5: tinyVAST - complete hands on"
+          href: day5.qmd
 
 format:
   html:

@@ -1,0 +1,89 @@
+---
+title: "Course Materials"
+subtitle: "Interactive Slides & Hands-on Labs"
+listing:
+  - id: day1
+    contents: ["modules/day1/*.qmd", "modules/generics/*.qmd"]
+    type: table
+    sort: "subtitle"
+    sort-ui: false
+    filter-ui: false
+    categories: false
+    fields: [image, subtitle, title]
+    field-display-names:
+      image: ""
+      subtitle: "Time"
+      title: "Session & Materials"
+  - id: day2
+    contents: ["modules/day2/*.qmd", "modules/generics/*.qmd"]
+    type: table
+    sort: "subtitle"
+    sort-ui: false
+    filter-ui: false
+    categories: false
+    fields: [image, subtitle, title]
+    field-display-names:
+      image: ""
+      subtitle: "Time"
+      title: "Session & Materials"
+  - id: day3
+    contents: ["modules/day3/*.qmd", "modules/generics/*.qmd"]
+    type: table
+    sort: "subtitle"
+    sort-ui: false
+    filter-ui: false
+    categories: false
+    fields: [image, subtitle, title]
+    field-display-names:
+      image: ""
+      subtitle: "Time"
+      title: "Session & Materials"
+  - id: day4
+    contents: ["modules/day4/*.qmd", "modules/generics/*.qmd"]
+    type: table
+    sort: "subtitle"
+    sort-ui: false
+    filter-ui: false
+    categories: false
+    fields: [image, subtitle, title]
+    field-display-names:
+      image: ""
+      subtitle: "Time"
+      title: "Session & Materials"
+  - id: day5
+    contents: ["modules/day5/*.qmd", "modules/generics/*.qmd"]
+    type: table
+    sort: "subtitle"
+    sort-ui: false
+    filter-ui: false
+    categories: false
+    fields: [image, subtitle, title]
+    field-display-names:
+      image: ""
+      subtitle: "Time"
+      title: "Session & Materials"
+---
+
+# 📚 Learning Resources
+
+Explore the modules below to access presentation slides and hands-on R exercises.
+
+## Monday: Standardization Fundamentals & Spatial Foundations
+::: {#day1}
+:::
+
+## Tuesday: Spatio-Temporal Fusion & Dynamics
+::: {#day2}
+:::
+
+## Wednesday: The VAST Framework Deep Dive
+::: {#day3}
+:::
+
+## Thursday: Advanced sdmTMB & Diagnostics
+::: {#day4}
+:::
+
+## Friday: Model Reconciliation & Applied Case Studies
+::: {#day5}
+:::
