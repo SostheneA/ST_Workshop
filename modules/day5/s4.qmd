@@ -1,5 +1,5 @@
 ---
-title: "tinyVAST <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
+title: "Workshop Wrap-up <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
 subtitle: "15:00 - 16:00"
 image: "/images/tinyvast.png"
 ---

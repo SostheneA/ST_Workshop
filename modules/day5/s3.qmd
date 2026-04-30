@@ -1,5 +1,5 @@
 ---
-title: "tinyVAST <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
+title: "BYOP – Bring Your Own Data & Coaching <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
 subtitle: "13:15 - 16:00"
 image: "/images/tinyvast.png"
 ---

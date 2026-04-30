@@ -100,5 +100,4 @@ If you encounter errors during the installation of `VAST` or `TMB`:
 2. Ensure no other R sessions are running.
 3. If a prompt asks *"Do you want to install from sources?"*, type **Yes**.
 
-For urgent support, contact **Sosthene AKIA** via email.
-```
+For urgent support, contact **Sosthene AKIA** via email: **sosthene.akia@dfo-mpo.gc.ca**

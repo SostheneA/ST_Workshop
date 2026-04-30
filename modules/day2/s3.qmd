@@ -1,5 +1,5 @@
 ---
-title: "Spatiotemporal modelling <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
+title: "Advanced Spatial and spatio-temporal Structures <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
 subtitle: "13:15 - 14:45"
 image: "/images/tinyvast.png"
 ---

@@ -1,5 +1,5 @@
 ---
-title: "The sdmTMB Framework <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
+title: "Hands-on Lab 8 – Model Comparison <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
 subtitle: "15:00 - 16:00"
 image: "/images/tinyvast.png"
 ---

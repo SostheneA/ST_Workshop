@@ -1,5 +1,5 @@
 ---
-title: "The VAST Framework <br> [📽️ Slides]() | [💻 Lab](lab9.html)"
+title: "Catchability & density Covariates and more   <br> [📽️ Slides]() | [💻 Lab](lab9.html)"
 subtitle: "13:15 - 14:45"
 image: "/images/tinyvast.png"
 ---

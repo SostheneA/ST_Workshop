@@ -1,5 +1,5 @@
 ---
-title: "tinyVAST <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
+title: "Hands-on Lab 9 – Speak ST model in TinyVAST <br> [📽️ Slides]() | [💻 Lab 14](lab14.html)"
 subtitle: "10:15 - 12:00"
 image: "/images/tinyvast.png"
 ---

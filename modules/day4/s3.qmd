@@ -1,5 +1,5 @@
 ---
-title: "The sdmTMB Framework <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
+title: "Validation, Uncertainty and Diagnostics <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
 subtitle: "13:15 - 14:45"
 image: "/images/tinyvast.png"
 ---

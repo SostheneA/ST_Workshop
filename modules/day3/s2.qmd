@@ -1,5 +1,5 @@
 ---
-title: "The VAST Framework <br> [📽️ Slides]() | [💻 Lab](lab9.html)"
+title: "Hands-on Lab 5 – Navigating VAST <br> [📽️ Slides]() | [💻 Lab](lab9.html)"
 subtitle: "10:15 - 13:00"
 image: "/images/vast.png"
 ---

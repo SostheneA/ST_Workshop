@@ -14,17 +14,17 @@ sidebar: schedule-sidebar
     * **Random Walks:** Handling non-stationary trends in time.
     * **Spatio-temporal correlations:** How space and time interact.
 
-### 10:15 - 12:00 | Session 6: Hands-on Lab 3 – Your First S-T Model
+### 10:15 - 12:00 | Session 6: Hands-on Lab 3 – Conceptualising our first S-T Model
 * **Fitting spatio-temporal GLMMs** using `sdmTMB`.
 * **Visualizing "The Movie":** Generating and comparing annual abundance surfaces to see shifts in distribution.
 
 ---
 
-### 13:15 - 14:45 | Session 7: Advanced Spatial Structures
+### 13:15 - 14:45 | Session 7: Advanced Spatial and spatio-temporal Structures
 * **Anisotropy:** Modelling scenarios where correlation varies by direction (e.g., along currents or bathymetric lines).
 * **Barriers:** Handling landmasses, islands, and non-navigable areas using barrier meshes.
 
 
-### 15:00 - 16:00 | Session 8: Hands-on Lab 4 – Refining the Scaffolding
+### 15:00 - 16:00 | Session 8: Hands-on Lab 4 – running basic ST in VAST
 * **Technical Implementation:** Building barrier meshes and configuring anisotropy parameters in `sdmTMB`.
 * *Exercise:* Comparing a standard mesh vs. a barrier mesh for a coastal dataset.

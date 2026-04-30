@@ -1,5 +1,5 @@
 ---
-title: "Classic Frameworks (GLM/GAM) <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
+title: "Hands-on Lab 1 – Classic Frameworks <br> [💻 Lab](lab2.html)"
 subtitle: "10:15 - 12:00"
 image: "/images/tinyvast.png"
 ---

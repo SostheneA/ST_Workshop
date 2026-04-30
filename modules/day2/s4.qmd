@@ -1,5 +1,5 @@
 ---
-title: "Spatiotemporal modelling <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
+title: "Hands-on Lab 4 – running basic ST in VAST <br> [📽️ Slides](slide2.html) | [💻 Lab](lab2.html)"
 subtitle: "15:00 - 16:00"
 image: "/images/tinyvast.png"
 ---

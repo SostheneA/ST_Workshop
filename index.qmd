@@ -11,7 +11,7 @@ author: "Dr. Sosthene AKIA"
 
 ------------------------------------------------------------------------
 
-[📆  May 4-8, 2026]{.code}6\
+[📆  May 4-8, 2026]{.code}\
 [⏰  08:30--16:00 CDT]{.code}\
 [🏨  ]{.code}Harry Hachey Conference Center, SABS \
 

@@ -1,5 +1,5 @@
 ---
-title: "The VAST Framework <br> [📽️ Slides]() | [💻 Lab](lab9.html)"
+title: "Hands-on Lab 6 – Adding Complexity and diagnostics <br> [📽️ Slides]() | [💻 Lab](lab9.html)"
 subtitle: "15:00 - 16:00"
 image: "/images/tinyvast.png"
 ---
