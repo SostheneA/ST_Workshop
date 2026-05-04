@@ -1,0 +1,374 @@
+---
+title: "The Magic Map"
+subtitle: "From Lat/Lon Points to Continuous Abundance Surfaces"
+author: "Module 4 · Spatial Statistics"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    chalkboard: true
+    progress: true
+    history: true
+    transition: fade
+    background-transition: fade
+    incremental: false
+    code-line-numbers: false
+    highlight-style: github
+    code-overflow: wrap
+    footer: "Module 4 · Spatial Statistics — stat4research.com"
+    width: 1280
+    height: 720
+    margin: 0.08
+    fig-cap-location: bottom
+    html-math-method: mathjax
+knitr:
+  opts_chunk:
+    echo: true
+    eval: false
+    message: false
+    warning: false
+---
+
+## Outline {.smaller}
+
+1.  The challenge — discrete dots in a fluid ocean
+2.  Foundational principle — Tobler's First Law
+3.  The Gaussian Random Field (GRF)
+4.  The Matérn covariance function
+5.  The "Big N" problem
+6.  The SPDE approach — meshes & sparsity
+7.  Integrating the field into the model
+8.  The resulting *Magic Map*
+
+::: aside
+Pre-requisite: Module 3 — *Generalized Linear Models for ecological count data*.
+:::
+
+# The Challenge {background-color="#0B1929"}
+
+## Discrete dots in a fluid ocean
+
+::: columns
+::: {.column width="48%"}
+### The input
+
+Data at discrete sampling locations:
+
+$$
+s_i = (\text{Longitude}, \text{Latitude})_i
+$$
+
+Each tow, station, or transect is **one point** in space.
+:::
+
+::: {.column width="48%"}
+### The illusion
+
+Standard regression treats each $s_i$ as **independent** — as if every point were surrounded by a vacuum.
+:::
+:::
+
+::: {.callout-note title="Biological truth"}
+Fish populations form a **continuum**. A 500 kg catch at point $A$ implies similar density 500 m away. Independence is a modelling fiction we must repair.
+:::
+
+## Tobler's First Law {.smaller}
+
+> "Everything is related to everything else, but **near things are more related than distant things.**"
+>
+> — Waldo Tobler, 1970
+
+. . .
+
+Like weather: if it rains at your house, it is probably raining at your neighbour's. Fish density behaves the same way.
+
+. . .
+
+::: {.callout-warning title="Why we cannot ignore it"}
+Spatial autocorrelation **clumps** the error term $\varepsilon$. The consequences:
+
+-   biased fixed-effect estimates (covariates absorb spatial structure they did not cause)
+-   **overconfident** standard errors → too-narrow confidence intervals
+-   inflated Type-I error in hypothesis tests
+:::
+
+# The Gaussian Random Field {background-color="#0B1929"}
+
+## The invisible sheet
+
+A **Gaussian Random Field (GRF)** is a stochastic process where any finite collection of points follows a *multivariate normal distribution*:
+
+$$
+\boldsymbol{\omega} = \big(\omega(s_1), \ldots, \omega(s_n)\big) \sim \mathcal{N}_n(\mathbf{0}, \boldsymbol{\Sigma})
+$$
+
+. . .
+
+Imagine an **elastic sheet** draped over the study area:
+
+::: columns
+::: {.column width="33%"}
+### Peaks
+High density pushes the sheet *upward*.
+:::
+
+::: {.column width="33%"}
+### Valleys
+Low density lets it *sink*.
+:::
+
+::: {.column width="33%"}
+### Smooth slopes
+Stretchiness ensures **continuity** between neighbours.
+:::
+:::
+
+## The Matérn covariance — *rules of the sheet*
+
+The **texture and stiffness** of the GRF. For two points at distance $d_{ij} = \lVert s_i - s_j \rVert$:
+
+$$
+\operatorname{Cov}\!\big(s_i, s_j\big) \;=\; \sigma^{2}\,\frac{1}{2^{\nu-1}\Gamma(\nu)}\,(\kappa\, d_{ij})^{\nu}\,K_{\nu}(\kappa\, d_{ij})
+$$
+
+::: columns
+::: {.column width="50%"}
+### Range — $r$
+
+Distance beyond which spatial correlation effectively vanishes.
+
+$$r = \sqrt{8\nu}\,/\,\kappa$$
+:::
+
+::: {.column width="50%"}
+### Marginal SD — $\sigma$
+
+Magnitude of spatial variability — the *wave height* of the sheet.
+:::
+:::
+
+::: aside
+$K_\nu(\cdot)$ is the modified Bessel function of the second kind; $\nu$ controls smoothness (commonly fixed at $\nu = 1$ in 2-D SPDE work).
+:::
+
+# The Computational Trick {background-color="#0B1929"}
+
+## The "Big N" problem
+
+A continuous GRF requires inverting a dense $n \times n$ covariance matrix.
+
+| **Step** | **Cost** |
+|----|----|
+| Build $\boldsymbol{\Sigma}$ | $\mathcal{O}(n^{2})$ memory |
+| Invert / Cholesky $\boldsymbol{\Sigma}$ | $\mathcal{O}(n^{3})$ time |
+| Likelihood evaluation per iteration | $\mathcal{O}(n^{3})$ |
+
+. . .
+
+With $n \approx 5{,}000$ tows, this **breaks** any laptop — and surveys routinely hit $10{,}000$+ records.
+
+. . .
+
+> We need a representation of the GRF that is **continuous in space** but **sparse in computation**.
+
+## The SPDE approach — the spider web
+
+Lindgren, Rue & Lindström (2011) showed that a Matérn GRF is the stationary solution of a **stochastic partial differential equation**:
+
+$$
+(\kappa^{2} - \Delta)^{\alpha/2}\,\big(\tau\,\omega(s)\big) = \mathcal{W}(s)
+$$
+
+. . .
+
+Solve it on a **triangulated mesh** — a finite set of *knots*:
+
+::: columns
+::: {.column width="33%"}
+### Knots
+Field values are computed only at triangle vertices.
+:::
+
+::: {.column width="33%"}
+### Barycentric interpolation
+Within each triangle, values are linearly blended.
+:::
+
+::: {.column width="33%"}
+### Result
+**Sparse precision matrices** replace dense covariance — fast and scalable.
+:::
+:::
+
+## Designing the mesh — precision vs. performance
+
+::: columns
+::: {.column width="50%"}
+### Inner zone
+
+-   high triangle density
+-   in the data-rich region
+-   high precision, slower
+
+### Outer buffer zone
+
+-   larger triangles
+-   prevents *edge leakage* and numerical instability
+-   cheap to compute
+:::
+
+::: {.column width="50%"}
+### R Lab — build your mesh
+
+```r
+library(sdmTMB)
+
+mesh <- make_mesh(
+  data    = catch_df,
+  xy_cols = c("X", "Y"),
+  cutoff  = 15            # km between knots
+)
+
+plot(mesh)
+```
+
+The `cutoff` argument controls knot spacing — **smaller values yield finer meshes**.
+:::
+:::
+
+. . .
+
+::: {.callout-tip}
+Rule of thumb: target the `cutoff` at roughly **1/5 of your expected spatial range** $r$.
+:::
+
+# Putting It Together {background-color="#0B1929"}
+
+## Integrating the field into the model
+
+The spatially explicit linear predictor adds the GRF term $\omega(s_i)$ to the fixed effects:
+
+$$
+\log(\mu_i) \;=\; \underbrace{\beta_0 + \beta_1\,\text{Depth}_i + \beta_2\,\text{Temp}_i}_{\text{fixed effects}} \;+\; \underbrace{\omega(s_i)}_{\text{latent spatial field}}
+$$
+
+. . .
+
+::: columns
+::: {.column width="33%"}
+### Fixed effects
+Measured covariates — depth, temperature, sediment.
+:::
+
+::: {.column width="33%"}
+### $\omega(s_i)$
+Absorbs **unmeasured** drivers: hidden currents, habitat structure, social behaviour.
+:::
+
+::: {.column width="33%"}
+### INLA / sdmTMB
+Fast (approximate) Bayesian inference in R — no MCMC required.
+:::
+:::
+
+## A reproducible fit in `sdmTMB`
+
+```r
+library(sdmTMB)
+
+fit <- sdmTMB(
+  formula = catch_kg ~ depth_s + temp_s,
+  data    = catch_df,
+  mesh    = mesh,
+  family  = tweedie(link = "log"),
+  spatial = "on"
+)
+
+tidy(fit, effects = "ran_pars", conf.int = TRUE)
+#> term        estimate  conf.low  conf.high
+#> range       42.6      31.2      58.1
+#> phi          1.18      1.05      1.32
+#> sigma_O      0.91      0.74      1.12
+```
+
+::: aside
+Equivalent INLA workflow: `inla.spde2.pcmatern()` → `inla.stack()` → `inla()`.
+:::
+
+## The resulting *Magic Map* {.smaller}
+
+::: columns
+::: {.column width="55%"}
+### What you gain
+
+-   **Corrected uncertainty** — confidence intervals reflect true spatial patchiness; no more overconfident predictions.
+-   **Prediction anywhere** — estimate density at any $(\text{Lon}, \text{Lat})$, including unsampled locations.
+-   **Honest covariate effects** — fixed effects are no longer contaminated by spatial structure.
+-   **Diagnostic value** — the shape of $\hat{\omega}(s)$ reveals the *missing covariate* you have not yet measured.
+:::
+
+::: {.column width="45%"}
+### Predict on a new grid
+
+```r
+grid <- expand.grid(
+  X = seq(xmin, xmax, by = 2),
+  Y = seq(ymin, ymax, by = 2)
+)
+
+preds <- predict(
+  fit,
+  newdata     = grid,
+  return_tmb_object = TRUE
+)
+
+# Posterior mean + SE per cell
+head(preds$data[, c("est", "est_se")])
+```
+:::
+:::
+
+# What's Next? {background-color="#0B1929"}
+
+## Make the map *dynamic*
+
+The field $\omega(s)$ we just fit is **frozen in time**.
+
+But fish move. Habitats shift. Climate drifts.
+
+. . .
+
+How does the spatial field **evolve across years**?
+
+. . .
+
+➡️  **Module 5 — Spatio-Temporal Models**: $\omega(s, t)$, AR(1) fields, persistent vs. ephemeral hotspots.
+
+## References {.smaller}
+
+-   Lindgren, F., Rue, H., & Lindström, J. (2011). An explicit link between Gaussian fields and Gaussian Markov random fields: the SPDE approach. *JRSS-B*, 73(4), 423–498.
+-   Rue, H., Martino, S., & Chopin, N. (2009). Approximate Bayesian inference for latent Gaussian models by using INLA. *JRSS-B*, 71(2), 319–392.
+-   Anderson, S. C., Ward, E. J., English, P. A., & Barnett, L. A. K. (2022). **sdmTMB**: An R package for fast, flexible, and user-friendly generalized linear mixed effects models with spatial and spatiotemporal random fields. *bioRxiv*.
+-   Tobler, W. R. (1970). A computer movie simulating urban growth in the Detroit region. *Economic Geography*, 46, 234–240.
+
+# Thank you {background-color="#0B1929"}
+
+## Questions?
+
+::: columns
+::: {.column width="60%"}
+**Sosthène** · stat4research.com
+
+Statistical training & R consulting for researchers and doctoral students.
+
+Moncton, NB · Canada
+:::
+
+::: {.column width="40%"}
+### Up next
+Module 5 — Spatio-Temporal Models
+
+Module 6 — Joint species distributions
+:::
+:::

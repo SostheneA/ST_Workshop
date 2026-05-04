@@ -1,0 +1,248 @@
+/*-- scss:defaults --*/
+
+// ──────────────────────────────────────────────────────────────────────
+//  The Magic Map — custom theme
+//  Palette inspired by the original PDF: deep navy, warm sand, soft gold
+// ──────────────────────────────────────────────────────────────────────
+
+// Fonts — pulled from Google Fonts in the document head
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// Colour palette
+$navy:       #0B1929;
+$navy-soft:  #1A2B3C;
+$sand:       #F5EFE0;
+$sand-warm:  #E8DCC0;
+$gold:       #E8C547;
+$gold-soft:  #F5DC6F;
+$olive:      #7A8051;
+$ink:        #1A1A1A;
+$muted:      #5A6470;
+$rule:       #D8D2C2;
+
+// Reveal variables
+$body-bg:                $sand !default;
+$body-color:             $ink !default;
+$presentation-heading-color:    $navy !default;
+$presentation-heading-font:     "Inter", system-ui, sans-serif !default;
+$presentation-font-size-root:   34px !default;
+$font-family-sans-serif:        "Inter", system-ui, sans-serif !default;
+$font-family-monospace:         "JetBrains Mono", "Fira Code", monospace !default;
+
+$link-color:             #2C5F8D !default;
+$selection-bg:           $gold-soft !default;
+$selection-color:        $navy !default;
+
+$code-block-bg:          #F0EAD8 !default;
+$code-color:             #B5651D !default;
+
+/*-- scss:rules --*/
+
+// ──────────────────────────────────────────────────────────────────────
+//  Global
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal {
+  font-family: "Inter", system-ui, sans-serif;
+  letter-spacing: -0.005em;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: $navy;
+}
+
+.reveal h1 { font-size: 2.4em; line-height: 1.15; }
+.reveal h2 { font-size: 1.55em; line-height: 1.2; margin-bottom: 0.5em; }
+.reveal h3 {
+  font-size: 1.05em;
+  font-weight: 600;
+  color: $navy-soft;
+  margin-top: 0.2em;
+  margin-bottom: 0.4em;
+}
+
+.reveal blockquote {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  font-size: 1.05em;
+  color: $navy-soft;
+  border-left: 4px solid $gold;
+  padding: 0.4em 0 0.4em 1em;
+  margin: 0.6em 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.reveal a { color: $link-color; text-decoration: none; border-bottom: 1px dotted $link-color; }
+.reveal a:hover { color: $navy; border-bottom-style: solid; }
+
+// ──────────────────────────────────────────────────────────────────────
+//  Section divider slides ( # Heading {background-color="#0B1929"} )
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal .slide-background[data-background-color="#0B1929"] + .slide,
+section[data-background-color="#0B1929"] {
+  h1, h2, h3 { color: $sand !important; }
+  color: $sand-warm;
+}
+
+section[data-background-color="#0B1929"] h1 {
+  font-size: 2.8em;
+  border-bottom: 3px solid $gold;
+  padding-bottom: 0.2em;
+  display: inline-block;
+}
+
+// ──────────────────────────────────────────────────────────────────────
+//  Code blocks
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal pre {
+  box-shadow: none;
+  border: 1px solid $rule;
+  border-radius: 6px;
+  background: $code-block-bg;
+  font-size: 0.62em;
+  line-height: 1.45;
+}
+
+.reveal pre code {
+  font-family: "JetBrains Mono", monospace;
+  padding: 1em 1.1em;
+  max-height: none;
+}
+
+.reveal code {
+  font-family: "JetBrains Mono", monospace;
+  background: rgba(232, 197, 71, 0.18);
+  color: $navy;
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+
+// ──────────────────────────────────────────────────────────────────────
+//  Callouts
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal div.callout {
+  border-radius: 6px;
+  border-left-width: 5px;
+  font-size: 0.85em;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.reveal div.callout-note    { border-left-color: #2C5F8D; background: #E6EEF5; }
+.reveal div.callout-warning { border-left-color: #B5651D; background: #FBF1DC; }
+.reveal div.callout-tip     { border-left-color: $olive;  background: #EEF1E1; }
+
+.reveal div.callout-title { font-weight: 600; }
+
+// ──────────────────────────────────────────────────────────────────────
+//  Tables
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal table {
+  font-size: 0.8em;
+  border-collapse: collapse;
+  margin: 0.6em auto;
+}
+
+.reveal table th {
+  background: $navy;
+  color: $sand;
+  font-weight: 600;
+  padding: 0.4em 0.8em;
+  border: none;
+}
+
+.reveal table td {
+  padding: 0.35em 0.8em;
+  border-top: 1px solid $rule;
+}
+
+.reveal table tr:nth-child(even) { background: rgba(232, 220, 192, 0.4); }
+
+// ──────────────────────────────────────────────────────────────────────
+//  Lists
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal ul, .reveal ol { margin-left: 1.2em; }
+.reveal li { margin: 0.25em 0; }
+.reveal ul li::marker { color: $gold; }
+
+// ──────────────────────────────────────────────────────────────────────
+//  Math
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal .math.display { font-size: 1.05em; margin: 0.4em 0; }
+
+// ──────────────────────────────────────────────────────────────────────
+//  Footer & slide numbers
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal .footer {
+  color: $muted;
+  font-size: 0.55em;
+  letter-spacing: 0.04em;
+}
+
+.reveal .slide-number {
+  background: transparent;
+  color: $muted;
+  font-size: 0.7em;
+  font-family: "JetBrains Mono", monospace;
+}
+
+// ──────────────────────────────────────────────────────────────────────
+//  Title slide
+// ──────────────────────────────────────────────────────────────────────
+
+#title-slide {
+  text-align: left;
+
+  .title {
+    font-size: 3em;
+    font-weight: 700;
+    color: $navy;
+    margin-bottom: 0.1em;
+  }
+  .subtitle {
+    font-size: 1.3em;
+    color: $navy-soft;
+    font-weight: 500;
+    margin-bottom: 1.2em;
+  }
+  .author, .quarto-title-author-name {
+    font-size: 0.9em;
+    color: $olive;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────
+//  Aside / footnote
+// ──────────────────────────────────────────────────────────────────────
+
+.reveal .aside, .reveal aside {
+  font-size: 0.7em;
+  color: $muted;
+  font-style: italic;
+  margin-top: 0.6em;
+  border-top: 1px dotted $rule;
+  padding-top: 0.4em;
+}
+
+// Smaller class for dense slides
+.reveal .smaller h2 { font-size: 1.35em; }
+.reveal .smaller    { font-size: 0.85em; }

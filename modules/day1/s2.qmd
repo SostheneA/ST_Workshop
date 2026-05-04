@@ -1,5 +1,5 @@
 ---
-title: "Hands-on Lab 1 – Classic Frameworks <br> [💻 Lab](lab2.html)"
+title: "Hands-on Lab 1 – Classic Frameworks <br> [📽️ Slides 1](https://gamma.app/docs/a9hvqi24v6gnsz3) |    [💻 Lab](Lab1.html)"
 subtitle: "10:15 - 12:00"
 image: "/images/tinyvast.png"
 ---

@@ -1,0 +1,1030 @@
+---
+title: "Comprehensive Abundance Index Standardization Workflow with standard methods"
+subtitle: "From Data Collection to Model Validation"
+author: "Sosthene AKIA"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    code-fold: show
+    code-tools: true
+    theme: cosmo
+    embed-resources: true
+    number-sections: true
+execute:
+  warning: false
+  message: false
+---
+
+# Introduction
+
+## Overview
+
+This document presents a **complete, production-ready workflow** for **abundance index standardization** following international best practices (Maunder & Punt 2004; ICES WGMG 2021).
+
+We demonstrate the full process using **Pacific Cod** (*Gadus macrocephalus*) survey data from Queen Charlotte Sound, British Columbia (2003-2017).
+
+## The 7-Step Standardization Framework
+
+```{r framework_table, echo=FALSE}
+library(knitr)
+
+framework <- data.frame(
+  Step = 1:7,
+  Phase = c(
+    "Data Collection & Cleaning",
+    "Theoretical Model Design",
+    "Model Implementation",
+    "Model Selection & Validation",
+    "Prediction Grid Construction",
+    "Index Calculation",
+    "Final Diagnostics & Reporting"
+  ),
+  Key_Activities = c(
+    "Data import, QC, variable engineering, EDA",
+    "Literature review, fishery knowledge, covariate selection",
+    "Fit 12 candidate models (4 GLM, 4 GAM, 4 GLMM)",
+    "AIC comparison, residual diagnostics, link function validation",
+    "Define standardization strategy, build pred_data",
+    "Predict with best models, calculate abundance index",
+    "Spatial autocorrelation tests, compare models, finalize output"
+  ),
+  Tools = c(
+    "tidyverse, ggplot2, summary tables",
+    "Exploratory plots, correlation matrices, domain expertise",
+    "glmmTMB, mgcv::gam, broom",
+    "DHARMa, AIC, residual plots, gam.check()",
+    "expand.grid(), reference values",
+    "predict(), confidence intervals",
+    "spdep::moran.test, sdmTMB, comparative plots"
+  )
+)
+
+kable(framework, caption = "The 7-Step Framework for Index Standardization")
+```
+
+---
+
+# STEP 1: Data Collection & Cleaning
+
+## 1.1 Load Required Packages
+
+```{r setup}
+# Core packages
+library(tidyverse)     # Data manipulation & visualization
+library(sdmTMB)        # Pacific cod data + spatial models
+library(mgcv)          # GAM models
+library(glmmTMB)       # GLMM with Tweedie
+library(DHARMa)        # Residual diagnostics
+library(broom)         # Tidy model outputs
+library(broom.mixed)   # Tidy mixed models
+library(performance)   # Model comparison
+library(patchwork)     # Combine plots
+library(knitr)         # Tables
+
+# Spatial diagnostics
+library(spdep)         # Moran\'s I test
+library(gstat)         # Variograms
+library(sp)            # Spatial objects
+
+# Set theme
+theme_set(theme_minimal(base_size = 11))
+```
+
+## 1.2 Load Pacific Cod Data
+
+```{r load_data}
+# Load dataset
+data("pcod", package = "sdmTMB")
+
+# Initial inspection
+cat("Dataset dimensions:", nrow(pcod), "rows ×", ncol(pcod), "columns\n\n")
+glimpse(pcod)
+```
+
+**Dataset Description**:
+
+- **Source**: Trawl survey in Queen Charlotte Sound, BC
+- **Period**: 2003-2017 (15 years)
+- **Sample size**: 2,143 trawl sets
+- **Response**: `density` (kg/km²)
+- **Covariates**: `year`, `depth`, `X`, `Y` (UTM coordinates)
+
+## 1.3 Data Cleaning & Variable Engineering
+
+```{r clean_data}
+# Create analysis-ready dataset
+dat_raw <- pcod |>
+  select(year, X, Y, depth, density, present) |>
+  filter(!is.na(density))
+
+# Engineer variables
+dat <- dat_raw |>
+  mutate(
+    # Response transformations
+    log_density = log(density + 0.01),
+
+    # Temporal variables
+    fyear = as.factor(year),
+    year_scaled = scale(year)[,1],
+
+    # Depth variables (multiple transformations for model flexibility)
+    depth_c = scale(depth)[,1],          # Centered & scaled
+    depth_c2 = depth_c^2,                # Quadratic
+    log_depth = log(depth + 1),          # Log-transformed
+    sqrt_depth = sqrt(depth),            # Square root
+
+    # Spatial variables
+    X_c = scale(X)[,1],
+    Y_c = scale(Y)[,1],
+
+    # Regional indicator (North/South split)
+    region = factor(ifelse(Y > median(Y), "North", "South")),
+
+    # Interaction term
+    region_year = interaction(region, fyear)
+  )
+
+# Summary statistics
+cat("\n=== Data Summary ===\n")
+cat("Total observations:", nrow(dat), "\n")
+cat("Years:", min(dat$year), "-", max(dat$year), "\n")
+cat("Depth range:", round(min(dat$depth)), "-", round(max(dat$depth)), "m\n")
+cat("Zero catches:", sum(dat$density == 0), 
+    "(", round(100*mean(dat$density == 0), 1), "%)\n")
+cat("Median density:", round(median(dat$density[dat$density > 0]), 2), "kg/km²\n")
+```
+
+## 1.4 Data Quality Checks
+
+```{r quality_checks, fig.height=8}
+# 1. Check for outliers
+p1 <- ggplot(dat, aes(x = density)) +
+  geom_histogram(bins = 50, fill = "steelblue", alpha = 0.7) +
+  labs(title = "A) Density Distribution", x = "Density (kg/km²)", y = "Count")
+
+p2 <- ggplot(dat, aes(y = depth)) +
+  geom_boxplot(fill = "coral", alpha = 0.7) +
+  labs(title = "B) Depth Range", y = "Depth (m)")
+
+# 2. Check temporal coverage
+p3 <- ggplot(dat, aes(x = year)) +
+  geom_bar(fill = "darkgreen", alpha = 0.7) +
+  labs(title = "C) Sampling Effort by Year", x = "Year", y = "Number of Tows")
+
+# 3. Check spatial coverage
+p4 <- ggplot(dat, aes(x = X, y = Y)) +
+  geom_point(alpha = 0.3, size = 0.5) +
+  coord_equal() +
+  labs(title = "D) Spatial Coverage", x = "X (km)", y = "Y (km)")
+
+(p1 + p2) / (p3 + p4)
+```
+
+**Quality Assessment**:
+- ✅ No extreme outliers detected
+- ✅ Consistent sampling effort across years
+- ✅ Good spatial coverage across survey area
+- ⚠️ High proportion of zeros (Tweedie family appropriate)
+
+---
+
+# STEP 2: Theoretical Model Design
+
+## 2.1 Exploratory Data Analysis (EDA)
+
+### 2.1.1 Nominal Abundance Trend
+
+```{r nominal_trend, fig.height=5}
+# Calculate nominal index
+nominal_index <- dat |>
+  group_by(year) |>
+  summarise(
+    n = n(),
+    mean_density = mean(density),
+    se = sd(density) / sqrt(n()),
+    median_density = median(density),
+    .groups = "drop"
+  )
+
+ggplot(nominal_index, aes(x = year, y = mean_density)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3) +
+  geom_ribbon(aes(ymin = mean_density - 1.96*se,
+                  ymax = mean_density + 1.96*se),
+              alpha = 0.2, fill = "blue") +
+  labs(title = "Nominal Abundance Index (Unstandardized)",
+       subtitle = "Simple mean density per year",
+       x = "Year", y = "Mean Density (kg/km²)") +
+  scale_x_continuous(breaks = seq(2003, 2017, 2))
+```
+
+### 2.1.2 Covariate Relationships
+
+```{r eda_covariates, fig.height=10}
+# Density vs Depth (non-linear relationship expected)
+p1 <- dat |>
+  filter(density > 0) |>
+  sample_n(min(1000, n())) |>
+  ggplot(aes(x = depth, y = density)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", formula = y ~ s(x, k = 6), color = "red") +
+  scale_y_log10() +
+  labs(title = "A) Density vs Depth", x = "Depth (m)", y = "Density (log10)")
+
+# Density by Region
+p2 <- ggplot(dat, aes(x = region, y = log_density)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7) +
+  labs(title = "B) Density by Region", x = "Region", y = "Log Density")
+
+# Temporal trend by Region
+p3 <- dat |>
+  group_by(year, region) |>
+  summarise(mean_dens = mean(density), .groups = "drop") |>
+  ggplot(aes(x = year, y = mean_dens, color = region)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  labs(title = "C) Temporal Trends by Region", 
+       x = "Year", y = "Mean Density (kg/km²)")
+
+# Spatial distribution
+p4 <- dat |>
+  filter(year %in% c(2005, 2010, 2015)) |>
+  ggplot(aes(x = X, y = Y, color = log(density + 0.1))) +
+  geom_point(size = 1.5, alpha = 0.6) +
+  facet_wrap(~year) +
+  scale_color_viridis_c(option = "plasma") +
+  coord_equal() +
+  labs(title = "D) Spatial Distribution (3 years)", 
+       x = "X (km)", y = "Y (km)", color = "log(density)")
+
+(p1 + p2) / (p3 + p4) +
+  plot_annotation(title = "Exploratory Data Analysis: Key Relationships")
+```
+
+**EDA Insights**:
+
+1. **Depth effect**: Clear non-linear relationship → GAM with `s(depth)` warranted
+2. **Regional differences**: North/South show different density levels → Include region
+3. **Temporal variation**: Declining trend from 2003-2017
+4. **Spatial structure**: Visible spatial clustering → Test spatial models
+
+## 2.2 Model Design Decisions
+
+Based on EDA and fishery knowledge:
+
+```{r model_design_table, echo=FALSE}
+design_decisions <- data.frame(
+  Component = c(
+    "Response distribution",
+    "Temporal effect",
+    "Depth effect",
+    "Regional effect",
+    "Spatial effect"
+  ),
+  Decision = c(
+    "Tweedie (handles zeros + continuous)",
+    "Year as factor (no trend assumption)",
+    "Linear + Quadratic OR Spline",
+    "Fixed effect OR Random effect",
+    "No spatial OR 2D smooth OR Random field"
+  ),
+  Reasoning = c(
+    "43% zeros, right-skewed positive values",
+    "Flexible, no parametric trend assumption",
+    "Test both parametric and non-parametric",
+    "Compare parsimony vs flexibility",
+    "Progressive complexity testing"
+  )
+)
+
+kable(design_decisions, 
+      caption = "Model Design Decisions Based on EDA & Domain Knowledge")
+```
+
+## 2.3 Candidate Model Set (12 Models)
+
+We will fit **12 models** in 3 families:
+
+### GLM Family (4 models)
+
+```{r glm_formulas, echo=FALSE}
+glm_models <- data.frame(
+  Model = paste0("GLM", 1:4),
+  Formula = c(
+    "density ~ fyear + depth_c",
+    "density ~ fyear + depth_c + depth_c2",
+    "density ~ fyear + depth_c + depth_c2 + region",
+    "density ~ fyear + depth_c + depth_c2 + region + year_scaled:region"
+  ),
+  Complexity = c("Minimal", "Baseline", "Regional", "Interaction")
+)
+kable(glm_models, caption = "GLM Model Set (glmmTMB, Tweedie)")
+```
+
+### GAM Family (4 models)
+
+```{r gam_formulas, echo=FALSE}
+gam_models <- data.frame(
+  Model = paste0("GAM", 1:4),
+  Formula = c(
+    "density ~ fyear + s(depth, k=6)",
+    "density ~ fyear + s(depth, k=6) + region",
+    "density ~ fyear + s(depth, k=6) + s(X, Y, k=20)",
+    "density ~ fyear + s(depth, k=6) + region + s(X, Y, k=20)"
+  ),
+  Complexity = c("Minimal", "Regional", "Spatial", "Full")
+)
+kable(gam_models, caption = "GAM Model Set (mgcv, Tweedie)")
+```
+
+### GLMM Family (4 models)
+
+```{r glmm_formulas, echo=FALSE}
+glmm_models <- data.frame(
+  Model = paste0("GLMM", 1:4),
+  Formula = c(
+    "density ~ fyear + depth_c + depth_c2 + (1|region)",
+    "density ~ fyear + depth_c + depth_c2 + (1|fyear:region)",
+    "density ~ fyear + depth_c + depth_c2 + (1|region) +region:fyear",
+    "density ~ fyear + depth_c + depth_c2 + (1|region) + (1|X:Y)"
+))
+kable(glmm_models, caption = "GLMM Model Set (glmmTMB, Tweedie)")
+```
+
+---
+
+# STEP 3: Model Implementation
+
+## 3.1 Fit GLM Models
+
+```{r fit_glm_models}
+cat("Fitting GLM models...\n")
+
+# GLM1: Minimal
+glm1 <- glmmTMB(
+  density ~ fyear + depth_c,
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+# GLM2: Baseline (quadratic depth)
+glm2 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2,
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+# GLM3: + Region
+glm3 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2 + region,
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+# GLM4: + Region interaction
+glm4 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2 + region + year_scaled:region,
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+cat("✓ GLM models fitted\n")
+```
+
+## 3.2 Fit GAM Models
+
+```{r fit_gam_models}
+cat("Fitting GAM models...\n")
+
+# GAM1: Minimal (spline depth)
+gam1 <- gam(
+  density ~ fyear + s(depth, k = 6),
+  data = dat,
+  family = tw(link = "log"),
+  method = "REML"
+)
+
+# GAM2: + Region
+gam2 <- gam(
+  density ~ fyear + s(depth, k = 6) + region,
+  data = dat,
+  family = tw(link = "log"),
+  method = "REML"
+)
+
+# GAM3: + Spatial smooth
+gam3 <- gam(
+  density ~ fyear + s(depth, k = 6) + s(X, Y, k = 20),
+  data = dat,
+  family = tw(link = "log"),
+  method = "REML"
+)
+
+# GAM4: Full (region + spatial)
+gam4 <- gam(
+  density ~ fyear + s(depth, k = 6) + region + s(X, Y, k = 20),
+  data = dat,
+  family = tw(link = "log"),
+  method = "REML"
+)
+
+cat("✓ GAM models fitted\n")
+```
+
+## 3.3 Fit GLMM Models
+
+```{r fit_glmm_models, message=FALSE}
+cat("Fitting GLMM models...\n")
+
+# GLMM1: Random intercept (region)
+glmm1 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2 + (1|region),
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+# GLMM2: Random slope (year|region)
+glmm2 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2 + (1|fyear:region),
+  data = dat,
+  family = tweedie(link = "log"),
+  control = glmmTMBControl(optimizer = nlminb)
+)
+
+# GLMM3: 
+glmm3 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2 + (1|region) +region:fyear,
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+# GLMM4: 
+glmm4 <- glmmTMB(
+  density ~ fyear + depth_c + depth_c2 + (1|region) + (1|X:Y),  # Station nested in region
+  data = dat,
+  family = tweedie(link = "log")
+)
+
+cat("✓ GLMM models fitted\n")
+```
+
+---
+
+# STEP 4: Model Selection & Validation
+
+## 4.1 AIC Comparison (All 12 Models)
+
+```{r aic_comparison}
+# Compile AIC table
+aic_results <- data.frame(
+  Model = c(paste0("GLM", 1:4), paste0("GAM", 1:4), paste0("GLMM", 1:4)),
+  Family = rep(c("GLM", "GAM", "GLMM"), each = 4),
+  AIC = c(
+    AIC(glm1), AIC(glm2), AIC(glm3), AIC(glm4),
+    AIC(gam1), AIC(gam2), AIC(gam3), AIC(gam4),
+    AIC(glmm1), AIC(glmm2), AIC(glmm3), AIC(glmm4)
+  )
+) |>
+  arrange(AIC) |>
+  mutate(
+    Delta_AIC = AIC - min(AIC),
+    AIC_Weight = exp(-0.5 * Delta_AIC) / sum(exp(-0.5 * Delta_AIC)),
+    Rank = row_number()
+  )
+
+kable(aic_results, digits = 2,
+      caption = "AIC Comparison: All 12 Candidate Models")
+```
+
+```{r plot_aic, fig.height=6}
+ggplot(aic_results, aes(x = reorder(Model, -AIC), y = AIC, fill = Family)) +
+  geom_col(alpha = 0.8) +
+  geom_hline(yintercept = min(aic_results$AIC) + 2, 
+             linetype = "dashed", color = "red") +
+  geom_hline(yintercept = min(aic_results$AIC) + 10,
+             linetype = "dashed", color = "orange") +
+  coord_flip() +
+  labs(title = "Model Comparison by AIC",
+       subtitle = "Red line = ΔAIC = 2, Orange = ΔAIC = 10",
+       x = "Model", y = "AIC") +
+  theme(legend.position = "top")
+```
+
+## 4.2 Select Best Models per Family
+
+```{r select_best_per_family}
+# Best GLM
+best_glm_name <- aic_results |> filter(Family == "GLM") |> slice_min(AIC, n = 1) |> pull(Model)
+best_glm <- get(tolower(best_glm_name))
+
+# Best GAM
+best_gam_name <- aic_results |> filter(Family == "GAM") |> slice_min(AIC, n = 1) |> pull(Model)
+best_gam <- get(tolower(best_gam_name))
+
+# Best GLMM
+best_glmm_name <- aic_results |> filter(Family == "GLMM") |> slice_min(AIC, n = 1) |> pull(Model)
+best_glmm <- get(tolower(best_glmm_name))
+
+cat("\n=== Best Models per Family ===\n")
+cat("Best GLM: ", best_glm_name, " (AIC =", round(AIC(best_glm), 2), ")\n")
+cat("Best GAM: ", best_gam_name, " (AIC =", round(AIC(best_gam), 2), ")\n")
+cat("Best GLMM:", best_glmm_name, "(AIC =", round(AIC(best_glmm), 2), ")\n")
+```
+
+## 4.3 Detailed Validation: Best GLMM
+
+### 4.3.1 DHARMa Diagnostics
+
+```{r dharma_glmm, fig.height=6}
+sim_glmm <- simulateResiduals(best_glmm, n = 1000)
+plot(sim_glmm, main = paste("DHARMa Diagnostics:", best_glmm_name))
+```
+
+### 4.3.2 Residuals by Covariates
+
+```{r residuals_glmm, fig.height=8}
+# Extract residuals
+dat$resid_glmm <- residuals(best_glmm, type = "pearson")
+
+p1 <- ggplot(dat, aes(x = fyear, y = resid_glmm)) +
+  geom_boxplot(fill = "lightblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "A) Residuals by Year", x = "Year", y = "Pearson Residuals") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p2 <- ggplot(dat, aes(x = depth, y = resid_glmm)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "loess", se = FALSE, color = "blue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "B) Residuals vs Depth", x = "Depth (m)", y = "Pearson Residuals")
+
+p3 <- ggplot(dat, aes(x = region, y = resid_glmm)) +
+  geom_boxplot(fill = "coral") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "C) Residuals by Region", x = "Region", y = "Pearson Residuals")
+
+p4 <- ggplot(dat, aes(sample = resid_glmm)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "D) Q-Q Plot", x = "Theoretical Quantiles", y = "Sample Quantiles")
+
+(p1 + p2) / (p3 + p4) +
+  plot_annotation(title = paste("Residual Diagnostics:", best_glmm_name))
+```
+
+## 4.4 Detailed Validation: Best GAM
+
+### 4.4.1 GAM Check
+
+```{r gam_check, fig.height=8}
+par(mfrow = c(2, 2))
+gam.check(best_gam)
+par(mfrow = c(1, 1))
+```
+
+### 4.4.2 Smooth Terms
+
+```{r plot_smooths, fig.height=8}
+par(mfrow = c(2, 2))
+plot(best_gam, pages = 1, scheme = 2, shade = TRUE)
+par(mfrow = c(1, 1))
+```
+
+### 4.4.3 Residuals
+
+```{r residuals_gam, fig.height=8}
+dat_gam <- best_gam$model
+dat_gam$resid_gam <- residuals(best_gam, type = "pearson")
+
+p1 <- ggplot(dat_gam, aes(x = fyear, y = resid_gam)) +
+  geom_boxplot(fill = "lightgreen") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "A) Residuals by Year", x = "Year", y = "Pearson Residuals") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p2 <- ggplot(dat_gam, aes(x = depth, y = resid_gam)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "loess", se = FALSE, color = "blue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "B) Residuals vs Depth", x = "Depth (m)", y = "Pearson Residuals")
+
+p3 <- ggplot(dat_gam, aes(x = X, y = Y, color = resid_gam)) +
+  geom_point(size = 1, alpha = 0.5) +
+  scale_color_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
+  coord_equal() +
+  labs(title = "C) Spatial Residuals", x = "X (km)", y = "Y (km)")
+
+p4 <- ggplot(dat_gam, aes(sample = resid_gam)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "D) Q-Q Plot")
+
+(p1 + p2) / (p3 + p4) +
+  plot_annotation(title = paste("Residual Diagnostics:", best_gam_name))
+```
+
+---
+
+# STEP 5: Prediction Grid Construction
+
+## 5.1 Standardization Strategy
+
+**Goal**: Create a prediction grid where covariates are held at **reference values** except year.
+
+**Reference values**:
+
+For **GLMM** (parametric depth):
+- Depth → mean depth (centered = 0)
+- Region → modal category
+
+For **GAM** (spatial smooth):
+- Depth → sequence covering range (for marginal effects)
+- X, Y → grid covering survey area (for spatial integration)
+
+## 5.2 Prediction Grid for GLMM
+
+```{r pred_grid_glmm}
+
+# Calculate reference values
+ref_depth <- mean(dat$depth)
+ref_depth_c <- (ref_depth - mean(dat$depth)) / sd(dat$depth)
+ref_depth_c2 <- ref_depth_c^2
+ref_region <- names(sort(table(dat$region), decreasing = TRUE))[1]
+
+# Build prediction grid WITH ALL VARIABLES USED IN MODEL
+pred_glmm <- expand.grid(
+  year = sort(unique(dat$year)),
+  depth_c = ref_depth_c,
+  depth_c2 = ref_depth_c2,
+  log_depth = log(ref_depth + 1), 
+  region = ref_region,
+  X = mean(dat$X),  
+  Y = mean(dat$Y)
+) |>
+  mutate(
+    fyear = factor(year, levels = levels(dat$fyear))
+  )
+
+# Now predict
+pred_link_glmm <- predict(best_glmm, newdata = pred_glmm,
+                          type = "link", se.fit = TRUE,re.form = NA)
+
+
+
+
+kable(head(pred_glmm, 5), digits = 3,
+      caption = "Prediction Grid for GLMM (First 5 rows)")
+```
+
+## 5.3 Prediction Grid for GAM (Spatial Integration)
+
+```{r pred_grid_gam}
+# Create spatial grid (50×50 resolution)
+grid_res <- 50
+X_seq <- seq(min(dat$X), max(dat$X), length.out = grid_res)
+Y_seq <- seq(min(dat$Y), max(dat$Y), length.out = grid_res)
+
+# Expand for all years
+pred_gam <- expand.grid(
+  X = X_seq,
+  Y = Y_seq,
+  depth = mean(dat$depth),  # Fix depth at mean
+  year = sort(unique(dat$year))
+) |>
+  mutate(
+    fyear = factor(year, levels = levels(dat$fyear)),
+    region = ref_region  # Fixed region
+  )
+
+cat("GAM prediction grid dimensions:", nrow(pred_gam), "rows\n")
+cat("Grid structure:", grid_res, "×", grid_res, "spatial points ×", 
+    length(unique(dat$year)), "years\n")
+
+kable(head(pred_gam, 5), digits = 2,
+      caption = "Prediction Grid for GAM (First 5 rows)")
+```
+
+---
+
+# STEP 6: Index Calculation
+
+## 6.1 Predict with Best GLMM
+
+```{r predict_glmm}
+
+# Transform to response scale
+pred_glmm <- pred_glmm |>
+  mutate(
+    fit_link = pred_link_glmm$fit,
+    se_link = pred_link_glmm$se.fit,
+    fit = exp(fit_link),
+    lwr = exp(fit_link - 1.96 * se_link),
+    upr = exp(fit_link + 1.96 * se_link)
+  )
+
+# Normalize to base year (2003)
+base_glmm <- pred_glmm$fit[pred_glmm$year == min(pred_glmm$year)]
+
+index_glmm <- pred_glmm |>
+  mutate(
+    index = fit / base_glmm,
+    index_lwr = lwr / base_glmm,
+    index_upr = upr / base_glmm,
+    cv = (upr - lwr) / (2 * 1.96 * fit),
+    model = best_glmm_name
+  ) |>
+  select(year, index, index_lwr, index_upr, cv, model)
+
+kable(index_glmm, digits = 4,
+      caption = paste("Standardized Index from", best_glmm_name))
+```
+
+## 6.2 Predict with Best GAM (Spatial Integration)
+
+```{r predict_gam}
+# Predict on link scale
+pred_link_gam <- predict(best_gam, newdata = pred_gam,
+                        type = "link", se.fit = TRUE)
+
+# Transform to response scale
+pred_gam <- pred_gam |>
+  mutate(
+    fit_link = pred_link_gam$fit,
+    se_link = pred_link_gam$se.fit,
+    fit = exp(fit_link),
+    lwr = exp(fit_link - 1.96 * se_link),
+    upr = exp(fit_link + 1.96 * se_link)
+  )
+
+# Integrate over spatial grid (sum densities, divide by grid points)
+index_gam_raw <- pred_gam |>
+  group_by(year) |>
+  summarise(
+    mean_fit = mean(fit),
+    mean_lwr = mean(lwr),
+    mean_upr = mean(upr),
+    se_fit = sd(fit) / sqrt(n()),
+    .groups = "drop"
+  )
+
+# Normalize to base year
+base_gam <- index_gam_raw$mean_fit[index_gam_raw$year == min(index_gam_raw$year)]
+
+index_gam <- index_gam_raw |>
+  mutate(
+    index = mean_fit / base_gam,
+    index_lwr = mean_lwr / base_gam,
+    index_upr = mean_upr / base_gam,
+    cv = (mean_upr - mean_lwr) / (2 * 1.96 * mean_fit),
+    model = best_gam_name
+  ) |>
+  select(year, index, index_lwr, index_upr, cv, model)
+
+kable(index_gam, digits = 4,
+      caption = paste("Standardized Index from", best_gam_name))
+```
+
+## 6.3 Normalize Nominal Index
+
+```{r normalize_nominal}
+base_nominal <- nominal_index$mean_density[nominal_index$year == min(nominal_index$year)]
+
+index_nominal <- nominal_index |>
+  mutate(
+    index = mean_density / base_nominal,
+    index_lwr = (mean_density - 1.96*se) / base_nominal,
+    index_upr = (mean_density + 1.96*se) / base_nominal,
+    cv = se / mean_density,
+    model = "Nominal"
+  ) |>
+  select(year, index, index_lwr, index_upr, cv, model)
+```
+
+## 6.4 Compare All Three Indices
+
+
+```{r compare_indices, fig.height=7}  
+# Combine all indices
+all_indices <- bind_rows(
+  index_nominal,
+  index_glmm,
+  index_gam
+)
+
+# Reorder for better legend
+all_indices <- all_indices |>
+  mutate(model = factor(model, levels = c("Nominal", 
+                                          unique(model)[unique(model) != "Nominal"])))
+
+# Plot comparison
+p=ggplot(all_indices, aes(x = year, y = index, color = model, fill = model)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3) +
+  geom_ribbon(aes(ymin = index_lwr, ymax = index_upr),
+              alpha = 0.2, color = NA) +
+  scale_color_brewer(palette = "Set1") +
+  scale_fill_brewer(palette = "Set1") +
+  labs(
+    title = "Abundance Index Comparison",
+    subtitle = "Nominal vs Best GLMM vs Best GAM",
+    x = "Year",
+    y = "Relative Index (normalized to 2003)",
+    color = "Model",
+    fill = "Model"
+  ) +
+  scale_x_continuous(breaks = seq(2003, 2017, 2)) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+
+print(p)
+```
+
+
+
+```{r index_summary_table}
+# Summary statistics
+index_summary <- all_indices |>
+  group_by(model) |>
+  summarise(
+    Mean_CV = mean(cv),
+    Min_Index = min(index),
+    Max_Index = max(index),
+    Trend = (index[year == max(year)] - index[year == min(year)]) / index[year == min(year)],
+    .groups = "drop"
+  )
+
+kable(index_summary, digits = 3,
+      caption = "Index Summary Statistics by Model")
+```
+
+**Key Observations**:
+
+- **Nominal index** shows high inter-annual variability, particularly in early years (2003-2006), reflecting changes in sampling locations and environmental conditions. Overall decline of ~X% from 2003 to 2017.
+
+- **GLMM standardization** (with random effects for region and spatial stations `(1|region) + (1|X:Y)`) corrects for depth and spatial sampling heterogeneity, resulting in a smoother temporal trend. The standardized index shows a Y% decline, Z percentage points different from nominal, indicating that confounding factors (depth distribution, regional shifts) were masking/amplifying the true abundance trend.
+
+- **GAM with spatial smooth** `s(X,Y, k=20)` additionally accounts for fine-scale spatial structure not captured by regional random effects. The GAM index shows [similar/slightly different] trend (W% correlation with GLMM), suggesting that the 2D spatial smooth captures residual spatial patterns beyond the region+station random effects.
+
+- Uncertainty (CVs) are [compare]
+
+---
+
+# STEP 7: Final Diagnostics & Spatial Analysis
+
+## 7.1 Spatial Autocorrelation in GLMM Residuals
+
+```{r spatial_map_glmm, fig.height=7}
+spatial_resid_glmm <- dat |>
+  group_by(X, Y,fyear) |>
+  summarise(mean_resid = mean(resid_glmm, na.rm = TRUE), .groups = "drop")
+
+ggplot(spatial_resid_glmm, aes(x = X, y = Y, color = mean_resid)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limits = c(-2, 2),
+                       name = "Mean\nResidual") +
+  coord_equal() +
+  labs(title = paste("Spatial Residuals:", best_glmm_name),
+       subtitle = "Clusters indicate unmodeled spatial structure",
+       x = "X (km)", y = "Y (km)")
+
+
+ggplot(spatial_resid_glmm, aes(x = X, y = Y, color = mean_resid)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limits = c(-2, 2),
+                       name = "Mean\nResidual") +
+    facet_wrap(~fyear, ncol = 3) +
+  coord_equal() +
+  labs(title = paste("Spatial Residuals:", best_glmm_name),
+       subtitle = "Clusters indicate unmodeled spatial structure",
+       x = "X (km)", y = "Y (km)")
+
+
+ggplot(dat, aes(x = X, y = Y, z = resid_glmm)) +
+  stat_summary_2d(fun = mean, bins = 30, alpha = 0.8) +
+  geom_contour(aes(color = after_stat(level)), bins = 10, linewidth = 0.5) +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limits = c(-2, 2),
+                       name = "Mean\nResidual") +
+  facet_wrap(~fyear, ncol = 3) +
+  coord_equal() +
+  labs(title = paste("Spatial Residual Hotspots:", best_glmm_name),
+       subtitle = "Smoothed interpolation reveals persistent spatial patterns",
+       x = "X (km)", y = "Y (km)") +
+  theme_minimal()
+
+```
+
+
+
+## 7.2 Spatial Autocorrelation in GAM Residuals
+
+
+```{r spatial_map_gam, fig.height=7}
+spatial_resid_gam <- dat_gam |>
+  group_by(X, Y, fyear) |>
+  summarise(mean_resid = mean(resid_gam, na.rm = TRUE), .groups = "drop")
+
+ggplot(spatial_resid_gam, aes(x = X, y = Y, color = mean_resid)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limits = c(-2, 2),
+                       name = "Mean\nResidual") +
+  coord_equal() +
+  labs(title = paste("Spatial Residuals:", best_gam_name),
+       subtitle = "GAM with s(X,Y) should reduce spatial patterns",
+       x = "X (km)", y = "Y (km)")
+
+
+ggplot(spatial_resid_gam, aes(x = X, y = Y, color = mean_resid)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limits = c(-2, 2),
+                       name = "Mean\nResidual") +facet_wrap(~fyear)+
+  coord_equal() +
+  labs(title = paste("Spatial Residuals:", best_gam_name),
+       subtitle = "GAM with s(X,Y) should reduce spatial patterns",
+       x = "X (km)", y = "Y (km)")
+
+
+ggplot(dat_gam, aes(x = X, y = Y, z = resid_gam)) +  # z = resid_gam !
+  stat_summary_2d(fun = mean, bins = 30, alpha = 0.8) +
+  geom_contour(aes(z = resid_gam), color = "white", alpha = 0.5, bins = 10, linewidth = 0.5) +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red",
+                       midpoint = 0, limits = c(-2, 2),
+                       name = "Mean\nResidual") +
+  facet_wrap(~fyear, ncol = 3) +
+  coord_equal() +
+  labs(title = paste("Spatial Residual Hotspots:", best_gam_name),
+       subtitle = "GAM with s(X,Y) should eliminate spatial patterns",
+       x = "X (km)", y = "Y (km)") +
+  theme_minimal()
+
+
+```
+
+
+## 7.3 Transition to sdmTMB (If Needed)
+
+```{r fit_sdmtmb}
+
+  # Create mesh
+  mesh <- make_mesh(dat, xy_cols = c("X", "Y"), cutoff = 5)
+
+  # Fit spatiotemporal model
+  fit_sdmtmb <- sdmTMB(
+    density ~ 0+fyear + s(depth),
+    data = dat,
+    mesh = mesh,
+    family = tweedie(link = "log"),
+    spatial = "on",           # Spatial random field
+    spatiotemporal = "iid",   # Independent spatiotemporal field
+    time = "year"
+  )
+
+  # Sanity checks
+  sanity(fit_sdmtmb)
+
+  # Extract residuals
+  dat$resid_sdmtmb <- residuals(fit_sdmtmb)
+
+```
+
+## 7.4 Compare Spatial Patterns Across Models
+
+```{r compare_spatial_residuals, fig.height=12}
+if(!is.null(fit_sdmtmb)) {
+
+  # Prepare data for faceting
+resid_comparison <- bind_rows(
+  dat |> select(X, Y, fyear) |> mutate(resid = scale(dat$resid_glmm), model = best_glmm_name),
+  dat_gam |> select(X, Y, fyear) |> mutate(resid = scale(dat_gam$resid_gam), model = best_gam_name),
+  dat |> select(X, Y, fyear) |> mutate(resid = scale(dat$resid_sdmtmb), model = "sdmTMB")
+)
+
+  ggplot(resid_comparison, aes(x = X, y = Y, color = resid)) +
+    geom_point(size = 1.5, alpha = 0.6) +
+    facet_grid(model ~ fyear) +
+    scale_color_gradient2(low = "blue", mid = "white", high = "red",
+                         midpoint = 0, limits = c(-1.5, 1.5),
+                         name = "Residual",oob = scales::squish) +
+    coord_equal() +
+    labs(title = "Spatial Residual Comparison Across Models",
+         subtitle = "3 years × 3 models",
+         x = "X (km)", y = "Y (km)") +
+    theme(strip.text = element_text(size = 10, face = "bold"))
+}
+```
+
+---
+
+# Conclusions & Recommendations
+
+ **For stock assessment**:
+   - Provide index with 95% confidence intervals
+   - Report CV by year
+   - Include sensitivity analysis (compare models)
+   - Document all modeling decisions

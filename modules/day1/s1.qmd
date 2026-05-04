@@ -1,5 +1,5 @@
 ---
-title: "Foundations of Abundance Indices <br> [📽️ Slides]() | [💻 Lab](lab1.html)"
+title: "Foundations of Abundance Indices <br> [📽️ Slides 1](https://gamma.app/docs/geejsv78xreur6h) | [📽️ Slides 2](https://gamma.app/docs/dqi8txv7qfa4zzc) | [📽️ Slides 3](https://gamma.app/docs/dqi8txv7qfa4zzchttps://gamma.app/docs/dqi8txv7qfa4zzc)"
 subtitle: "08:30 - 10:00"
 image: "/images/tinyvast.png"
 ---

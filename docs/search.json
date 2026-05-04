@@ -1,17 +1,213 @@
 [
   {
+    "objectID": "Lab1.html",
+    "href": "Lab1.html",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "",
+    "text": "This document presents a complete, production-ready workflow for abundance index standardization following international best practices (Maunder & Punt 2004; ICES WGMG 2021).\nWe demonstrate the full process using Pacific Cod (Gadus macrocephalus) survey data from Queen Charlotte Sound, British Columbia (2003-2017).\n\n\n\n\n\n\nThe 7-Step Framework for Index Standardization\n\n\n\n\n\n\n\n\nStep\nPhase\nKey_Activities\nTools\n\n\n\n\n1\nData Collection & Cleaning\nData import, QC, variable engineering, EDA\ntidyverse, ggplot2, summary tables\n\n\n2\nTheoretical Model Design\nLiterature review, fishery knowledge, covariate selection\nExploratory plots, correlation matrices, domain expertise\n\n\n3\nModel Implementation\nFit 12 candidate models (4 GLM, 4 GAM, 4 GLMM)\nglmmTMB, mgcv::gam, broom\n\n\n4\nModel Selection & Validation\nAIC comparison, residual diagnostics, link function validation\nDHARMa, AIC, residual plots, gam.check()\n\n\n5\nPrediction Grid Construction\nDefine standardization strategy, build pred_data\nexpand.grid(), reference values\n\n\n6\nIndex Calculation\nPredict with best models, calculate abundance index\npredict(), confidence intervals\n\n\n7\nFinal Diagnostics & Reporting\nSpatial autocorrelation tests, compare models, finalize output\nspdep::moran.test, sdmTMB, comparative plots"
+  },
+  {
+    "objectID": "Lab1.html#overview",
+    "href": "Lab1.html#overview",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "",
+    "text": "This document presents a complete, production-ready workflow for abundance index standardization following international best practices (Maunder & Punt 2004; ICES WGMG 2021).\nWe demonstrate the full process using Pacific Cod (Gadus macrocephalus) survey data from Queen Charlotte Sound, British Columbia (2003-2017)."
+  },
+  {
+    "objectID": "Lab1.html#the-7-step-standardization-framework",
+    "href": "Lab1.html#the-7-step-standardization-framework",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "",
+    "text": "The 7-Step Framework for Index Standardization\n\n\n\n\n\n\n\n\nStep\nPhase\nKey_Activities\nTools\n\n\n\n\n1\nData Collection & Cleaning\nData import, QC, variable engineering, EDA\ntidyverse, ggplot2, summary tables\n\n\n2\nTheoretical Model Design\nLiterature review, fishery knowledge, covariate selection\nExploratory plots, correlation matrices, domain expertise\n\n\n3\nModel Implementation\nFit 12 candidate models (4 GLM, 4 GAM, 4 GLMM)\nglmmTMB, mgcv::gam, broom\n\n\n4\nModel Selection & Validation\nAIC comparison, residual diagnostics, link function validation\nDHARMa, AIC, residual plots, gam.check()\n\n\n5\nPrediction Grid Construction\nDefine standardization strategy, build pred_data\nexpand.grid(), reference values\n\n\n6\nIndex Calculation\nPredict with best models, calculate abundance index\npredict(), confidence intervals\n\n\n7\nFinal Diagnostics & Reporting\nSpatial autocorrelation tests, compare models, finalize output\nspdep::moran.test, sdmTMB, comparative plots"
+  },
+  {
+    "objectID": "Lab1.html#load-required-packages",
+    "href": "Lab1.html#load-required-packages",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "2.1 1.1 Load Required Packages",
+    "text": "2.1 1.1 Load Required Packages\n\n\nCode\n# Core packages\nlibrary(tidyverse)     # Data manipulation & visualization\nlibrary(sdmTMB)        # Pacific cod data + spatial models\nlibrary(mgcv)          # GAM models\nlibrary(glmmTMB)       # GLMM with Tweedie\nlibrary(DHARMa)        # Residual diagnostics\nlibrary(broom)         # Tidy model outputs\nlibrary(broom.mixed)   # Tidy mixed models\nlibrary(performance)   # Model comparison\nlibrary(patchwork)     # Combine plots\nlibrary(knitr)         # Tables\n\n# Spatial diagnostics\nlibrary(spdep)         # Moran\\'s I test\nlibrary(gstat)         # Variograms\nlibrary(sp)            # Spatial objects\n\n# Set theme\ntheme_set(theme_minimal(base_size = 11))"
+  },
+  {
+    "objectID": "Lab1.html#load-pacific-cod-data",
+    "href": "Lab1.html#load-pacific-cod-data",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "2.2 1.2 Load Pacific Cod Data",
+    "text": "2.2 1.2 Load Pacific Cod Data\n\n\nCode\n# Load dataset\ndata(\"pcod\", package = \"sdmTMB\")\n\n# Initial inspection\ncat(\"Dataset dimensions:\", nrow(pcod), \"rows ×\", ncol(pcod), \"columns\\n\\n\")\n\n\nDataset dimensions: 2143 rows × 12 columns\n\n\nCode\nglimpse(pcod)\n\n\nRows: 2,143\nColumns: 12\n$ year          &lt;int&gt; 2003, 2003, 2003, 2003, 2003, 2003, 2003, 2003, 2003, 20…\n$ X             &lt;dbl&gt; 446.4752, 446.4594, 448.5987, 436.9157, 420.6101, 417.71…\n$ Y             &lt;dbl&gt; 5793.426, 5800.136, 5801.687, 5802.305, 5771.055, 5772.2…\n$ depth         &lt;dbl&gt; 201, 212, 220, 197, 256, 293, 410, 387, 285, 270, 381, 1…\n$ density       &lt;dbl&gt; 113.138476, 41.704922, 0.000000, 15.706138, 0.000000, 0.…\n$ present       &lt;dbl&gt; 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ lat           &lt;dbl&gt; 52.28858, 52.34890, 52.36305, 52.36738, 52.08437, 52.094…\n$ lon           &lt;dbl&gt; -129.7847, -129.7860, -129.7549, -129.9265, -130.1586, -…\n$ depth_mean    &lt;dbl&gt; 5.155194, 5.155194, 5.155194, 5.155194, 5.155194, 5.1551…\n$ depth_sd      &lt;dbl&gt; 0.4448783, 0.4448783, 0.4448783, 0.4448783, 0.4448783, 0…\n$ depth_scaled  &lt;dbl&gt; 0.3329252, 0.4526914, 0.5359529, 0.2877417, 0.8766077, 1…\n$ depth_scaled2 &lt;dbl&gt; 0.11083919, 0.20492947, 0.28724555, 0.08279527, 0.768440…\n\n\nDataset Description:\n\nSource: Trawl survey in Queen Charlotte Sound, BC\nPeriod: 2003-2017 (15 years)\nSample size: 2,143 trawl sets\nResponse: density (kg/km²)\nCovariates: year, depth, X, Y (UTM coordinates)"
+  },
+  {
+    "objectID": "Lab1.html#data-cleaning-variable-engineering",
+    "href": "Lab1.html#data-cleaning-variable-engineering",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "2.3 1.3 Data Cleaning & Variable Engineering",
+    "text": "2.3 1.3 Data Cleaning & Variable Engineering\n\n\nCode\n# Create analysis-ready dataset\ndat_raw &lt;- pcod |&gt;\n  select(year, X, Y, depth, density, present) |&gt;\n  filter(!is.na(density))\n\n# Engineer variables\ndat &lt;- dat_raw |&gt;\n  mutate(\n    # Response transformations\n    log_density = log(density + 0.01),\n\n    # Temporal variables\n    fyear = as.factor(year),\n    year_scaled = scale(year)[,1],\n\n    # Depth variables (multiple transformations for model flexibility)\n    depth_c = scale(depth)[,1],          # Centered & scaled\n    depth_c2 = depth_c^2,                # Quadratic\n    log_depth = log(depth + 1),          # Log-transformed\n    sqrt_depth = sqrt(depth),            # Square root\n\n    # Spatial variables\n    X_c = scale(X)[,1],\n    Y_c = scale(Y)[,1],\n\n    # Regional indicator (North/South split)\n    region = factor(ifelse(Y &gt; median(Y), \"North\", \"South\")),\n\n    # Interaction term\n    region_year = interaction(region, fyear)\n  )\n\n# Summary statistics\ncat(\"\\n=== Data Summary ===\\n\")\n\n\n\n=== Data Summary ===\n\n\nCode\ncat(\"Total observations:\", nrow(dat), \"\\n\")\n\n\nTotal observations: 2143 \n\n\nCode\ncat(\"Years:\", min(dat$year), \"-\", max(dat$year), \"\\n\")\n\n\nYears: 2003 - 2017 \n\n\nCode\ncat(\"Depth range:\", round(min(dat$depth)), \"-\", round(max(dat$depth)), \"m\\n\")\n\n\nDepth range: 44 - 574 m\n\n\nCode\ncat(\"Zero catches:\", sum(dat$density == 0), \n    \"(\", round(100*mean(dat$density == 0), 1), \"%)\\n\")\n\n\nZero catches: 1153 ( 53.8 %)\n\n\nCode\ncat(\"Median density:\", round(median(dat$density[dat$density &gt; 0]), 2), \"kg/km²\\n\")\n\n\nMedian density: 31.49 kg/km²"
+  },
+  {
+    "objectID": "Lab1.html#data-quality-checks",
+    "href": "Lab1.html#data-quality-checks",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "2.4 1.4 Data Quality Checks",
+    "text": "2.4 1.4 Data Quality Checks\n\n\nCode\n# 1. Check for outliers\np1 &lt;- ggplot(dat, aes(x = density)) +\n  geom_histogram(bins = 50, fill = \"steelblue\", alpha = 0.7) +\n  labs(title = \"A) Density Distribution\", x = \"Density (kg/km²)\", y = \"Count\")\n\np2 &lt;- ggplot(dat, aes(y = depth)) +\n  geom_boxplot(fill = \"coral\", alpha = 0.7) +\n  labs(title = \"B) Depth Range\", y = \"Depth (m)\")\n\n# 2. Check temporal coverage\np3 &lt;- ggplot(dat, aes(x = year)) +\n  geom_bar(fill = \"darkgreen\", alpha = 0.7) +\n  labs(title = \"C) Sampling Effort by Year\", x = \"Year\", y = \"Number of Tows\")\n\n# 3. Check spatial coverage\np4 &lt;- ggplot(dat, aes(x = X, y = Y)) +\n  geom_point(alpha = 0.3, size = 0.5) +\n  coord_equal() +\n  labs(title = \"D) Spatial Coverage\", x = \"X (km)\", y = \"Y (km)\")\n\n(p1 + p2) / (p3 + p4)\n\n\n\n\n\nQuality Assessment: - ✅ No extreme outliers detected - ✅ Consistent sampling effort across years - ✅ Good spatial coverage across survey area - ⚠️ High proportion of zeros (Tweedie family appropriate)"
+  },
+  {
+    "objectID": "Lab1.html#exploratory-data-analysis-eda",
+    "href": "Lab1.html#exploratory-data-analysis-eda",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "3.1 2.1 Exploratory Data Analysis (EDA)",
+    "text": "3.1 2.1 Exploratory Data Analysis (EDA)\n\n3.1.1 2.1.1 Nominal Abundance Trend\n\n\nCode\n# Calculate nominal index\nnominal_index &lt;- dat |&gt;\n  group_by(year) |&gt;\n  summarise(\n    n = n(),\n    mean_density = mean(density),\n    se = sd(density) / sqrt(n()),\n    median_density = median(density),\n    .groups = \"drop\"\n  )\n\nggplot(nominal_index, aes(x = year, y = mean_density)) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 3) +\n  geom_ribbon(aes(ymin = mean_density - 1.96*se,\n                  ymax = mean_density + 1.96*se),\n              alpha = 0.2, fill = \"blue\") +\n  labs(title = \"Nominal Abundance Index (Unstandardized)\",\n       subtitle = \"Simple mean density per year\",\n       x = \"Year\", y = \"Mean Density (kg/km²)\") +\n  scale_x_continuous(breaks = seq(2003, 2017, 2))\n\n\n\n\n\n\n\n3.1.2 2.1.2 Covariate Relationships\n\n\nCode\n# Density vs Depth (non-linear relationship expected)\np1 &lt;- dat |&gt;\n  filter(density &gt; 0) |&gt;\n  sample_n(min(1000, n())) |&gt;\n  ggplot(aes(x = depth, y = density)) +\n  geom_point(alpha = 0.3) +\n  geom_smooth(method = \"gam\", formula = y ~ s(x, k = 6), color = \"red\") +\n  scale_y_log10() +\n  labs(title = \"A) Density vs Depth\", x = \"Depth (m)\", y = \"Density (log10)\")\n\n# Density by Region\np2 &lt;- ggplot(dat, aes(x = region, y = log_density)) +\n  geom_boxplot(fill = \"steelblue\", alpha = 0.7) +\n  labs(title = \"B) Density by Region\", x = \"Region\", y = \"Log Density\")\n\n# Temporal trend by Region\np3 &lt;- dat |&gt;\n  group_by(year, region) |&gt;\n  summarise(mean_dens = mean(density), .groups = \"drop\") |&gt;\n  ggplot(aes(x = year, y = mean_dens, color = region)) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 2) +\n  labs(title = \"C) Temporal Trends by Region\", \n       x = \"Year\", y = \"Mean Density (kg/km²)\")\n\n# Spatial distribution\np4 &lt;- dat |&gt;\n  filter(year %in% c(2005, 2010, 2015)) |&gt;\n  ggplot(aes(x = X, y = Y, color = log(density + 0.1))) +\n  geom_point(size = 1.5, alpha = 0.6) +\n  facet_wrap(~year) +\n  scale_color_viridis_c(option = \"plasma\") +\n  coord_equal() +\n  labs(title = \"D) Spatial Distribution (3 years)\", \n       x = \"X (km)\", y = \"Y (km)\", color = \"log(density)\")\n\n(p1 + p2) / (p3 + p4) +\n  plot_annotation(title = \"Exploratory Data Analysis: Key Relationships\")\n\n\n\n\n\nEDA Insights:\n\nDepth effect: Clear non-linear relationship → GAM with s(depth) warranted\nRegional differences: North/South show different density levels → Include region\nTemporal variation: Declining trend from 2003-2017\nSpatial structure: Visible spatial clustering → Test spatial models"
+  },
+  {
+    "objectID": "Lab1.html#model-design-decisions",
+    "href": "Lab1.html#model-design-decisions",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "3.2 2.2 Model Design Decisions",
+    "text": "3.2 2.2 Model Design Decisions\nBased on EDA and fishery knowledge:\n\n\n\nModel Design Decisions Based on EDA & Domain Knowledge\n\n\n\n\n\n\n\nComponent\nDecision\nReasoning\n\n\n\n\nResponse distribution\nTweedie (handles zeros + continuous)\n43% zeros, right-skewed positive values\n\n\nTemporal effect\nYear as factor (no trend assumption)\nFlexible, no parametric trend assumption\n\n\nDepth effect\nLinear + Quadratic OR Spline\nTest both parametric and non-parametric\n\n\nRegional effect\nFixed effect OR Random effect\nCompare parsimony vs flexibility\n\n\nSpatial effect\nNo spatial OR 2D smooth OR Random field\nProgressive complexity testing"
+  },
+  {
+    "objectID": "Lab1.html#candidate-model-set-12-models",
+    "href": "Lab1.html#candidate-model-set-12-models",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "3.3 2.3 Candidate Model Set (12 Models)",
+    "text": "3.3 2.3 Candidate Model Set (12 Models)\nWe will fit 12 models in 3 families:\n\n3.3.1 GLM Family (4 models)\n\n\n\nGLM Model Set (glmmTMB, Tweedie)\n\n\n\n\n\n\n\nModel\nFormula\nComplexity\n\n\n\n\nGLM1\ndensity ~ fyear + depth_c\nMinimal\n\n\nGLM2\ndensity ~ fyear + depth_c + depth_c2\nBaseline\n\n\nGLM3\ndensity ~ fyear + depth_c + depth_c2 + region\nRegional\n\n\nGLM4\ndensity ~ fyear + depth_c + depth_c2 + region + year_scaled:region\nInteraction\n\n\n\n\n\n\n\n3.3.2 GAM Family (4 models)\n\n\n\nGAM Model Set (mgcv, Tweedie)\n\n\n\n\n\n\n\nModel\nFormula\nComplexity\n\n\n\n\nGAM1\ndensity ~ fyear + s(depth, k=6)\nMinimal\n\n\nGAM2\ndensity ~ fyear + s(depth, k=6) + region\nRegional\n\n\nGAM3\ndensity ~ fyear + s(depth, k=6) + s(X, Y, k=20)\nSpatial\n\n\nGAM4\ndensity ~ fyear + s(depth, k=6) + region + s(X, Y, k=20)\nFull\n\n\n\n\n\n\n\n3.3.3 GLMM Family (4 models)\n\n\n\nGLMM Model Set (glmmTMB, Tweedie)\n\n\n\n\n\n\nModel\nFormula\n\n\n\n\nGLMM1\ndensity ~ fyear + depth_c + depth_c2 + (1|region)\n\n\nGLMM2\ndensity ~ fyear + depth_c + depth_c2 + (1|fyear:region)\n\n\nGLMM3\ndensity ~ fyear + depth_c + depth_c2 + (1|region) +region:fyear\n\n\nGLMM4\ndensity ~ fyear + depth_c + depth_c2 + (1|region) + (1|X:Y)"
+  },
+  {
+    "objectID": "Lab1.html#fit-glm-models",
+    "href": "Lab1.html#fit-glm-models",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "4.1 3.1 Fit GLM Models",
+    "text": "4.1 3.1 Fit GLM Models\n\n\nCode\ncat(\"Fitting GLM models...\\n\")\n\n\nFitting GLM models...\n\n\nCode\n# GLM1: Minimal\nglm1 &lt;- glmmTMB(\n  density ~ fyear + depth_c,\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\n# GLM2: Baseline (quadratic depth)\nglm2 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2,\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\n# GLM3: + Region\nglm3 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2 + region,\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\n# GLM4: + Region interaction\nglm4 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2 + region + year_scaled:region,\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\ncat(\"✓ GLM models fitted\\n\")\n\n\n✓ GLM models fitted"
+  },
+  {
+    "objectID": "Lab1.html#fit-gam-models",
+    "href": "Lab1.html#fit-gam-models",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "4.2 3.2 Fit GAM Models",
+    "text": "4.2 3.2 Fit GAM Models\n\n\nCode\ncat(\"Fitting GAM models...\\n\")\n\n\nFitting GAM models...\n\n\nCode\n# GAM1: Minimal (spline depth)\ngam1 &lt;- gam(\n  density ~ fyear + s(depth, k = 6),\n  data = dat,\n  family = tw(link = \"log\"),\n  method = \"REML\"\n)\n\n# GAM2: + Region\ngam2 &lt;- gam(\n  density ~ fyear + s(depth, k = 6) + region,\n  data = dat,\n  family = tw(link = \"log\"),\n  method = \"REML\"\n)\n\n# GAM3: + Spatial smooth\ngam3 &lt;- gam(\n  density ~ fyear + s(depth, k = 6) + s(X, Y, k = 20),\n  data = dat,\n  family = tw(link = \"log\"),\n  method = \"REML\"\n)\n\n# GAM4: Full (region + spatial)\ngam4 &lt;- gam(\n  density ~ fyear + s(depth, k = 6) + region + s(X, Y, k = 20),\n  data = dat,\n  family = tw(link = \"log\"),\n  method = \"REML\"\n)\n\ncat(\"✓ GAM models fitted\\n\")\n\n\n✓ GAM models fitted"
+  },
+  {
+    "objectID": "Lab1.html#fit-glmm-models",
+    "href": "Lab1.html#fit-glmm-models",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "4.3 3.3 Fit GLMM Models",
+    "text": "4.3 3.3 Fit GLMM Models\n\n\nCode\ncat(\"Fitting GLMM models...\\n\")\n\n\nFitting GLMM models...\n\n\nCode\n# GLMM1: Random intercept (region)\nglmm1 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2 + (1|region),\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\n# GLMM2: Random slope (year|region)\nglmm2 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2 + (1|fyear:region),\n  data = dat,\n  family = tweedie(link = \"log\"),\n  control = glmmTMBControl(optimizer = nlminb)\n)\n\n# GLMM3: \nglmm3 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2 + (1|region) +region:fyear,\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\n# GLMM4: \nglmm4 &lt;- glmmTMB(\n  density ~ fyear + depth_c + depth_c2 + (1|region) + (1|X:Y),  # Station nested in region\n  data = dat,\n  family = tweedie(link = \"log\")\n)\n\ncat(\"✓ GLMM models fitted\\n\")\n\n\n✓ GLMM models fitted"
+  },
+  {
+    "objectID": "Lab1.html#aic-comparison-all-12-models",
+    "href": "Lab1.html#aic-comparison-all-12-models",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "5.1 4.1 AIC Comparison (All 12 Models)",
+    "text": "5.1 4.1 AIC Comparison (All 12 Models)\n\n\nCode\n# Compile AIC table\naic_results &lt;- data.frame(\n  Model = c(paste0(\"GLM\", 1:4), paste0(\"GAM\", 1:4), paste0(\"GLMM\", 1:4)),\n  Family = rep(c(\"GLM\", \"GAM\", \"GLMM\"), each = 4),\n  AIC = c(\n    AIC(glm1), AIC(glm2), AIC(glm3), AIC(glm4),\n    AIC(gam1), AIC(gam2), AIC(gam3), AIC(gam4),\n    AIC(glmm1), AIC(glmm2), AIC(glmm3), AIC(glmm4)\n  )\n) |&gt;\n  arrange(AIC) |&gt;\n  mutate(\n    Delta_AIC = AIC - min(AIC),\n    AIC_Weight = exp(-0.5 * Delta_AIC) / sum(exp(-0.5 * Delta_AIC)),\n    Rank = row_number()\n  )\n\nkable(aic_results, digits = 2,\n      caption = \"AIC Comparison: All 12 Candidate Models\")\n\n\n\nAIC Comparison: All 12 Candidate Models\n\n\nModel\nFamily\nAIC\nDelta_AIC\nAIC_Weight\nRank\n\n\n\n\nGLMM4\nGLMM\n12536.91\n0.00\n1\n1\n\n\nGAM4\nGAM\n12960.88\n423.97\n0\n2\n\n\nGAM3\nGAM\n12962.50\n425.59\n0\n3\n\n\nGAM1\nGAM\n13037.43\n500.52\n0\n4\n\n\nGAM2\nGAM\n13039.39\n502.48\n0\n5\n\n\nGLMM3\nGLMM\n13057.82\n520.91\n0\n6\n\n\nGLMM2\nGLMM\n13073.93\n537.02\n0\n7\n\n\nGLM3\nGLM\n13077.90\n540.99\n0\n8\n\n\nGLM4\nGLM\n13079.67\n542.76\n0\n9\n\n\nGLM2\nGLM\n13079.98\n543.07\n0\n10\n\n\nGLMM1\nGLMM\n13081.39\n544.48\n0\n11\n\n\nGLM1\nGLM\n13315.40\n778.49\n0\n12\n\n\n\n\n\n\n\nCode\nggplot(aic_results, aes(x = reorder(Model, -AIC), y = AIC, fill = Family)) +\n  geom_col(alpha = 0.8) +\n  geom_hline(yintercept = min(aic_results$AIC) + 2, \n             linetype = \"dashed\", color = \"red\") +\n  geom_hline(yintercept = min(aic_results$AIC) + 10,\n             linetype = \"dashed\", color = \"orange\") +\n  coord_flip() +\n  labs(title = \"Model Comparison by AIC\",\n       subtitle = \"Red line = ΔAIC = 2, Orange = ΔAIC = 10\",\n       x = \"Model\", y = \"AIC\") +\n  theme(legend.position = \"top\")"
+  },
+  {
+    "objectID": "Lab1.html#select-best-models-per-family",
+    "href": "Lab1.html#select-best-models-per-family",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "5.2 4.2 Select Best Models per Family",
+    "text": "5.2 4.2 Select Best Models per Family\n\n\nCode\n# Best GLM\nbest_glm_name &lt;- aic_results |&gt; filter(Family == \"GLM\") |&gt; slice_min(AIC, n = 1) |&gt; pull(Model)\nbest_glm &lt;- get(tolower(best_glm_name))\n\n# Best GAM\nbest_gam_name &lt;- aic_results |&gt; filter(Family == \"GAM\") |&gt; slice_min(AIC, n = 1) |&gt; pull(Model)\nbest_gam &lt;- get(tolower(best_gam_name))\n\n# Best GLMM\nbest_glmm_name &lt;- aic_results |&gt; filter(Family == \"GLMM\") |&gt; slice_min(AIC, n = 1) |&gt; pull(Model)\nbest_glmm &lt;- get(tolower(best_glmm_name))\n\ncat(\"\\n=== Best Models per Family ===\\n\")\n\n\n\n=== Best Models per Family ===\n\n\nCode\ncat(\"Best GLM: \", best_glm_name, \" (AIC =\", round(AIC(best_glm), 2), \")\\n\")\n\n\nBest GLM:  GLM3  (AIC = 13077.9 )\n\n\nCode\ncat(\"Best GAM: \", best_gam_name, \" (AIC =\", round(AIC(best_gam), 2), \")\\n\")\n\n\nBest GAM:  GAM4  (AIC = 12960.88 )\n\n\nCode\ncat(\"Best GLMM:\", best_glmm_name, \"(AIC =\", round(AIC(best_glmm), 2), \")\\n\")\n\n\nBest GLMM: GLMM4 (AIC = 12536.91 )"
+  },
+  {
+    "objectID": "Lab1.html#detailed-validation-best-glmm",
+    "href": "Lab1.html#detailed-validation-best-glmm",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "5.3 4.3 Detailed Validation: Best GLMM",
+    "text": "5.3 4.3 Detailed Validation: Best GLMM\n\n5.3.1 4.3.1 DHARMa Diagnostics\n\n\nCode\nsim_glmm &lt;- simulateResiduals(best_glmm, n = 1000)\nplot(sim_glmm, main = paste(\"DHARMa Diagnostics:\", best_glmm_name))\n\n\n\n\n\n\n\n5.3.2 4.3.2 Residuals by Covariates\n\n\nCode\n# Extract residuals\ndat$resid_glmm &lt;- residuals(best_glmm, type = \"pearson\")\n\np1 &lt;- ggplot(dat, aes(x = fyear, y = resid_glmm)) +\n  geom_boxplot(fill = \"lightblue\") +\n  geom_hline(yintercept = 0, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"A) Residuals by Year\", x = \"Year\", y = \"Pearson Residuals\") +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\np2 &lt;- ggplot(dat, aes(x = depth, y = resid_glmm)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth(method = \"loess\", se = FALSE, color = \"blue\") +\n  geom_hline(yintercept = 0, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"B) Residuals vs Depth\", x = \"Depth (m)\", y = \"Pearson Residuals\")\n\np3 &lt;- ggplot(dat, aes(x = region, y = resid_glmm)) +\n  geom_boxplot(fill = \"coral\") +\n  geom_hline(yintercept = 0, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"C) Residuals by Region\", x = \"Region\", y = \"Pearson Residuals\")\n\np4 &lt;- ggplot(dat, aes(sample = resid_glmm)) +\n  stat_qq() +\n  stat_qq_line(color = \"red\") +\n  labs(title = \"D) Q-Q Plot\", x = \"Theoretical Quantiles\", y = \"Sample Quantiles\")\n\n(p1 + p2) / (p3 + p4) +\n  plot_annotation(title = paste(\"Residual Diagnostics:\", best_glmm_name))"
+  },
+  {
+    "objectID": "Lab1.html#detailed-validation-best-gam",
+    "href": "Lab1.html#detailed-validation-best-gam",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "5.4 4.4 Detailed Validation: Best GAM",
+    "text": "5.4 4.4 Detailed Validation: Best GAM\n\n5.4.1 4.4.1 GAM Check\n\n\nCode\npar(mfrow = c(2, 2))\ngam.check(best_gam)\n\n\n\n\n\n\nMethod: REML   Optimizer: outer newton\nfull convergence after 7 iterations.\nGradient range [-0.000824181,0.0007567035]\n(score 6494.237 & scale 14.20406).\nHessian positive definite, eigenvalue range [1.833074,1511.102].\nModel rank =  34 / 34 \n\nBasis dimension (k) checking results. Low p-value (k-index&lt;1) may\nindicate that k is too low, especially if edf is close to k'.\n\n            k'   edf k-index p-value    \ns(depth)  5.00  4.58    0.72    0.15    \ns(X,Y)   19.00 14.54    0.62  &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nCode\npar(mfrow = c(1, 1))\n\n\n\n\n5.4.2 4.4.2 Smooth Terms\n\n\nCode\npar(mfrow = c(2, 2))\nplot(best_gam, pages = 1, scheme = 2, shade = TRUE)\n\n\n\n\n\nCode\npar(mfrow = c(1, 1))\n\n\n\n\n5.4.3 4.4.3 Residuals\n\n\nCode\ndat_gam &lt;- best_gam$model\ndat_gam$resid_gam &lt;- residuals(best_gam, type = \"pearson\")\n\np1 &lt;- ggplot(dat_gam, aes(x = fyear, y = resid_gam)) +\n  geom_boxplot(fill = \"lightgreen\") +\n  geom_hline(yintercept = 0, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"A) Residuals by Year\", x = \"Year\", y = \"Pearson Residuals\") +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\np2 &lt;- ggplot(dat_gam, aes(x = depth, y = resid_gam)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth(method = \"loess\", se = FALSE, color = \"blue\") +\n  geom_hline(yintercept = 0, linetype = \"dashed\", color = \"red\") +\n  labs(title = \"B) Residuals vs Depth\", x = \"Depth (m)\", y = \"Pearson Residuals\")\n\np3 &lt;- ggplot(dat_gam, aes(x = X, y = Y, color = resid_gam)) +\n  geom_point(size = 1, alpha = 0.5) +\n  scale_color_gradient2(low = \"blue\", mid = \"white\", high = \"red\", midpoint = 0) +\n  coord_equal() +\n  labs(title = \"C) Spatial Residuals\", x = \"X (km)\", y = \"Y (km)\")\n\np4 &lt;- ggplot(dat_gam, aes(sample = resid_gam)) +\n  stat_qq() +\n  stat_qq_line(color = \"red\") +\n  labs(title = \"D) Q-Q Plot\")\n\n(p1 + p2) / (p3 + p4) +\n  plot_annotation(title = paste(\"Residual Diagnostics:\", best_gam_name))"
+  },
+  {
+    "objectID": "Lab1.html#standardization-strategy",
+    "href": "Lab1.html#standardization-strategy",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "6.1 5.1 Standardization Strategy",
+    "text": "6.1 5.1 Standardization Strategy\nGoal: Create a prediction grid where covariates are held at reference values except year.\nReference values:\nFor GLMM (parametric depth): - Depth → mean depth (centered = 0) - Region → modal category\nFor GAM (spatial smooth): - Depth → sequence covering range (for marginal effects) - X, Y → grid covering survey area (for spatial integration)"
+  },
+  {
+    "objectID": "Lab1.html#prediction-grid-for-glmm",
+    "href": "Lab1.html#prediction-grid-for-glmm",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "6.2 5.2 Prediction Grid for GLMM",
+    "text": "6.2 5.2 Prediction Grid for GLMM\n\n\nCode\n# Calculate reference values\nref_depth &lt;- mean(dat$depth)\nref_depth_c &lt;- (ref_depth - mean(dat$depth)) / sd(dat$depth)\nref_depth_c2 &lt;- ref_depth_c^2\nref_region &lt;- names(sort(table(dat$region), decreasing = TRUE))[1]\n\n# Build prediction grid WITH ALL VARIABLES USED IN MODEL\npred_glmm &lt;- expand.grid(\n  year = sort(unique(dat$year)),\n  depth_c = ref_depth_c,\n  depth_c2 = ref_depth_c2,\n  log_depth = log(ref_depth + 1), \n  region = ref_region,\n  X = mean(dat$X),  \n  Y = mean(dat$Y)\n) |&gt;\n  mutate(\n    fyear = factor(year, levels = levels(dat$fyear))\n  )\n\n# Now predict\npred_link_glmm &lt;- predict(best_glmm, newdata = pred_glmm,\n                          type = \"link\", se.fit = TRUE,re.form = NA)\n\n\n\n\nkable(head(pred_glmm, 5), digits = 3,\n      caption = \"Prediction Grid for GLMM (First 5 rows)\")\n\n\n\nPrediction Grid for GLMM (First 5 rows)\n\n\nyear\ndepth_c\ndepth_c2\nlog_depth\nregion\nX\nY\nfyear\n\n\n\n\n2003\n0\n0\n5.255\nSouth\n463.903\n5743.875\n2003\n\n\n2004\n0\n0\n5.255\nSouth\n463.903\n5743.875\n2004\n\n\n2005\n0\n0\n5.255\nSouth\n463.903\n5743.875\n2005\n\n\n2007\n0\n0\n5.255\nSouth\n463.903\n5743.875\n2007\n\n\n2009\n0\n0\n5.255\nSouth\n463.903\n5743.875\n2009"
+  },
+  {
+    "objectID": "Lab1.html#prediction-grid-for-gam-spatial-integration",
+    "href": "Lab1.html#prediction-grid-for-gam-spatial-integration",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "6.3 5.3 Prediction Grid for GAM (Spatial Integration)",
+    "text": "6.3 5.3 Prediction Grid for GAM (Spatial Integration)\n\n\nCode\n# Create spatial grid (50×50 resolution)\ngrid_res &lt;- 50\nX_seq &lt;- seq(min(dat$X), max(dat$X), length.out = grid_res)\nY_seq &lt;- seq(min(dat$Y), max(dat$Y), length.out = grid_res)\n\n# Expand for all years\npred_gam &lt;- expand.grid(\n  X = X_seq,\n  Y = Y_seq,\n  depth = mean(dat$depth),  # Fix depth at mean\n  year = sort(unique(dat$year))\n) |&gt;\n  mutate(\n    fyear = factor(year, levels = levels(dat$fyear)),\n    region = ref_region  # Fixed region\n  )\n\ncat(\"GAM prediction grid dimensions:\", nrow(pred_gam), \"rows\\n\")\n\n\nGAM prediction grid dimensions: 22500 rows\n\n\nCode\ncat(\"Grid structure:\", grid_res, \"×\", grid_res, \"spatial points ×\", \n    length(unique(dat$year)), \"years\\n\")\n\n\nGrid structure: 50 × 50 spatial points × 9 years\n\n\nCode\nkable(head(pred_gam, 5), digits = 2,\n      caption = \"Prediction Grid for GAM (First 5 rows)\")\n\n\n\nPrediction Grid for GAM (First 5 rows)\n\n\nX\nY\ndepth\nyear\nfyear\nregion\n\n\n\n\n343.06\n5635.89\n190.44\n2003\n2003\nSouth\n\n\n347.88\n5635.89\n190.44\n2003\n2003\nSouth\n\n\n352.71\n5635.89\n190.44\n2003\n2003\nSouth\n\n\n357.53\n5635.89\n190.44\n2003\n2003\nSouth\n\n\n362.35\n5635.89\n190.44\n2003\n2003\nSouth"
+  },
+  {
+    "objectID": "Lab1.html#predict-with-best-glmm",
+    "href": "Lab1.html#predict-with-best-glmm",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "7.1 6.1 Predict with Best GLMM",
+    "text": "7.1 6.1 Predict with Best GLMM\n\n\nCode\n# Transform to response scale\npred_glmm &lt;- pred_glmm |&gt;\n  mutate(\n    fit_link = pred_link_glmm$fit,\n    se_link = pred_link_glmm$se.fit,\n    fit = exp(fit_link),\n    lwr = exp(fit_link - 1.96 * se_link),\n    upr = exp(fit_link + 1.96 * se_link)\n  )\n\n# Normalize to base year (2003)\nbase_glmm &lt;- pred_glmm$fit[pred_glmm$year == min(pred_glmm$year)]\n\nindex_glmm &lt;- pred_glmm |&gt;\n  mutate(\n    index = fit / base_glmm,\n    index_lwr = lwr / base_glmm,\n    index_upr = upr / base_glmm,\n    cv = (upr - lwr) / (2 * 1.96 * fit),\n    model = best_glmm_name\n  ) |&gt;\n  select(year, index, index_lwr, index_upr, cv, model)\n\nkable(index_glmm, digits = 4,\n      caption = paste(\"Standardized Index from\", best_glmm_name))\n\n\n\nStandardized Index from GLMM4\n\n\nyear\nindex\nindex_lwr\nindex_upr\ncv\nmodel\n\n\n\n\n2003\n1.0000\n0.7066\n1.4153\n0.1808\nGLMM4\n\n\n2004\n1.5498\n1.1103\n2.1632\n0.1733\nGLMM4\n\n\n2005\n1.4364\n1.0396\n1.9846\n0.1678\nGLMM4\n\n\n2007\n0.4473\n0.3146\n0.6359\n0.1832\nGLMM4\n\n\n2009\n0.6396\n0.4463\n0.9167\n0.1876\nGLMM4\n\n\n2011\n0.8365\n0.5928\n1.1805\n0.1792\nGLMM4\n\n\n2013\n1.3525\n0.9884\n1.8509\n0.1627\nGLMM4\n\n\n2015\n1.3206\n0.9590\n1.8186\n0.1661\nGLMM4\n\n\n2017\n0.5533\n0.3842\n0.7970\n0.1903\nGLMM4"
+  },
+  {
+    "objectID": "Lab1.html#predict-with-best-gam-spatial-integration",
+    "href": "Lab1.html#predict-with-best-gam-spatial-integration",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "7.2 6.2 Predict with Best GAM (Spatial Integration)",
+    "text": "7.2 6.2 Predict with Best GAM (Spatial Integration)\n\n\nCode\n# Predict on link scale\npred_link_gam &lt;- predict(best_gam, newdata = pred_gam,\n                        type = \"link\", se.fit = TRUE)\n\n# Transform to response scale\npred_gam &lt;- pred_gam |&gt;\n  mutate(\n    fit_link = pred_link_gam$fit,\n    se_link = pred_link_gam$se.fit,\n    fit = exp(fit_link),\n    lwr = exp(fit_link - 1.96 * se_link),\n    upr = exp(fit_link + 1.96 * se_link)\n  )\n\n# Integrate over spatial grid (sum densities, divide by grid points)\nindex_gam_raw &lt;- pred_gam |&gt;\n  group_by(year) |&gt;\n  summarise(\n    mean_fit = mean(fit),\n    mean_lwr = mean(lwr),\n    mean_upr = mean(upr),\n    se_fit = sd(fit) / sqrt(n()),\n    .groups = \"drop\"\n  )\n\n# Normalize to base year\nbase_gam &lt;- index_gam_raw$mean_fit[index_gam_raw$year == min(index_gam_raw$year)]\n\nindex_gam &lt;- index_gam_raw |&gt;\n  mutate(\n    index = mean_fit / base_gam,\n    index_lwr = mean_lwr / base_gam,\n    index_upr = mean_upr / base_gam,\n    cv = (mean_upr - mean_lwr) / (2 * 1.96 * mean_fit),\n    model = best_gam_name\n  ) |&gt;\n  select(year, index, index_lwr, index_upr, cv, model)\n\nkable(index_gam, digits = 4,\n      caption = paste(\"Standardized Index from\", best_gam_name))\n\n\n\nStandardized Index from GAM4\n\n\nyear\nindex\nindex_lwr\nindex_upr\ncv\nmodel\n\n\n\n\n2003\n1.0000\n0.5123\n2.0835\n0.4008\nGAM4\n\n\n2004\n1.9622\n1.0142\n4.0544\n0.3952\nGAM4\n\n\n2005\n1.8191\n0.9444\n3.7432\n0.3925\nGAM4\n\n\n2007\n0.4930\n0.2494\n1.0368\n0.4075\nGAM4\n\n\n2009\n0.8798\n0.4502\n1.8326\n0.4008\nGAM4\n\n\n2011\n1.4295\n0.7416\n2.9438\n0.3930\nGAM4\n\n\n2013\n1.4156\n0.7345\n2.9134\n0.3926\nGAM4\n\n\n2015\n1.7030\n0.8854\n3.5017\n0.3919\nGAM4\n\n\n2017\n0.7034\n0.3568\n1.4769\n0.4062\nGAM4"
+  },
+  {
+    "objectID": "Lab1.html#normalize-nominal-index",
+    "href": "Lab1.html#normalize-nominal-index",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "7.3 6.3 Normalize Nominal Index",
+    "text": "7.3 6.3 Normalize Nominal Index\n\n\nCode\nbase_nominal &lt;- nominal_index$mean_density[nominal_index$year == min(nominal_index$year)]\n\nindex_nominal &lt;- nominal_index |&gt;\n  mutate(\n    index = mean_density / base_nominal,\n    index_lwr = (mean_density - 1.96*se) / base_nominal,\n    index_upr = (mean_density + 1.96*se) / base_nominal,\n    cv = se / mean_density,\n    model = \"Nominal\"\n  ) |&gt;\n  select(year, index, index_lwr, index_upr, cv, model)"
+  },
+  {
+    "objectID": "Lab1.html#compare-all-three-indices",
+    "href": "Lab1.html#compare-all-three-indices",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "7.4 6.4 Compare All Three Indices",
+    "text": "7.4 6.4 Compare All Three Indices\n\n\nCode\n# Combine all indices\nall_indices &lt;- bind_rows(\n  index_nominal,\n  index_glmm,\n  index_gam\n)\n\n# Reorder for better legend\nall_indices &lt;- all_indices |&gt;\n  mutate(model = factor(model, levels = c(\"Nominal\", \n                                          unique(model)[unique(model) != \"Nominal\"])))\n\n# Plot comparison\np=ggplot(all_indices, aes(x = year, y = index, color = model, fill = model)) +\n  geom_line(linewidth = 1.2) +\n  geom_point(size = 3) +\n  geom_ribbon(aes(ymin = index_lwr, ymax = index_upr),\n              alpha = 0.2, color = NA) +\n  scale_color_brewer(palette = \"Set1\") +\n  scale_fill_brewer(palette = \"Set1\") +\n  labs(\n    title = \"Abundance Index Comparison\",\n    subtitle = \"Nominal vs Best GLMM vs Best GAM\",\n    x = \"Year\",\n    y = \"Relative Index (normalized to 2003)\",\n    color = \"Model\",\n    fill = \"Model\"\n  ) +\n  scale_x_continuous(breaks = seq(2003, 2017, 2)) +\n  theme_minimal(base_size = 11) +\n  theme(legend.position = \"top\")\n\nprint(p)\n\n\n\n\n\n\n\nCode\n# Summary statistics\nindex_summary &lt;- all_indices |&gt;\n  group_by(model) |&gt;\n  summarise(\n    Mean_CV = mean(cv),\n    Min_Index = min(index),\n    Max_Index = max(index),\n    Trend = (index[year == max(year)] - index[year == min(year)]) / index[year == min(year)],\n    .groups = \"drop\"\n  )\n\nkable(index_summary, digits = 3,\n      caption = \"Index Summary Statistics by Model\")\n\n\n\nIndex Summary Statistics by Model\n\n\nmodel\nMean_CV\nMin_Index\nMax_Index\nTrend\n\n\n\n\nNominal\n0.240\n0.596\n2.339\n-0.136\n\n\nGLMM4\n0.177\n0.447\n1.550\n-0.447\n\n\nGAM4\n0.398\n0.493\n1.962\n-0.297\n\n\n\n\n\nKey Observations:\n\nNominal index shows high inter-annual variability, particularly in early years (2003-2006), reflecting changes in sampling locations and environmental conditions. Overall decline of ~X% from 2003 to 2017.\nGLMM standardization (with random effects for region and spatial stations (1|region) + (1|X:Y)) corrects for depth and spatial sampling heterogeneity, resulting in a smoother temporal trend. The standardized index shows a Y% decline, Z percentage points different from nominal, indicating that confounding factors (depth distribution, regional shifts) were masking/amplifying the true abundance trend.\nGAM with spatial smooth s(X,Y, k=20) additionally accounts for fine-scale spatial structure not captured by regional random effects. The GAM index shows [similar/slightly different] trend (W% correlation with GLMM), suggesting that the 2D spatial smooth captures residual spatial patterns beyond the region+station random effects.\nUncertainty (CVs) are [compare]"
+  },
+  {
+    "objectID": "Lab1.html#spatial-autocorrelation-in-glmm-residuals",
+    "href": "Lab1.html#spatial-autocorrelation-in-glmm-residuals",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "8.1 7.1 Spatial Autocorrelation in GLMM Residuals",
+    "text": "8.1 7.1 Spatial Autocorrelation in GLMM Residuals\n\n\nCode\nspatial_resid_glmm &lt;- dat |&gt;\n  group_by(X, Y,fyear) |&gt;\n  summarise(mean_resid = mean(resid_glmm, na.rm = TRUE), .groups = \"drop\")\n\nggplot(spatial_resid_glmm, aes(x = X, y = Y, color = mean_resid)) +\n  geom_point(size = 3, alpha = 0.8) +\n  scale_color_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                       midpoint = 0, limits = c(-2, 2),\n                       name = \"Mean\\nResidual\") +\n  coord_equal() +\n  labs(title = paste(\"Spatial Residuals:\", best_glmm_name),\n       subtitle = \"Clusters indicate unmodeled spatial structure\",\n       x = \"X (km)\", y = \"Y (km)\")\n\n\n\n\n\nCode\nggplot(spatial_resid_glmm, aes(x = X, y = Y, color = mean_resid)) +\n  geom_point(size = 3, alpha = 0.8) +\n  scale_color_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                       midpoint = 0, limits = c(-2, 2),\n                       name = \"Mean\\nResidual\") +\n    facet_wrap(~fyear, ncol = 3) +\n  coord_equal() +\n  labs(title = paste(\"Spatial Residuals:\", best_glmm_name),\n       subtitle = \"Clusters indicate unmodeled spatial structure\",\n       x = \"X (km)\", y = \"Y (km)\")\n\n\n\n\n\nCode\nggplot(dat, aes(x = X, y = Y, z = resid_glmm)) +\n  stat_summary_2d(fun = mean, bins = 30, alpha = 0.8) +\n  geom_contour(aes(color = after_stat(level)), bins = 10, linewidth = 0.5) +\n  scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                       midpoint = 0, limits = c(-2, 2),\n                       name = \"Mean\\nResidual\") +\n  facet_wrap(~fyear, ncol = 3) +\n  coord_equal() +\n  labs(title = paste(\"Spatial Residual Hotspots:\", best_glmm_name),\n       subtitle = \"Smoothed interpolation reveals persistent spatial patterns\",\n       x = \"X (km)\", y = \"Y (km)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "Lab1.html#spatial-autocorrelation-in-gam-residuals",
+    "href": "Lab1.html#spatial-autocorrelation-in-gam-residuals",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "8.2 7.2 Spatial Autocorrelation in GAM Residuals",
+    "text": "8.2 7.2 Spatial Autocorrelation in GAM Residuals\n\n\nCode\nspatial_resid_gam &lt;- dat_gam |&gt;\n  group_by(X, Y, fyear) |&gt;\n  summarise(mean_resid = mean(resid_gam, na.rm = TRUE), .groups = \"drop\")\n\nggplot(spatial_resid_gam, aes(x = X, y = Y, color = mean_resid)) +\n  geom_point(size = 3, alpha = 0.8) +\n  scale_color_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                       midpoint = 0, limits = c(-2, 2),\n                       name = \"Mean\\nResidual\") +\n  coord_equal() +\n  labs(title = paste(\"Spatial Residuals:\", best_gam_name),\n       subtitle = \"GAM with s(X,Y) should reduce spatial patterns\",\n       x = \"X (km)\", y = \"Y (km)\")\n\n\n\n\n\nCode\nggplot(spatial_resid_gam, aes(x = X, y = Y, color = mean_resid)) +\n  geom_point(size = 3, alpha = 0.8) +\n  scale_color_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                       midpoint = 0, limits = c(-2, 2),\n                       name = \"Mean\\nResidual\") +facet_wrap(~fyear)+\n  coord_equal() +\n  labs(title = paste(\"Spatial Residuals:\", best_gam_name),\n       subtitle = \"GAM with s(X,Y) should reduce spatial patterns\",\n       x = \"X (km)\", y = \"Y (km)\")\n\n\n\n\n\nCode\nggplot(dat_gam, aes(x = X, y = Y, z = resid_gam)) +  # z = resid_gam !\n  stat_summary_2d(fun = mean, bins = 30, alpha = 0.8) +\n  geom_contour(aes(z = resid_gam), color = \"white\", alpha = 0.5, bins = 10, linewidth = 0.5) +\n  scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                       midpoint = 0, limits = c(-2, 2),\n                       name = \"Mean\\nResidual\") +\n  facet_wrap(~fyear, ncol = 3) +\n  coord_equal() +\n  labs(title = paste(\"Spatial Residual Hotspots:\", best_gam_name),\n       subtitle = \"GAM with s(X,Y) should eliminate spatial patterns\",\n       x = \"X (km)\", y = \"Y (km)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "Lab1.html#transition-to-sdmtmb-if-needed",
+    "href": "Lab1.html#transition-to-sdmtmb-if-needed",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "8.3 7.3 Transition to sdmTMB (If Needed)",
+    "text": "8.3 7.3 Transition to sdmTMB (If Needed)\n\n\nCode\n  # Create mesh\n  mesh &lt;- make_mesh(dat, xy_cols = c(\"X\", \"Y\"), cutoff = 5)\n\n  # Fit spatiotemporal model\n  fit_sdmtmb &lt;- sdmTMB(\n    density ~ 0+fyear + s(depth),\n    data = dat,\n    mesh = mesh,\n    family = tweedie(link = \"log\"),\n    spatial = \"on\",           # Spatial random field\n    spatiotemporal = \"iid\",   # Independent spatiotemporal field\n    time = \"year\"\n  )\n\n  # Sanity checks\n  sanity(fit_sdmtmb)\n\n  # Extract residuals\n  dat$resid_sdmtmb &lt;- residuals(fit_sdmtmb)"
+  },
+  {
+    "objectID": "Lab1.html#compare-spatial-patterns-across-models",
+    "href": "Lab1.html#compare-spatial-patterns-across-models",
+    "title": "Comprehensive Abundance Index Standardization Workflow with standard methods",
+    "section": "8.4 7.4 Compare Spatial Patterns Across Models",
+    "text": "8.4 7.4 Compare Spatial Patterns Across Models\n\n\nCode\nif(!is.null(fit_sdmtmb)) {\n\n  # Prepare data for faceting\nresid_comparison &lt;- bind_rows(\n  dat |&gt; select(X, Y, fyear) |&gt; mutate(resid = scale(dat$resid_glmm), model = best_glmm_name),\n  dat_gam |&gt; select(X, Y, fyear) |&gt; mutate(resid = scale(dat_gam$resid_gam), model = best_gam_name),\n  dat |&gt; select(X, Y, fyear) |&gt; mutate(resid = scale(dat$resid_sdmtmb), model = \"sdmTMB\")\n)\n\n  ggplot(resid_comparison, aes(x = X, y = Y, color = resid)) +\n    geom_point(size = 1.5, alpha = 0.6) +\n    facet_grid(model ~ fyear) +\n    scale_color_gradient2(low = \"blue\", mid = \"white\", high = \"red\",\n                         midpoint = 0, limits = c(-1.5, 1.5),\n                         name = \"Residual\",oob = scales::squish) +\n    coord_equal() +\n    labs(title = \"Spatial Residual Comparison Across Models\",\n         subtitle = \"3 years × 3 models\",\n         x = \"X (km)\", y = \"Y (km)\") +\n    theme(strip.text = element_text(size = 10, face = \"bold\"))\n}"
+  },
+  {
     "objectID": "Materials.html",
     "href": "Materials.html",
     "title": "Course Materials",
     "section": "",
-    "text": "Explore the modules below to access presentation slides and hands-on R exercises.\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 1 – Classic Frameworks  💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nMapping the Latent Ocean – The Spatial Engine  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 2 – Spatial Scaffolding  💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDynamics in Space and Time  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 3 – Conceptualising our first S-T Model  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nAdvanced Spatial and spatio-temporal Structures  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 4 – running basic ST in VAST  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDeep overview of the VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 13:00\n\n\nHands-on Lab 5 – Navigating VAST  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nCatchability & density Covariates and more  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 6 – Adding Complexity and diagnostics  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nST model with the sdmTMB Framework  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 7  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nValidation, Uncertainty and Diagnostics  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 8 – Model Comparison  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\ntinyVAST – The Best of Both Worlds  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 9 – Speak ST model in TinyVAST  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nBYOP – Bring Your Own Data & Coaching  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nWorkshop Wrap-up  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\nNo matching items"
+    "text": "Explore the modules below to access presentation slides and hands-on R exercises.\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides 1 | 📽️ Slides 2 | 📽️ Slides 3\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 1 – Classic Frameworks  📽️ Slides 1 | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nMapping the Latent Ocean – The Spatial Engine  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 2 – Spatial Scaffolding  💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDynamics in Space and Time  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 3 – Conceptualising our first S-T Model  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nAdvanced Spatial and spatio-temporal Structures  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 4 – running basic ST in VAST  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nDeep overview of the VAST Architecture  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 13:00\n\n\nHands-on Lab 5 – Navigating VAST  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nCatchability & density Covariates and more  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 6 – Adding Complexity and diagnostics  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nST model with the sdmTMB Framework  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 7  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nValidation, Uncertainty and Diagnostics  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 8 – Model Comparison  📽️ Slides | 💻 Lab\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\nimage\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\ntinyVAST – The Best of Both Worlds  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 9 – Speak ST model in TinyVAST  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 16:00\n\n\nBYOP – Bring Your Own Data & Coaching  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nWorkshop Wrap-up  📽️ Slides | 💻 Lab 14\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Materials.html#monday-standardization-fundamentals-spatial-foundations",
     "href": "Materials.html#monday-standardization-fundamentals-spatial-foundations",
     "title": "Course Materials",
     "section": "",
-    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 1 – Classic Frameworks  💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nMapping the Latent Ocean – The Spatial Engine  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 2 – Spatial Scaffolding  💻 Lab\n\n\n\n\n\n\nNo matching items"
+    "text": "image\n\n\nTime\n\n\nSession & Materials\n\n\n\n\n\n\n\n\n\n08:30 - 10:00\n\n\nFoundations of Abundance Indices  📽️ Slides 1 | 📽️ Slides 2 | 📽️ Slides 3\n\n\n\n\n\n\n\n10:00 - 10:15\n\n\nCoffee Break\n\n\n\n\n\n\n\n10:15 - 12:00\n\n\nHands-on Lab 1 – Classic Frameworks  📽️ Slides 1 | 💻 Lab\n\n\n\n\n\n\n\n12:00 - 13:15\n\n\nLunch Break\n\n\n\n\n\n\n\n13:15 - 14:45\n\n\nMapping the Latent Ocean – The Spatial Engine  📽️ Slides | 💻 Lab\n\n\n\n\n\n\n\n14:45 - 15:00\n\n\nCoffee Break\n\n\n\n\n\n\n\n15:00 - 16:00\n\n\nHands-on Lab 2 – Spatial Scaffolding  💻 Lab\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Materials.html#tuesday-spatio-temporal-fusion-dynamics",
@@ -194,5 +390,103 @@
     "title": "Workshop Schedule",
     "section": "Technical Notes",
     "text": "Technical Notes\n\nSoftware: Ensure R, RStudio, sdmTMB, VAST, and tinyVAST are installed before Monday 08:30.\nProjections: Ensure you have the sf package to handle coordinate transformations (WGS84 to UTM).\nData: Participants working on their own data should have their CSV or RData files ready for Lab 1."
+  },
+  {
+    "objectID": "the-magic-map.html#outline",
+    "href": "the-magic-map.html#outline",
+    "title": "The Magic Map",
+    "section": "Outline",
+    "text": "Outline\n\nThe challenge — discrete dots in a fluid ocean\nFoundational principle — Tobler’s First Law\nThe Gaussian Random Field (GRF)\nThe Matérn covariance function\nThe “Big N” problem\nThe SPDE approach — meshes & sparsity\nIntegrating the field into the model\nThe resulting Magic Map\n\n\n\nPre-requisite: Module 3 — Generalized Linear Models for ecological count data."
+  },
+  {
+    "objectID": "the-magic-map.html#discrete-dots-in-a-fluid-ocean",
+    "href": "the-magic-map.html#discrete-dots-in-a-fluid-ocean",
+    "title": "The Magic Map",
+    "section": "Discrete dots in a fluid ocean",
+    "text": "Discrete dots in a fluid ocean\n\n\nThe input\nData at discrete sampling locations:\n\\[\ns_i = (\\text{Longitude}, \\text{Latitude})_i\n\\]\nEach tow, station, or transect is one point in space.\n\nThe illusion\nStandard regression treats each \\(s_i\\) as independent — as if every point were surrounded by a vacuum.\n\n\n\n\n\n\n\n\nBiological truth\n\n\nFish populations form a continuum. A 500 kg catch at point \\(A\\) implies similar density 500 m away. Independence is a modelling fiction we must repair."
+  },
+  {
+    "objectID": "the-magic-map.html#toblers-first-law",
+    "href": "the-magic-map.html#toblers-first-law",
+    "title": "The Magic Map",
+    "section": "Tobler’s First Law",
+    "text": "Tobler’s First Law\n\n“Everything is related to everything else, but near things are more related than distant things.”\n— Waldo Tobler, 1970\n\n\nLike weather: if it rains at your house, it is probably raining at your neighbour’s. Fish density behaves the same way.\n\n\n\n\n\n\n\n\nWhy we cannot ignore it\n\n\nSpatial autocorrelation clumps the error term \\(\\varepsilon\\). The consequences:\n\nbiased fixed-effect estimates (covariates absorb spatial structure they did not cause)\noverconfident standard errors → too-narrow confidence intervals\ninflated Type-I error in hypothesis tests"
+  },
+  {
+    "objectID": "the-magic-map.html#the-invisible-sheet",
+    "href": "the-magic-map.html#the-invisible-sheet",
+    "title": "The Magic Map",
+    "section": "The invisible sheet",
+    "text": "The invisible sheet\nA Gaussian Random Field (GRF) is a stochastic process where any finite collection of points follows a multivariate normal distribution:\n\\[\n\\boldsymbol{\\omega} = \\big(\\omega(s_1), \\ldots, \\omega(s_n)\\big) \\sim \\mathcal{N}_n(\\mathbf{0}, \\boldsymbol{\\Sigma})\n\\]\n\nImagine an elastic sheet draped over the study area:\n\n\nPeaks\nHigh density pushes the sheet upward.\n\nValleys\nLow density lets it sink.\n\nSmooth slopes\nStretchiness ensures continuity between neighbours."
+  },
+  {
+    "objectID": "the-magic-map.html#the-matérn-covariance-rules-of-the-sheet",
+    "href": "the-magic-map.html#the-matérn-covariance-rules-of-the-sheet",
+    "title": "The Magic Map",
+    "section": "The Matérn covariance — rules of the sheet",
+    "text": "The Matérn covariance — rules of the sheet\nThe texture and stiffness of the GRF. For two points at distance \\(d_{ij} = \\lVert s_i - s_j \\rVert\\):\n\\[\n\\operatorname{Cov}\\!\\big(s_i, s_j\\big) \\;=\\; \\sigma^{2}\\,\\frac{1}{2^{\\nu-1}\\Gamma(\\nu)}\\,(\\kappa\\, d_{ij})^{\\nu}\\,K_{\\nu}(\\kappa\\, d_{ij})\n\\]\n\n\nRange — \\(r\\)\nDistance beyond which spatial correlation effectively vanishes.\n\\[r = \\sqrt{8\\nu}\\,/\\,\\kappa\\]\n\nMarginal SD — \\(\\sigma\\)\nMagnitude of spatial variability — the wave height of the sheet.\n\n\n\n\n\\(K_\\nu(\\cdot)\\) is the modified Bessel function of the second kind; \\(\\nu\\) controls smoothness (commonly fixed at \\(\\nu = 1\\) in 2-D SPDE work)."
+  },
+  {
+    "objectID": "the-magic-map.html#the-big-n-problem",
+    "href": "the-magic-map.html#the-big-n-problem",
+    "title": "The Magic Map",
+    "section": "The “Big N” problem",
+    "text": "The “Big N” problem\nA continuous GRF requires inverting a dense \\(n \\times n\\) covariance matrix.\n\n\n\nStep\nCost\n\n\n\n\nBuild \\(\\boldsymbol{\\Sigma}\\)\n\\(\\mathcal{O}(n^{2})\\) memory\n\n\nInvert / Cholesky \\(\\boldsymbol{\\Sigma}\\)\n\\(\\mathcal{O}(n^{3})\\) time\n\n\nLikelihood evaluation per iteration\n\\(\\mathcal{O}(n^{3})\\)\n\n\n\n\nWith \\(n \\approx 5{,}000\\) tows, this breaks any laptop — and surveys routinely hit \\(10{,}000\\)+ records.\n\n\n\nWe need a representation of the GRF that is continuous in space but sparse in computation."
+  },
+  {
+    "objectID": "the-magic-map.html#the-spde-approach-the-spider-web",
+    "href": "the-magic-map.html#the-spde-approach-the-spider-web",
+    "title": "The Magic Map",
+    "section": "The SPDE approach — the spider web",
+    "text": "The SPDE approach — the spider web\nLindgren, Rue & Lindström (2011) showed that a Matérn GRF is the stationary solution of a stochastic partial differential equation:\n\\[\n(\\kappa^{2} - \\Delta)^{\\alpha/2}\\,\\big(\\tau\\,\\omega(s)\\big) = \\mathcal{W}(s)\n\\]\n\nSolve it on a triangulated mesh — a finite set of knots:\n\n\nKnots\nField values are computed only at triangle vertices.\n\nBarycentric interpolation\nWithin each triangle, values are linearly blended.\n\nResult\nSparse precision matrices replace dense covariance — fast and scalable."
+  },
+  {
+    "objectID": "the-magic-map.html#designing-the-mesh-precision-vs.-performance",
+    "href": "the-magic-map.html#designing-the-mesh-precision-vs.-performance",
+    "title": "The Magic Map",
+    "section": "Designing the mesh — precision vs. performance",
+    "text": "Designing the mesh — precision vs. performance\n\n\nInner zone\n\nhigh triangle density\nin the data-rich region\nhigh precision, slower\n\nOuter buffer zone\n\nlarger triangles\nprevents edge leakage and numerical instability\ncheap to compute\n\n\nR Lab — build your mesh\nlibrary(sdmTMB)\n\nmesh &lt;- make_mesh(\n  data    = catch_df,\n  xy_cols = c(\"X\", \"Y\"),\n  cutoff  = 15            # km between knots\n)\n\nplot(mesh)\nThe cutoff argument controls knot spacing — smaller values yield finer meshes.\n\n\n\n\n\n\n\n\n\nTip\n\n\nRule of thumb: target the cutoff at roughly 1/5 of your expected spatial range \\(r\\)."
+  },
+  {
+    "objectID": "the-magic-map.html#integrating-the-field-into-the-model",
+    "href": "the-magic-map.html#integrating-the-field-into-the-model",
+    "title": "The Magic Map",
+    "section": "Integrating the field into the model",
+    "text": "Integrating the field into the model\nThe spatially explicit linear predictor adds the GRF term \\(\\omega(s_i)\\) to the fixed effects:\n\\[\n\\log(\\mu_i) \\;=\\; \\underbrace{\\beta_0 + \\beta_1\\,\\text{Depth}_i + \\beta_2\\,\\text{Temp}_i}_{\\text{fixed effects}} \\;+\\; \\underbrace{\\omega(s_i)}_{\\text{latent spatial field}}\n\\]\n\n\n\nFixed effects\nMeasured covariates — depth, temperature, sediment.\n\n\\(\\omega(s_i)\\)\nAbsorbs unmeasured drivers: hidden currents, habitat structure, social behaviour.\n\nINLA / sdmTMB\nFast (approximate) Bayesian inference in R — no MCMC required."
+  },
+  {
+    "objectID": "the-magic-map.html#a-reproducible-fit-in-sdmtmb",
+    "href": "the-magic-map.html#a-reproducible-fit-in-sdmtmb",
+    "title": "The Magic Map",
+    "section": "A reproducible fit in sdmTMB",
+    "text": "A reproducible fit in sdmTMB\nlibrary(sdmTMB)\n\nfit &lt;- sdmTMB(\n  formula = catch_kg ~ depth_s + temp_s,\n  data    = catch_df,\n  mesh    = mesh,\n  family  = tweedie(link = \"log\"),\n  spatial = \"on\"\n)\n\ntidy(fit, effects = \"ran_pars\", conf.int = TRUE)\n#&gt; term        estimate  conf.low  conf.high\n#&gt; range       42.6      31.2      58.1\n#&gt; phi          1.18      1.05      1.32\n#&gt; sigma_O      0.91      0.74      1.12\n\n\nEquivalent INLA workflow: inla.spde2.pcmatern() → inla.stack() → inla()."
+  },
+  {
+    "objectID": "the-magic-map.html#the-resulting-magic-map",
+    "href": "the-magic-map.html#the-resulting-magic-map",
+    "title": "The Magic Map",
+    "section": "The resulting Magic Map",
+    "text": "The resulting Magic Map\n\n\nWhat you gain\n\nCorrected uncertainty — confidence intervals reflect true spatial patchiness; no more overconfident predictions.\nPrediction anywhere — estimate density at any \\((\\text{Lon}, \\text{Lat})\\), including unsampled locations.\nHonest covariate effects — fixed effects are no longer contaminated by spatial structure.\nDiagnostic value — the shape of \\(\\hat{\\omega}(s)\\) reveals the missing covariate you have not yet measured.\n\n\nPredict on a new grid\ngrid &lt;- expand.grid(\n  X = seq(xmin, xmax, by = 2),\n  Y = seq(ymin, ymax, by = 2)\n)\n\npreds &lt;- predict(\n  fit,\n  newdata     = grid,\n  return_tmb_object = TRUE\n)\n\n# Posterior mean + SE per cell\nhead(preds$data[, c(\"est\", \"est_se\")])"
+  },
+  {
+    "objectID": "the-magic-map.html#make-the-map-dynamic",
+    "href": "the-magic-map.html#make-the-map-dynamic",
+    "title": "The Magic Map",
+    "section": "Make the map dynamic",
+    "text": "Make the map dynamic\nThe field \\(\\omega(s)\\) we just fit is frozen in time.\nBut fish move. Habitats shift. Climate drifts.\n\nHow does the spatial field evolve across years?\n\n\n➡️ Module 5 — Spatio-Temporal Models: \\(\\omega(s, t)\\), AR(1) fields, persistent vs. ephemeral hotspots."
+  },
+  {
+    "objectID": "the-magic-map.html#references",
+    "href": "the-magic-map.html#references",
+    "title": "The Magic Map",
+    "section": "References",
+    "text": "References\n\nLindgren, F., Rue, H., & Lindström, J. (2011). An explicit link between Gaussian fields and Gaussian Markov random fields: the SPDE approach. JRSS-B, 73(4), 423–498.\nRue, H., Martino, S., & Chopin, N. (2009). Approximate Bayesian inference for latent Gaussian models by using INLA. JRSS-B, 71(2), 319–392.\nAnderson, S. C., Ward, E. J., English, P. A., & Barnett, L. A. K. (2022). sdmTMB: An R package for fast, flexible, and user-friendly generalized linear mixed effects models with spatial and spatiotemporal random fields. bioRxiv.\nTobler, W. R. (1970). A computer movie simulating urban growth in the Detroit region. Economic Geography, 46, 234–240."
+  },
+  {
+    "objectID": "the-magic-map.html#questions",
+    "href": "the-magic-map.html#questions",
+    "title": "The Magic Map",
+    "section": "Questions?",
+    "text": "Questions?\n\n\nSosthène · stat4research.com\nStatistical training & R consulting for researchers and doctoral students.\nMoncton, NB · Canada\n\nUp next\nModule 5 — Spatio-Temporal Models\nModule 6 — Joint species distributions\n\n\n\n\nModule 4 · Spatial Statistics — stat4research.com"
   }
 ]
